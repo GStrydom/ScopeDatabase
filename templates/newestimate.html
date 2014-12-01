@@ -1,0 +1,67 @@
+{% extends 'site_base.html' %}
++
+{% block logoblock %}
+    Piping Scope Database
+{% endblock %}
+
+{% block mainBar %}
+    {% block contentBar %}
+        <form action="" method="post">{% csrf_token %}
+            <div id="firstHalf">
+                <div id="estlineclass" class="borderestdiv"><div id="estlineclassfield">Enter the lineclass:</div>
+                    <div id="estlineclassbox">{{ defestsform.lineclasses }}</div>
+                </div>
+                <div id="estdiameter" class="borderestdiv"><div id="estdiameterfield">Enter the diameter:</div>
+                    <div id="estdiameterbox">{{ defestsform.diameter }}</div>
+                </div>
+                <div id="estschedule" class="borderestdiv"><div id="estschedulefield">Enter the schedule:</div>
+                    <div id="estschedulebox">{{ defestsform.schedule }}</div>
+                </div>
+                <div id="estmaterial" class="borderestdiv"><div id="estmaterialfield">Enter the material:</div>
+                    <div id="estmaterialbox">{{ defestsform.material }}</div>
+                </div>
+                <div id="estfieldweld" class="borderestdiv"><div id="estfieldweldfield">Enter the number of fieldwelds:</div>
+                    <div id="estfieldweldbox">{{ defestsform.fieldwelds }}</div>
+                </div>
+                <div id="estdemo" class="borderestdiv"><div id="estdemofield">Enter the demolength:</div>
+                    <div id="estdemobox">{{ defestsform.demolength }}</div>
+                </div>
+                <div id="estinstall" class="borderestdiv"><div id="estinstallfield">Enter the install length:</div>
+                    <div id="estinstallbox">{{ defestsform.installlength }}</div>
+                </div>
+                <div id="estiso" class="borderestdiv">
+                    <div id="estisofield">Flanges for Isolation:</div>
+                    <div id="estisobox">{{ defestsform.flangesforisolation }}</div>
+                    <div id="estfhhotcutbox">Flange Handle: Hot Cuts: {{ defestsform.flangehandlinghotcuts }}</div>
+                    <div id="estalkybox">Flange Handle: Alky: {{ defestsform.flangehandlingalky }}</div>
+                    <div id="esthacksawbox">Flange Handle Hacksaw: {{ defestsform.flangehandlinghacksaw }}</div>
+                    <div id="estbasetbox">Flange Handle BA-Set: {{ defestsform.flangehandlingbaset }}</div>
+                </div>
+                <div id="estrein" class="borderestdiv">
+                    <div id="estreinfield">Flanges for Reinstatement:</div>
+                    <div id="estreinbox">{{ defestsform.flangesforreinstate }}</div>
+                    <div id="estalkybox">Flange Handle: Alky: {{ defestsform.flangehandlingalky }}</div>
+                    <div id="estbasetbox">Flange Handle BA-Set: {{ defestsform.flangehandlingbaset }}</div>
+                </div>
+                <div id="estnumjoints" class="borderestdiv"><div id="estnumjointsfield">Number of joints:</div>
+                    <div id="estnumjointsbox">{{ defestsform.numberofjoints }}</div>
+                </div>
+                <div id="estinstrbolt" class="borderestdiv"><div id="estinstrboltfield">Instruments for boltup:</div>
+                    <div id="estinstrboltbox">{{ defestsform.instrumentsforboltup }}</div>
+                </div>
+                <div id="estrigbolt" class="borderestdiv"><div id="estrigboltfield">Riggers for boltup:</div>
+                    <div id="estrigboltbox">{{ defestsform.riggersforboltup }}</div>
+                </div>
+                <div id="estcoldcut" class="borderestdiv"><div id="estcoldcutfield">Number of Cold Cuts:</div>
+                    <div id="estcoldcutbox">{{ defestsform.numberofcoldcuts }}</div>
+                </div>
+                <div id="esthotcut" class="borderestdiv"><div id="esthotcutfield">Number of Hot Cuts:</div>
+                    <div id="esthotcutbox">{{ defestsform.numberofhotcuts }}</div>
+                </div>
+            </div>
+    {% endblock %}
+    {% block hotBar %}
+        <input type="submit" id="subestdefs" value="Next" onclick="checkMoreEstimates()">
+        </form>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'site_base.html' %}
+
+{% block logoblock %}
+    Piping Scope Database
+{% endblock %}
+
+{% block loginbox %}
+{% endblock %}
+
+{% block mainBar %}
+    {% block titleBar %}
+        Create New Prefabrication Material List
+    {% endblock %}
+    {% block contentBar %}
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {{ newprefab.as_p }}
+    {% endblock %}
+    {% block hotBar %}
+        <input type="submit" id="savenewprefab" value="Save Prefab" class="mainbuts">
+        </form>
+    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'site_base.html' %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block mainBar %}
+    {% block titleBar %}
+        <strong>Create a New Work Pack</strong>
+    {% endblock %}
+    {% block contentBar %}
+        <form action="" method="post">{% csrf_token %}
+            <div class="inputrow"><div id="wpnumfield">Enter the workpack number:</div>
+                <div id="wpnumfieldbox">{{ newwpform.workpacknumber }}</div>
+            </div>
+            <div class="inputrow"><div id="wplinenumfield">Enter the workpack line number:</div>
+                <div id="wplinenumfieldbox">{{ newwpform.workpacklinenumber }}</div>
+            </div>
+            <div class="inputrow"><div id="wplineclassfield">Enter the workpack line class:</div>
+                <div id="wplineclassfieldbox">{{ newwpform.workpacklineclass }}</div>
+            </div>
+            <div class="inputrow"><div id="clientfield">Client:</div>
+                <div id="wpnumfieldbox">{{ newwpform.client }}</div>
+            </div>
+            <div class="inputrow"><div id="leadfield">Enter the leads name:</div>
+                <div id="wpnumfieldbox">{{ newwpform.lead }}</div>
+            </div>
+            <div class="inputrow"><div id="datefield">Enter the date:</div>
+                <div id="wpnumfieldbox">{{ newwpform.datecreated }}</div>
+            </div>
+            <div class="inputrow"><div id="projectfield">Enter the project name:</div>
+                <div id="wpnumfieldbox">{{ newwpform.project }}</div>
+            </div>
+            <div class="inputrow"><div id="areafield">Enter the area name:</div>
+                <div id="wpnumfieldbox">{{ newwpform.area }}</div>
+            </div>
+
+            <input type="submit" id="subwplinenum" value="Save">
+        </form>
+    {% endblock %}
+    {% block hotBar %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

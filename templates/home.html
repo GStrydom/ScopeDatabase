@@ -1,0 +1,34 @@
+{% extends "site_base.html" %}
+
+{% block logoblock %}
+    Piping Scope Database
+{% endblock %}
+
+{% block leftBar %}
+    {% if workpacks.count < 0 %}
+        <script>
+            alert("There are no workpacks in the database!")
+        </script>
+    {% else %}
+        <div id="leftHeader">
+            Workpacks
+        </div>
+        {% for workpack in workpacks %}
+            <div class="worckpackinner"><a class="workpacklinks" href="/workpacks/get/{{ workpack.workpack_id }}">
+                {{ workpack.workpacknumber }}</a></div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block loginbox %}
+    <a href="registration"><input type="button" id="registerButton" value="Register"></a>
+    <a href="new-workpack"><input type="button" id="loginButton" value="Create Workpack"></a>
+    <a href="login"><input type="button" id="loginButton" value="Login"></a>
+{% endblock %}
+
+{% block contentBar %}
+    Open a workpack on the left.
+{% endblock %}
+{% block hotBar %}
+
+{% endblock %}

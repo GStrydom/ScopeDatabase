@@ -1,0 +1,37 @@
+{% extends 'site_base.html' %}
+
+{% block logoblock %}
+    Piping Scope Database
+{% endblock %}
+
+{% block loginbox %}
+{% endblock %}
+
+{% block mainBar %}
+    {% block titleBar %}
+        <a href="/workpacks/get/{{ workpack.workpack_id }}"><img src="/static/images/buttons/packselected.png" alt="Pack Info"></a>
+        <a href="/showprefab/"><img src="/static/images/buttons/prefab.png" alt="Prefab"></a>
+        <a href="/showspade/"><img src="/static/images/buttons/spade.png" alt="Spade"></a>
+        <a href="/showreinstate/"><img src="/static/images/buttons/reinstate.png" alt="Reinstate"></a>
+    {% endblock %}
+    {% block contentBar %}
+        <p>Workpack Number {{ workpack.workpacknumber }}</p>
+        <p>Workpack Line Number {{ workpack.workpacklinenumber }}</p>
+        <p>Workpack Line Class {{ workpack.workpacklineclass }}</p>
+        <p>Client {{ workpack.client }}</p>
+        <p>Lead {{ workpack.lead }}</p>
+        <p>Project {{ workpack.project }}</p>
+        <p>Area {{ workpack.area }}</p>
+    {% endblock %}
+    {% block hotBar %}
+        <div id="addprefab"><a href="/new-prefab/"><img src="/static/images/buttons/addprefab.png" alt="Add Prefab"></a></div>
+        <div id="addspading"><a href="/new-spading/"><img src="/static/images/buttons/addspading.png" alt="Add Spading"></a></div>
+        <div id="addreinstate"><a href="/new-reinstate/"><img src="/static/images/buttons/addreinstate.png" alt="Add Reinstate"></a></div>
+        <a href="/new-estimates/"><img src="/static/images/buttons/addestimate.png" alt="Add Estimate"></a>
+        <div id="editpack"><a href="/editpack/"><img src="/static/images/buttons/edit.png" alt="Edit Pack"></a></div>
+        <div id="deletepack"><a href="/deletepack/" onclick="checkDelete(event)"><img src="/static/images/buttons/delete.png" alt="Delete Pack"></a></div>
+    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
