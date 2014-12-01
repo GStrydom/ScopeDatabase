@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 
 from datetime import datetime
 
-from workpacks.models import Workpack, Lineclasses
+from workpacks.models import Workpack, Lineclasses, Lineclass
 
 
 class Estimate(models.Model):
@@ -76,9 +76,10 @@ class EstimateDefaults(models.Model):
     Preps EPDS with default duration/manhours ready for
     resources.
     """
+
     estimatedefaults_id = models.AutoField(primary_key=True)
     lineclasses = models.ForeignKey(Lineclasses)
-    diameter = models.CharField(max_length=5)
+    diameter = models.IntegerField()
     schedule = models.CharField(max_length=10, blank=True)
     material = models.CharField(max_length=10, blank=True)
     fieldwelds = models.SmallIntegerField(blank=True)
