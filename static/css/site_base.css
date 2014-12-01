@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 1300px;
-    height: 1400px;
+    height: 1100px;
     margin: 0 auto;
 }
 
@@ -44,6 +44,7 @@
     border-bottom: 1px solid black;
     min-height: 100%;
     min-width: 84.8%;
+    background-color: #221990;
 }
 
 .titleBar {
@@ -56,6 +57,7 @@
     display: flex;
     flex-direction: column;
     min-height: 92%;
+    background-color: #119081;
 }
 
 .hotBar {
@@ -150,10 +152,85 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 20px;
-    min-height: 50px;
+    min-height: 120px;
+    background-color: #781611;
 }
 
-#firstHalf {
+#calcwrapper {
+	display: flex;
+	flex-direction: row;
+	background-color: #900198;
+	min-height: 80px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#totalsBlock {
+	display: flex;
+	flex-direction: column;
+	background-color: #118971;
+    flex: 0.3;
+}
+
+#bottomWrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+#hoursWrapper {
+	display: flex;
+	flex-direction: column;
+    flex: 1;
+}
+
+#totalsHeader {
+	background-color: #781116;
+}
+
+#resourcesBlock {
     display: flex;
+	background-color: #908117;
+    flex: 1;
+}
+
+#manhours {
+    display: flex;
+	background-color: #381561;
+    flex: 1;
+}
+
+#duration {
+    display: flex;
+	background-color: #208117;
+    flex: 1;
+}
+
+#buttonsBlock {
+	background-color: #210971;
+	display: flex;
+	flex-direction: column;
+    flex: 0.3;
+}
+
+#formBlock {
+    background-color: #119911;
+    display: flex;
+    flex: 1;
     flex-direction: column;
+}
+
+#tablesBlock {
+    background-color: #381751;
+    display: flex;
+    flex-grow: 2
+}
+
+.buts {
+    width: 70px;
+    height: 24px;
+}
+
+.nameDiv {
+    display: flex;
+    flex-direction: row;
 }
