@@ -1,5 +1,4 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
-from django.core.context_processors import csrf
 from django.template import RequestContext
 
 from .forms import CreateNewPrefabForm
@@ -14,6 +13,9 @@ def createprefabmatlist(request):
     """
     createprefabcons = dict()
     createprefabcons['newprefab'] = CreateNewPrefabForm(data=request.POST)
+    createprefabcons['newprefab'].fields['matlist'].queryset = Lineclass.objects\
+        .filter(lineclassname=Workpack.objects.get(workpack_id=request.session['workpackselected']).workpacklineclass)\
+        .values_list('itemname', flat=True).distinct()
 
     if request.method == 'POST':
         if createprefabcons['newprefab'].is_valid():
