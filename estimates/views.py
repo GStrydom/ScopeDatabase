@@ -1,27 +1,23 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 
-from .forms import NewDefaultEstimates
 from .models import EstimateDefaults, Pipingnorms, Manhoursfactor
 
-from workpacks.models import Workpack
+from workpacks.models import Workpack, Lineclasses
+from materials.models import SizeList
 
 from fractions import Fraction
 
 
 def createestimates(request):
     createestcons = dict()
-    createestcons['defestsform'] = NewDefaultEstimates(data=request.POST)
     createestcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
-    print createestcons['workpack'].workpacknumber
-    if request.method == 'POST':
-        if createestcons['defestsform'].is_valid():
-            createestcons['defestsform'].save(commit=False)
-
-            HttpResponseRedirect('/calcresources/')
-    else:
-        createestcons['workpacks'] = Workpack.objects.all()
-        return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
+    createestcons['workpacks'] = Workpack.objects.all()
+    createestcons['manhours'] = 0
+    createestcons['duration'] = 0
+    createestcons['diameters'] = SizeList.objects.all()
+    createestcons['lineclasss'] = Lineclasses.objects.all()
+    return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
 
 def calculateresources(request):
@@ -98,3 +94,7 @@ def calculateresources(request):
     print result
 
     return render_to_response('getresources.html', caclrescons, context_instance=RequestContext(request))
+
+
+def generateepds(request):
+    gencons = dict()
