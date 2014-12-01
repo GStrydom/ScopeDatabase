@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Estimate, EstimateDefaults
+from .models import Estimate, EstimateDefaults, Pipingnorms
 
 
 class NewEstimateForm(forms.ModelForm):
@@ -10,9 +10,11 @@ class NewEstimateForm(forms.ModelForm):
 
 
 class NewDefaultEstimates(forms.ModelForm):
+    diameter = forms.ModelChoiceField(queryset=Pipingnorms.objects.values_list('dn', flat=True))
+
     class Meta:
         model = EstimateDefaults
-        fields = ('estimatedefaults_id', 'lineclasses', 'diameter', 'schedule', 'material', 'fieldwelds',
+        fields = ('estimatedefaults_id', 'lineclasses', 'diameter', 'fieldwelds',
                   'demolength', 'installlength', 'flangesforisolation', 'flangesforreinstate',
                   'flangehandlinghotcuts', 'flangehandlingalky', 'flangehandlinghacksaw', 'flangehandlingbaset',
                   'numberofjoints', 'instrumentsforboltup', 'riggersforboltup', 'numberofcoldcuts',
