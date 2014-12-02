@@ -9,25 +9,23 @@ from materials.models import SizeList
 
 from fractions import Fraction
 
+from .forms import FieldWeldHoursForm, ColdCutHoursForm
+
 
 def createestimates(request):
     createestcons = {}
     createestcons.update(csrf(request))
-    createestcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
     createestcons['workpacks'] = Workpack.objects.all()
-    createestcons['ccmanhours'] = 0
-    createestcons['ccduration'] = 0
     createestcons['diameters'] = SizeList.objects.all()
     createestcons['lineclasss'] = Lineclasses.objects.all()
-    if request.method == 'POST':
-        numcc = request.POST['numcoldcuts']
-        cclineclass = request.POST['ccdiaSelect']
-        ccdiameter = request.POST['cclcSelect']
-        numhc = request.POST['numhotcuts']
-        hclineclass = request.POST['hcdiaSelect']
-        hcdiameter = request.POST['hclcSelect']
-        print numcc, cclineclass, ccdiameter
-        print numhc, hclineclass, hcdiameter
+
+    createestcons['coldcutform'] = ColdCutHoursForm(request.POST or None)
+
+    if request.is_ajax():
+        print 'Ajax True'
+    else:
+        if request.POST:
+            print request.POST
 
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
@@ -69,7 +67,6 @@ def calculateresources(request):
         'riginlinehours': basestimate.installlength * riglinenorm,
 
         'grindprepfithours': basestimate.fieldwelds * (cutnorm + prepnorm) * 2
-
     }
 
     result['unboltjointshoursfitter'] = result['boltupjointshoursfitter']

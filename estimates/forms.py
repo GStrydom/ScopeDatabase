@@ -20,3 +20,17 @@ class NewDefaultEstimates(forms.ModelForm):
                   'numberofjoints', 'instrumentsforboltup', 'riggersforboltup', 'numberofcoldcuts',
                   'numberofhotcuts', 'workpack')
         exclude = ('datecreated',)
+
+
+class FieldWeldHoursForm(forms.Form):
+    resources = forms.IntegerField()
+    lineclass = forms.CharField(max_length=8)
+    diameter = forms.IntegerField()
+    fieldwelds = forms.IntegerField()
+
+
+class ColdCutHoursForm(forms.Form):
+    resources = forms.IntegerField()
+    lineclass = forms.CharField(max_length=8)
+    diameter = forms.IntegerField()
+    fieldwelds = forms.IntegerField()

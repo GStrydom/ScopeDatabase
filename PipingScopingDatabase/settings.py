@@ -31,6 +31,7 @@ INSTALLED_APPS = (
     'prefabrication',
     'materials',
     'profiles',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (

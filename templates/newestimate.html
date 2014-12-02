@@ -4,8 +4,6 @@
     <link href="/static/css/site_base.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/static/javascript/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="/static/javascript/base_functions.js"></script>
-
-
 {% endblock %}
 
 {% block logoblock %}
@@ -68,7 +66,6 @@
                    <input type="submit" id="canButt" value="Cancel" class="buts">
                 </div>
             </div>
-
 
             <div id="tablesBlock">
                 <div id="tableHeader">
@@ -393,14 +390,16 @@
                 </div>
                 <div id="bottomWrapper">
                     <div id="resourcesBlock">
-                        <input type="text" id="coldcutresources">
+                        <form action="/new-estimates/" method="post">
+                            <input type="text" id="coldcutresources" name="coldcutresources">
+                        </form>
                     </div>
                     <div id="hoursWrapper">
                         <div id="manhours">
                             {{ ccmanhours }}
                         </div>
                         <div id="duration">
-                            {{ duration }}
+                            {{ ccduration }}
                         </div>
                     </div>
                 </div>
@@ -458,7 +457,8 @@
                             csrfmiddlewaretoken: '{{ csrf_token }}',
                             lineclass: $('#cclcSelect').val(),
                             diameter: $('#ccdiaSelect').val(),
-                            numcc: $('#numcoldcuts').val()
+                            numcc: $('#numcoldcuts').val(),
+                            formid: 1
                         }
                     });
                 });
