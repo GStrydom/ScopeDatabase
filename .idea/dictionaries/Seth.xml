@@ -21,16 +21,29 @@
       <w>calcres</w>
       <w>calcresources</w>
       <w>calculateresources</w>
+      <w>calcwrapper</w>
+      <w>calcx</w>
+      <w>ccdia</w>
+      <w>ccdiameter</w>
+      <w>ccduration</w>
+      <w>cclc</w>
+      <w>cclineclass</w>
+      <w>ccmanhours</w>
+      <w>ccsave</w>
+      <w>ccssrf</w>
       <w>clientcons</w>
       <w>clientinfo</w>
       <w>clientinformation</w>
       <w>clientlistview</w>
       <w>coldculthrs</w>
+      <w>coldcutdiameter</w>
+      <w>coldcutform</w>
       <w>coldcuthours</w>
       <w>coldcuthrs</w>
       <w>coldcutmanhours</w>
       <w>coldcutnorm</w>
       <w>coldcutnormhours</w>
+      <w>coldcutresources</w>
       <w>coldcutshours</w>
       <w>contactno</w>
       <w>contactnumber</w>
@@ -40,12 +53,14 @@
       <w>createspadecons</w>
       <w>createspadematlist</w>
       <w>createuser</w>
+      <w>csrfmiddlewaretoken</w>
       <w>cust</w>
       <w>customercons</w>
       <w>customerinformation</w>
       <w>customerlistview</w>
       <w>cutnorm</w>
       <w>datas</w>
+      <w>datatype</w>
       <w>datecreated</w>
       <w>datejoined</w>
       <w>deathenan</w>
@@ -67,14 +82,22 @@
       <w>estdef</w>
       <w>estdefs</w>
       <w>estimatehours</w>
+      <w>fieldweldinput</w>
       <w>fracestimate</w>
+      <w>fuckyouajax</w>
       <w>getbaseestimates</w>
       <w>getresources</w>
       <w>grindprepfithours</w>
       <w>handlemeternormshours</w>
+      <w>hcdia</w>
+      <w>hcdiameter</w>
+      <w>hclc</w>
+      <w>hclineclass</w>
+      <w>hcsave</w>
       <w>homecons</w>
       <w>homepageview</w>
       <w>hotcurhrs</w>
+      <w>hotcutform</w>
       <w>hotcuthours</w>
       <w>hotcuthrs</w>
       <w>hotcutmanhours</w>
@@ -90,6 +113,7 @@
       <w>lcobjects</w>
       <w>lineclass</w>
       <w>lineclassname</w>
+      <w>lineclasss</w>
       <w>linenumber</w>
       <w>logincons</w>
       <w>logoutcons</w>
@@ -98,12 +122,15 @@
       <w>manhoursfactor</w>
       <w>mfac</w>
       <w>multipart</w>
+      <w>ndata</w>
       <w>newreinstate</w>
       <w>newspade</w>
       <w>newworkpack</w>
       <w>newwp</w>
       <w>newwpform</w>
       <w>numcc</w>
+      <w>numcoldcuts</w>
+      <w>numhc</w>
       <w>packinfo</w>
       <w>packselected</w>
       <w>pfitter</w>
@@ -144,6 +171,8 @@
       <w>tackandweldweldernorm</w>
       <w>tackweldgreateighty</w>
       <w>tackweldlesseighty</w>
+      <w>thedata</w>
+      <w>thedict</w>
       <w>thesize</w>
       <w>theworkpacks</w>
       <w>uname</w>

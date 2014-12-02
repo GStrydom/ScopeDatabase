@@ -1,5 +1,13 @@
 {% extends 'site_base.html' %}
 
+{% block meta %}
+    <link href="/static/css/site_base.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/static/javascript/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/static/javascript/base_functions.js"></script>
+
+
+{% endblock %}
+
 {% block logoblock %}
     Piping Scope Database
 {% endblock %}
@@ -26,19 +34,8 @@
                     </div>
                 </div>
             </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
             <div id="formBlock">
-                <form action="" method="post">
+                <form action="" method="post" id="saveForm">
                     <div id="lineclass">
                         Lineclass :
                         <select id="diaSelect">
@@ -56,10 +53,22 @@
                         </select>
                     </div>
                     <div id="calcx">
-                        FieldWelds : <input type="text">
+                        FieldWelds : <input type="text" id="fieldweldinput">
                     </div>
                 </form>
             </div>
+            <div id="buttonsBlock">
+                <div id="addButton">
+                    <input type="submit" id="addButt" value="Add" class="buts">
+                </div>
+                <div id="save">
+                    <input type="submit" id="saveButt" value="Save" class="buts" form="saveForm">
+                </div>
+                <div id="cancel">
+                   <input type="submit" id="canButt" value="Cancel" class="buts">
+                </div>
+            </div>
+
 
             <div id="tablesBlock">
                 <div id="tableHeader">
@@ -67,6 +76,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="nameDiv">Demolition Length</div>
         <div id="calcwrapper">
             <div id="totalsBlock">
@@ -372,6 +383,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="nameDiv">Number of Cold Cuts</div>
         <div id="calcwrapper">
             <div id="totalsBlock">
@@ -380,11 +393,11 @@
                 </div>
                 <div id="bottomWrapper">
                     <div id="resourcesBlock">
-                        <input type="text">
+                        <input type="text" id="coldcutresources">
                     </div>
                     <div id="hoursWrapper">
                         <div id="manhours">
-                            {{ manhours }}
+                            {{ ccmanhours }}
                         </div>
                         <div id="duration">
                             {{ duration }}
@@ -397,32 +410,32 @@
                     <input type="submit" id="addButt" value="Add" class="buts">
                 </div>
                 <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
+                    <button type="submit" id="saveButt" name="ccsaveButt" class="buts" form="coldcutform">Save</button>
                 </div>
                 <div id="cancel">
                    <input type="submit" id="canButt" value="Cancel" class="buts">
                 </div>
             </div>
             <div id="formBlock">
-                <form action="" method="post">
+                <form action="/new-estimates/" method="post" id="coldcutform">{% csrf_token %}
                     <div id="lineclass">
                         Lineclass :
-                        <select id="diaSelect">
+                        <select id="cclcSelect" name="cclcSelect">
                             {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
+                                <option value="{{ lineclass.name }}">{{ lineclass.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div id="diameter">
                         Diameter :
-                        <select id="diaSelect">
+                            <select id="ccdiaSelect" name="ccdiaSelect">
                             {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
+                                <option value="{{ diameter.name}}">{{ diameter.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div id="calcx">
-                        NoCC : <input type="text">
+                        NoCC : <input type="text" name="numcoldcuts" id="numcoldcuts" value="">
                     </div>
                 </form>
             </div>
@@ -433,6 +446,25 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#ccsaveButt').click(function () {
+                    $.ajax({
+                        url: '/new-estimates/',
+                        type: 'POST',
+                        async: true,
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lineclass: $('#cclcSelect').val(),
+                            diameter: $('#ccdiaSelect').val(),
+                            numcc: $('#numcoldcuts').val()
+                        }
+                    });
+                });
+            });
+        </script>
+
         <div class="nameDiv">Number of Hot Cuts</div>
         <div id="calcwrapper">
             <div id="totalsBlock">
@@ -458,32 +490,32 @@
                     <input type="submit" id="addButt" value="Add" class="buts">
                 </div>
                 <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
+                    <button type="submit" id="hcsaveButt" name="hcsaveButt" class="buts" form="hotcutform">Save</button>
                 </div>
                 <div id="cancel">
                    <input type="submit" id="canButt" value="Cancel" class="buts">
                 </div>
             </div>
             <div id="formBlock">
-                <form action="" method="post">
+                <form action="/new-estimates/" method="post" id="hotcutform">{% csrf_token %}
                     <div id="lineclass">
                         Lineclass :
-                        <select id="diaSelect">
+                        <select id="hclcSelect">
                             {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
+                                <option value="{{ lineclass.name }}">{{ lineclass.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div id="diameter">
                         Diameter :
-                        <select id="diaSelect">
+                        <select id="hcdiaSelect">
                             {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
+                                <option value="{{ diameter.name }}">{{ diameter.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div id="calcx">
-                        NoHC : <input type="text">
+                        NoHC : <input type="text" id="numhotcuts" name="numhotcuts">
                     </div>
                 </form>
             </div>
@@ -494,6 +526,25 @@
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#hcsaveButt').click(function () {
+                    $.ajax({
+                        url: '/new-estimates/',
+                        type: 'POST',
+                        async: true,
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lineclass: $('#hclcSelect').val(),
+                            diameter: $('#hcdiaSelect').val(),
+                            numcc: $('#numhotcuts').val()
+                        }
+                    });
+                });
+            });
+        </script>
+
     {% endblock %}
     {% block hotBar %}
     {% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
+from django.core.context_processors import csrf
 
 from .models import EstimateDefaults, Pipingnorms, Manhoursfactor
 
@@ -10,13 +11,24 @@ from fractions import Fraction
 
 
 def createestimates(request):
-    createestcons = dict()
+    createestcons = {}
+    createestcons.update(csrf(request))
     createestcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
     createestcons['workpacks'] = Workpack.objects.all()
-    createestcons['manhours'] = 0
-    createestcons['duration'] = 0
+    createestcons['ccmanhours'] = 0
+    createestcons['ccduration'] = 0
     createestcons['diameters'] = SizeList.objects.all()
     createestcons['lineclasss'] = Lineclasses.objects.all()
+    if request.method == 'POST':
+        numcc = request.POST['numcoldcuts']
+        cclineclass = request.POST['ccdiaSelect']
+        ccdiameter = request.POST['cclcSelect']
+        numhc = request.POST['numhotcuts']
+        hclineclass = request.POST['hcdiaSelect']
+        hcdiameter = request.POST['hclcSelect']
+        print numcc, cclineclass, ccdiameter
+        print numhc, hclineclass, hcdiameter
+
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
 
@@ -31,7 +43,7 @@ def calculateresources(request):
     # wmfac = Manhoursfactor.objects.filter(material__exact=basestimate.material)[0].wfitter
 
     tackandweldweldernorm = basestimate.schedule
-    coldcutnorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].coldcutnormhours
+
     hotcutnorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].hotcutnormhours
     boltupnormfitter = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].boltupjointnormhours
     riglinenorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].handlemeternormshours
