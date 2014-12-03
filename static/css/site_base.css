@@ -55,7 +55,7 @@
 
 .contentBar {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-height: 92%;
     background-color: #119081;
 }
@@ -156,58 +156,6 @@
     background-color: #781611;
 }
 
-#calcwrapper {
-	display: flex;
-	flex-direction: row;
-	background-color: #900198;
-	min-height: 80px;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#totalsBlock {
-	display: flex;
-	flex-direction: column;
-	background-color: #118971;
-    flex: 0.3;
-}
-
-#bottomWrapper {
-	display: flex;
-	flex-direction: row;
-}
-
-#hoursWrapper {
-	display: flex;
-	flex-direction: column;
-    flex: 1;
-}
-
-#totalsHeader {
-	background-color: #781116;
-}
-
-#resourcesBlock {
-    display: flex;
-	background-color: #908117;
-    flex: 1;
-}
-
-
-#buttonsBlock {
-	background-color: #210971;
-	display: flex;
-	flex-direction: column;
-    flex: 0.3;
-}
-
-#formBlock {
-    background-color: #119911;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-}
-
 #tablesBlock {
     background-color: #381751;
     display: flex;
@@ -224,123 +172,49 @@
     flex-direction: row;
 }
 
-#mainwrapper {
-	display: flex;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	flex-direction: row;
-	-ms-flex-direction: row;
-	width: 100%;
-	min-height: 100%;
-	margin: 0 auto;
-	background-color: #908118;
-}
-
 #left {
-	display: flex;
-	display: -ms-flexbox;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-ms-flex: 1;
-	flex: 1;
-	background-color: #899227;
+    display: flex;
+    flex-direction: row;
+    flex: 1.6;
+    background-color: #789711;
 }
 
-#header {
-	display: flex;
-	background-color: #117887;
-	min-height: 4%;
+#epdslabels {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #908771;
 }
 
-#epdsgrouper {
-	display: flex;
-	flex-direction: row;
-	-ms-flex-direction: row;
-	background-color: #458791;
-	min-height: 96%;
-    flex: 2;
+#epdsboxes {
+    display: flex;
+    flex-direction: column;
+    flex: 0.5;
+    background-color: #389761;
+}
+
+.smallgrouper {
+    display: flex;
+    flex-direction: row;
+}
+
+.smallsize {
+    display: flex;
+    flex: 1;
+}
+
+#epdsextras {
+    display: flex;
+    flex: 0.5;
+    background-color: #49628a;
 }
 
 #right {
-	display: flex;
-	display: -ms-flexbox;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-ms-flex: 1;
-	flex: 1;
-	background-color: #444882;
-}
-
-#boxesGrouper {
-	display: flex;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	flex: 2;
-	-ms-flex: 2;
-}
-
-#epdsLabels {
-	display: flex;
-    flex-direction: column;
-	flex: 1;
-	-ms-flex: 1;
-	background-color: #331781;
-}
-
-.epdsBoxes {
-	display: flex;
-	flex: 1;
-	-ms-flex: 1;
-	flex-direction: row;
-	-ms-flex-direction: row;
-	background-color: #211121;
-}
-
-#erectscaffoldresources {
-	display: flex;
-	background-color: #112312;
-}
-
-#erectscaffoldmanhours {
-	display: flex;
-	background-color: #785411;
-}
-
-#erectscaffoldduration {
-	display: flex;
-	background-color: #418971;
-}
-
-#removeinsulationresources {
-	display: flex;
-	background-color: #112312;
-}
-
-#removeinsulationmanhours {
-	display: flex;
-	background-color: #785411;
-}
-
-#removeinsulationduration {
-	display: flex;
-	background-color: #418971;
-}
-
-.boxSizes {
-	max-height: 4%;
-	display: flex;
+    display: flex;
     flex: 1;
-	-ms-flex: 1;
+    background-color: #527fa9;
 }
 
-#epdsExtras {
-	display: flex;
-	flex: 1;
-	-ms-flex: 1;
-	background-color: #654111;
-}
-
-
-.labels {
-    margin-top: 10px;
+.boxsizes {
+    margin-bottom: 10px;
 }

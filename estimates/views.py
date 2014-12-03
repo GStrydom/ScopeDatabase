@@ -16,16 +16,7 @@ def createestimates(request):
     createestcons = {}
     createestcons.update(csrf(request))
     createestcons['workpacks'] = Workpack.objects.all()
-    createestcons['diameters'] = SizeList.objects.all()
-    createestcons['lineclasss'] = Lineclasses.objects.all()
 
-    createestcons['coldcutform'] = ColdCutHoursForm(request.POST or None)
-
-    if request.is_ajax():
-        print 'Ajax True'
-    else:
-        if request.POST:
-            print request.POST
 
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
