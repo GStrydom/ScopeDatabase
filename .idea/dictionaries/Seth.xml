@@ -79,6 +79,10 @@
       <w>editworkpack</w>
       <w>emailaddress</w>
       <w>epds</w>
+      <w>epdsgrouper</w>
+      <w>erectscaffoldduration</w>
+      <w>erectscaffoldmanhours</w>
+      <w>erectscaffoldresources</w>
       <w>estdef</w>
       <w>estdefs</w>
       <w>estimatehours</w>
@@ -118,6 +122,8 @@
       <w>logincons</w>
       <w>logoutcons</w>
       <w>logoutpageview</w>
+      <w>mainrapper</w>
+      <w>mainwrapper</w>
       <w>manhours</w>
       <w>manhoursfactor</w>
       <w>mfac</w>
@@ -147,6 +153,9 @@
       <w>projsettings</w>
       <w>pword</w>
       <w>registercons</w>
+      <w>removeinsulationduration</w>
+      <w>removeinsulationmanhours</w>
+      <w>removeinsulationresources</w>
       <w>riggersforcoldcut</w>
       <w>riggersforhotcut</w>
       <w>riginlinehours</w>

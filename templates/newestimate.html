@@ -12,539 +12,72 @@
 
 {% block mainBar %}
     {% block contentBar %}
-        <div class="nameDiv">FieldWelds</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
+        <div id="mainwrapper">
+			<div id="left">
+				<div id="header">EPDS</div>
+				<div id="epdsgrouper">
+					<div id="epdsLabels">
+					    <div class="labels">
+                            Erect Scaffold
                         </div>
-                        <div id="duration">
-                            {{ duration }}
+                        <div class="labels">
+                            Remove Insulation
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="" method="post" id="saveForm">
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="diaSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="diaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        FieldWelds : <input type="text" id="fieldweldinput">
-                    </div>
-                </form>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts" form="saveForm">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
+					</div>
+					<div id="boxesGrouper">
+						<div class="epdsBoxes">
+							<div id="erectscaffoldresources" class="boxSizes">
 
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
+							</div>
+							<div id="erectscaffoldmanhours" class="boxSizes">
 
+							</div>
+							<div id="erectscaffoldduration" class="boxSizes">
+                            </div>
+						</div>
+                        <div class="epdsBoxes">
+                            <div id="removeinsulationresources" class="boxSizes">
 
-        <div class="nameDiv">Demolition Length</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
+							</div>
+							<div id="removeinsulationmanhours" class="boxSizes">
+
+							</div>
+							<div id="removeinsulationduration" class="boxSizes">
                         </div>
-                        <div id="duration">
-                            {{ duration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="" method="post">
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="diaSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="diaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        Length : <input type="text">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-        <div class="nameDiv">Installation Length</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
-                        </div>
-                        <div id="duration">
-                            {{ duration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="" method="post">
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="diaSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="diaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        Length: <input type="text">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-        <div class="nameDiv">Number of Flanges for Isolation and PT</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
-                        </div>
-                        <div id="duration">
-                            {{ duration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="" method="post">
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="diaSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="diaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        NoF-PT : <input type="text">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-        <div class="nameDiv">Number of Flanges for Reinstatement</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
-                        </div>
-                        <div id="duration">
-                            {{ duration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="" method="post">
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="diaSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="diaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        NoF-RI : <input type="text">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-        <div class="nameDiv">Number of Joints</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
-                        </div>
-                        <div id="duration">
-                            {{ duration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <input type="submit" id="saveButt" value="Save" class="buts">
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="" method="post">
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="diaSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.lineclasses_id }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="diaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.sizelist_id }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        NoJ : <input type="text">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-
-
-        <div class="nameDiv">Number of Cold Cuts</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <form action="/new-estimates/" method="post">
-                            <input type="text" id="coldcutresources" name="coldcutresources">
-                        </form>
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ ccmanhours }}
-                        </div>
-                        <div id="duration">
-                            {{ ccduration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <button type="submit" id="saveButt" name="ccsaveButt" class="buts" form="coldcutform">Save</button>
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="/new-estimates/" method="post" id="coldcutform">{% csrf_token %}
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="cclcSelect" name="cclcSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.name }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                            <select id="ccdiaSelect" name="ccdiaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.name}}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        NoCC : <input type="text" name="numcoldcuts" id="numcoldcuts" value="">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#ccsaveButt').click(function () {
-                    $.ajax({
-                        url: '/new-estimates/',
-                        type: 'POST',
-                        async: true,
-                        data: {
-                            csrfmiddlewaretoken: '{{ csrf_token }}',
-                            lineclass: $('#cclcSelect').val(),
-                            diameter: $('#ccdiaSelect').val(),
-                            numcc: $('#numcoldcuts').val(),
-                            formid: 1
-                        }
-                    });
-                });
-            });
-        </script>
-
-        <div class="nameDiv">Number of Hot Cuts</div>
-        <div id="calcwrapper">
-            <div id="totalsBlock">
-                <div id="totalsHeader">
-                    Totals
-                </div>
-                <div id="bottomWrapper">
-                    <div id="resourcesBlock">
-                        <input type="text">
-                    </div>
-                    <div id="hoursWrapper">
-                        <div id="manhours">
-                            {{ manhours }}
-                        </div>
-                        <div id="duration">
-                            {{ duration }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="buttonsBlock">
-                <div id="addButton">
-                    <input type="submit" id="addButt" value="Add" class="buts">
-                </div>
-                <div id="save">
-                    <button type="submit" id="hcsaveButt" name="hcsaveButt" class="buts" form="hotcutform">Save</button>
-                </div>
-                <div id="cancel">
-                   <input type="submit" id="canButt" value="Cancel" class="buts">
-                </div>
-            </div>
-            <div id="formBlock">
-                <form action="/new-estimates/" method="post" id="hotcutform">{% csrf_token %}
-                    <div id="lineclass">
-                        Lineclass :
-                        <select id="hclcSelect">
-                            {% for lineclass in lineclasss %}
-                                <option value="{{ lineclass.name }}">{{ lineclass.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="diameter">
-                        Diameter :
-                        <select id="hcdiaSelect">
-                            {% for diameter in diameters %}
-                                <option value="{{ diameter.name }}">{{ diameter.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="calcx">
-                        NoHC : <input type="text" id="numhotcuts" name="numhotcuts">
-                    </div>
-                </form>
-            </div>
-
-            <div id="tablesBlock">
-                <div id="tableHeader">
-                    Tables
-                </div>
-            </div>
-        </div>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#hcsaveButt').click(function () {
-                    $.ajax({
-                        url: '/new-estimates/',
-                        type: 'POST',
-                        async: true,
-                        data: {
-                            csrfmiddlewaretoken: '{{ csrf_token }}',
-                            lineclass: $('#hclcSelect').val(),
-                            diameter: $('#hcdiaSelect').val(),
-                            numcc: $('#numhotcuts').val()
-                        }
-                    });
-                });
-            });
-        </script>
-
+						<div id="epdsExtras">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="right">
+				<div id="baseGrouper">
+					<div id="buttonBox">
+						<div id="buttonHeader">
+						</div>
+						<div id="div1">
+						</div>
+						<div id="div2">
+						</div>
+						<div id="div3">
+						</div>
+						<div id="div4">
+						</div>
+						<div id="div5">
+						</div>
+						<div id="div6">
+						</div>
+						<div id="div7">
+						</div>
+						<div id="div8">
+						</div>
+						<div id="div9">
+						</div>
+						<div id="div10">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     {% endblock %}
     {% block hotBar %}
     {% endblock %}
