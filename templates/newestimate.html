@@ -14,6 +14,9 @@
     {% block contentBar %}
         <div id="left">
             <div id="epdslabels">
+                <div class="boxsizess">
+                    EPDS Estimate Calculations
+                </div>
                 <div class="boxsizes">
                     Erect Scaffold
                 </div>
@@ -129,24 +132,205 @@
                 </div>
             </div>
             <div id="epdsboxes">
-                <div class="smallgrouper">
+                <div class="maingrouper">
+                    <div id="resourceheader" class="smallsize">
+                        R
+                    </div>
+                    <div id="manhoursheader" class="smallsize">
+                        M
+                    </div>
+                    <div id="durationheader" class="smallsize">
+                        D
+                    </div>
+                </div>
+                <div class="maingrouper">
                     <div id="erectscaffoldresource" class="smallsize">
-
+                        0
                     </div>
                     <div id="erectscaffoldmanhour" class="smallsize">
-
+                        0
                     </div>
                     <div id="erectscaffoldduration" class="smallsize">
-
+                        0
+                    </div>
+                </div>
+                <div class="maingrouper">
+                    <div id="removeinsulationresource" class="smallsize">
+                        0
+                    </div>
+                    <div id="removeinsulationmanhour" class="smallsize">
+                        0
+                    </div>
+                    <div id="removeinsulationduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="maingrouper">
+                    <div id="removeinsulationtoresource" class="smallsize">
+                        0
+                    </div>
+                    <div id="removeinsulationtomanhour" class="smallsize">
+                        0
+                    </div>
+                    <div id="removeinsulationtoduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                 <div class="maingrouper">
+                    <div id="pressuretestresource" class="smallsize">
+                        0
+                    </div>
+                    <div id="pressuretestmanhour" class="smallsize">
+                        0
+                    </div>
+                    <div id="pressuretestduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="maingrouper">
+                    <div id="opeverifyresource" class="smallsize">
+                        0
+                    </div>
+                    <div id="opeverifymanhour" class="smallsize">
+                        0
+                    </div>
+                    <div id="opeverifyduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="maingrouper">
+                    <div id="opspermitresource" class="smallsize">
+                        0
+                    </div>
+                    <div id="opspermitmanhour" class="smallsize">
+                        0
+                    </div>
+                    <div id="opspermitduration" class="smallsize">
+                        0
                     </div>
                 </div>
             </div>
             <div id="epdsextras">
-
+                <div class="maingrouper">
+                    <div id="resourceheader" class="smallsize">
+                        R
+                    </div>
+                    <div id="manhoursheader" class="smallsize">
+                        M
+                    </div>
+                    <div id="durationheader" class="smallsize">
+                        D
+                    </div>
+                </div>
+                <div class="extragrouper">
+                    <div id="esriggersresources" class="smallsize">
+                        0
+                    </div>
+                    <div id="esriggersmanhours" class="smallsize">
+                        0
+                    </div>
+                    <div id="esriggersduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="extragrouper">
+                    <div id="ririggersresources" class="smallsize">
+                        0
+                    </div>
+                    <div id="ririggersmanhours" class="smallsize">
+                        0
+                    </div>
+                    <div id="ririggersduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="extragrouper">
+                    <div id="ritriggersresources" class="smallsize">
+                        0
+                    </div>
+                    <div id="ritriggersmanhours" class="smallsize">
+                        0
+                    </div>
+                    <div id="ritriggersduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="extragrouper">
+                    <div id="ptriggersresources" class="smallsize">
+                        0
+                    </div>
+                    <div id="ptriggersmanhours" class="smallsize">
+                        0
+                    </div>
+                    <div id="ptriggersduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="extragrouper">
+                    <div id="opsverifyriggersresources" class="smallsize">
+                        0
+                    </div>
+                    <div id="opsverifyriggersmanhours" class="smallsize">
+                        0
+                    </div>
+                    <div id="opsverifyriggersduration" class="smallsize">
+                        0
+                    </div>
+                </div>
+                <div class="extragrouper">
+                    <div id="opspermitsriggersresources" class="smallsize">
+                        0
+                    </div>
+                    <div id="opspermitsriggersmanhours" class="smallsize">
+                        0
+                    </div>
+                    <div id="opspermitsriggersduration" class="smallsize">
+                        0
+                    </div>
+                </div>
             </div>
         </div>
         <div id="right">
-
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newfieldweld/" class="nodeclinks"><input type="button" value="Field Welds"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newdemolength/" class="nodeclinks"><input type="button" value="Demo Length"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newinstalllength/" class="nodeclinks"><input type="button" value="Install Length"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newflangept/" class="nodeclinks"><input type="button" value="Flange PT"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newflangeri/" class="nodeclinks"><input type="button" value="Flange RI"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newnumjoints/" class="nodeclinks"><input type="button" value="Num Joints"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newcoldcuts/" class="nodeclinks"><input type="button" value="Num Cold Cuts"></a>
+                </div>
+            </div>
+            <div class="buttongrouper">
+                <div id="fieldweldbut">
+                    <a href="/newhotcuts/" class="nodeclinks"><input type="button" value="Num Hot Cuts"></a>
+                </div>
+            </div>
         </div>
     {% endblock %}
     {% block hotBar %}

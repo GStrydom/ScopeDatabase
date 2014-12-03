@@ -175,7 +175,7 @@
 #left {
     display: flex;
     flex-direction: row;
-    flex: 1.6;
+    flex: 1;
     background-color: #789711;
 }
 
@@ -189,11 +189,23 @@
 #epdsboxes {
     display: flex;
     flex-direction: column;
-    flex: 0.5;
+    flex: 0.3;
     background-color: #389761;
 }
 
-.smallgrouper {
+#epdsextras {
+    display: flex;
+    flex-direction: column;
+    flex: 0.3;
+    background-color: #52efa9;
+}
+
+.maingrouper {
+    display: flex;
+    flex-direction: row;
+}
+
+.extragrouper {
     display: flex;
     flex-direction: row;
 }
@@ -201,20 +213,32 @@
 .smallsize {
     display: flex;
     flex: 1;
-}
-
-#epdsextras {
-    display: flex;
-    flex: 0.5;
-    background-color: #49628a;
+    margin-bottom: 10px;
+    align-content: center;
 }
 
 #right {
     display: flex;
+    flex-direction: column;
     flex: 1;
     background-color: #527fa9;
 }
 
 .boxsizes {
-    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.boxsizess {
+
+}
+
+.buttongrouper {
+    display: flex;
+    flex-direction: column;
+    background-color: #28dfa9;
+    flex: 1;
+}
+
+.nodeclinks {
+    text-decoration: None;
 }

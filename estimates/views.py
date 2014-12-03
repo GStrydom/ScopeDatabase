@@ -2,21 +2,21 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.context_processors import csrf
 
-from .models import EstimateDefaults, Pipingnorms, Manhoursfactor
+from .models import EstimateDefaults, Pipingnorms, Manhoursfactor, FieldWeldsBase, FieldWeldsHours
 
 from workpacks.models import Workpack, Lineclasses
 from materials.models import SizeList
 
 from fractions import Fraction
 
-from .forms import FieldWeldHoursForm, ColdCutHoursForm
+from .forms import FieldWeldHoursForm
 
 
 def createestimates(request):
     createestcons = {}
     createestcons.update(csrf(request))
     createestcons['workpacks'] = Workpack.objects.all()
-
+    createestcons['fieldwelds'] = FieldWeldsBase.objects.all()
 
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
@@ -96,5 +96,13 @@ def calculateresources(request):
     return render_to_response('getresources.html', caclrescons, context_instance=RequestContext(request))
 
 
-def generateepds(request):
-    gencons = dict()
+def getfieldwelds(request):
+    fwcons = dict()
+    fwcons['fieldweldsform'] = FieldWeldHoursForm(request.POST or None)
+    if fwcons['fieldweldsform'].is_valid():
+        fwcons['fieldweldsform'].save()
+        return HttpResponseRedirect('/')
+    else:
+        print fwcons['fieldweldsform'].errors
+
+    return render_to_response('newfieldweld.html', fwcons, context_instance=RequestContext(request))

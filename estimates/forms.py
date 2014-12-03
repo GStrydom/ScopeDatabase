@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Estimate, EstimateDefaults, Pipingnorms
+from .models import Estimate, EstimateDefaults, Pipingnorms, FieldWeldsBase, Lineclass, Lineclasses
 
 
 class NewEstimateForm(forms.ModelForm):
@@ -22,15 +22,9 @@ class NewDefaultEstimates(forms.ModelForm):
         exclude = ('datecreated',)
 
 
-class FieldWeldHoursForm(forms.Form):
-    resources = forms.IntegerField()
-    lineclass = forms.CharField(max_length=8)
-    diameter = forms.IntegerField()
-    fieldwelds = forms.IntegerField()
+class FieldWeldHoursForm(forms.ModelForm):
+    diameter = forms.ModelChoiceField(queryset=Pipingnorms.objects.values_list('dn', flat=True))
 
-
-class ColdCutHoursForm(forms.Form):
-    resources = forms.IntegerField()
-    lineclass = forms.CharField(max_length=8)
-    diameter = forms.IntegerField()
-    fieldwelds = forms.IntegerField()
+    class Meta:
+        model = FieldWeldsBase
+        fields = ('fieldweld_id', 'lineclasses_id', 'diameter_id', 'numberoffieldwelds')

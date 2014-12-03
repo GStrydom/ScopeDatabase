@@ -5,6 +5,8 @@ from datetime import datetime
 
 from workpacks.models import Workpack, Lineclasses, Lineclass
 
+from materials.models import SizeList
+
 
 class Estimate(models.Model):
     """
@@ -102,3 +104,25 @@ class EstimateDefaults(models.Model):
     class Meta:
         managed = False
         db_table = 'estimatedefaults'
+
+
+class FieldWeldsBase(models.Model):
+    fieldweld_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    numberoffieldwelds = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.created
+
+
+class FieldWeldsHours(models.Model):
+    fieldweldshours_id = models.AutoField(primary_key=True)
+    resources = models.SmallIntegerField(blank=True)
+    manhours = models.FloatField(blank=True)
+    duration = models.FloatField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.created
