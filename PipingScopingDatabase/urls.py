@@ -45,6 +45,10 @@ urlpatterns = patterns('',
 
                        url(r'^fieldweldresource/', 'estimates.views.getfieldweldhours', name='getfieldweldhours'),
                        url(r'^newfieldweld/', 'estimates.views.getfieldweldbase', name='getfieldweldbase'),
+                       url(r'^fieldwelds/get/(?P<fieldweld_id>\d+)/$', 'estimates.views.editfieldweld',
+                           name="editfieldweld"),
+                       url(r'^fieldwelds/delete/(?P<fieldweld_id>\d+)/$', 'estimates.views.deletefieldweld',
+                           name="deletefieldweld"),
 
                        url(r'^admin/', include(admin.site.urls)),
                        )

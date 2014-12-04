@@ -1,7 +1,8 @@
 from django import forms
 
 from .models import Estimate, EstimateDefaults, Pipingnorms, FieldWeldsBase, Lineclass, Lineclasses, DemoLengthHours
-from .models import FieldWeldsHours, DemoLengthBase
+from .models import FieldWeldsHours, DemoLengthBase, InstallLengthBase, FlangePressureTestBase, FlangeReinstateBase
+from .models import NumberOfJointsBase, NumberOfColdCutsBase, NumberOfHotCutsBase
 
 
 class NewEstimateForm(forms.ModelForm):
@@ -49,4 +50,46 @@ class DemoLengthBaseForm(forms.ModelForm):
 
     class Meta:
         model = DemoLengthBase
-        fields = ('demolengthbase_id', 'lineclasses_id', 'diameter_id', 'demolength')
+        fields = ('demolengthbase_id', 'lineclasses_id', 'diameter_id', 'demolength', 'workpack')
+
+
+class InstallLengthBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = InstallLengthBase
+        fields = ('installlengthbase_id', 'lineclasses_id', 'diameter_id', 'installlength', 'workpack')
+
+
+class FlangePressureTestBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = FlangePressureTestBase
+        fields = ('fptbase_id', 'lineclasses_id', 'diameter_id', 'numfpt', 'workpack')
+
+
+class FlangeReinstateBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = FlangeReinstateBase
+        fields = ('fribase_id', 'lineclasses_id', 'diameter_id', 'numfri', 'workpack')
+
+
+class NumberOfJointsBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = NumberOfJointsBase
+        fields = ('numjointsbase_id', 'lineclasses_id', 'diameter_id', 'numjoints', 'workpack')
+
+
+class NumberOfColdCutsBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = NumberOfColdCutsBase
+        fields = ('numcoldcutsbase_id', 'lineclasses_id', 'diameter_id', 'numcoldcuts', 'workpack')
+
+
+class NumberOfHotCutsBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = NumberOfHotCutsBase
+        fields = ('numhotcutsbase_id', 'lineclasses_id', 'diameter_id', 'numhotcuts', 'workpack')

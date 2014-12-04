@@ -1,8 +1,8 @@
 .wrapper {
     display: flex;
     flex-direction: column;
-    /*width: 1300px;*/
-    /*height: 1100px;*/
+    width: 1300px;
+    height: 1300px;
     margin: 0 auto;
 }
 
@@ -210,11 +210,38 @@
     flex-direction: row;
 }
 
+.rsmallsize {
+    display: flex;
+    flex: 1;
+    margin-bottom: 8px;
+    justify-content: center;
+    color: blue
+}
+
+.msmallsize {
+    display: flex;
+    flex: 1;
+    margin-bottom: 8px;
+    justify-content: center;
+    color: red;
+}
+
+.dsmallsize {
+    display: flex;
+    flex: 1;
+    margin-bottom: 8px;
+    justify-content: center;
+    color: green;
+}
+
+/* TODO: Remove this later... */
 .smallsize {
     display: flex;
     flex: 1;
     margin-bottom: 8px;
     justify-content: center;
+    align-content: center;
+    color: green;
 }
 
 #right {
@@ -242,12 +269,13 @@
 .tablediv {
     display: flex;
     flex-direction: row;
+    flex: 1;
+    overflow-x: scroll;
 }
 
 .nodeclinks {
     text-decoration: None;
 }
-
 
 .tablestyle {
     border: 1px solid black;

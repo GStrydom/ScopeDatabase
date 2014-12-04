@@ -29,8 +29,15 @@
       <w>datefield</w>
       <w>defests</w>
       <w>defestsform</w>
+      <w>deletefieldweld</w>
       <w>deleteprefab</w>
       <w>demolength</w>
+      <w>demolengthbaseform</w>
+      <w>demolengthmanhours</w>
+      <w>dsmallsize</w>
+      <w>editfieldweld</w>
+      <w>editfieldwelds</w>
+      <w>editfwcons</w>
       <w>editprefab</w>
       <w>editprefabform</w>
       <w>editprefabitem</w>
@@ -91,15 +98,41 @@
       <w>estschedule</w>
       <w>estschedulebox</w>
       <w>estschedulefield</w>
+      <w>fieldweldmanhours</w>
       <w>fieldwelds</w>
+      <w>fieldweldsduration</w>
+      <w>flamgeptmanhours</w>
+      <w>flamgerimanhours</w>
       <w>flangehandlingalky</w>
       <w>flangehandlingbaset</w>
       <w>flangehandlinghacksaw</w>
       <w>flangehandlinghotcuts</w>
+      <w>flangemanage</w>
+      <w>flangepressuretestbaseform</w>
+      <w>flangeptbase</w>
+      <w>flangereinstatebaseform</w>
+      <w>flangeribase</w>
       <w>flangesforisolation</w>
       <w>flangesforreinstate</w>
       <w>formid</w>
+      <w>fptbase</w>
+      <w>fribase</w>
+      <w>fwduration</w>
+      <w>fwmanhours</w>
+      <w>getdemolengthbase</w>
+      <w>getflangeptbase</w>
+      <w>getflangeribase</w>
+      <w>getinstalllengthbase</w>
+      <w>getnumberofcoldcuts</w>
+      <w>getnumberofhotcuts</w>
+      <w>getnumberofjoints</w>
+      <w>grindprep</w>
+      <w>inspectionreport</w>
+      <w>installisolation</w>
       <w>installlength</w>
+      <w>installlengthbase</w>
+      <w>installlengthbaseform</w>
+      <w>instiso</w>
       <w>instrumentsforboltup</w>
       <w>itemid</w>
       <w>itemname</w>
@@ -108,23 +141,41 @@
       <w>loginuser</w>
       <w>mainbuts</w>
       <w>matlist</w>
+      <w>msmallsize</w>
       <w>newestform</w>
       <w>newestimate</w>
       <w>newprefab</w>
       <w>numberofcoldcuts</w>
+      <w>numberofcoldcutsbaseform</w>
       <w>numberofcoldcutsmanhours</w>
       <w>numberofhotcuts</w>
+      <w>numberofhotcutsbaseform</w>
       <w>numberofjoints</w>
+      <w>numberofjointsbaseform</w>
+      <w>numcoldcutsbase</w>
+      <w>numfpt</w>
+      <w>numfri</w>
       <w>numhotcuts</w>
+      <w>numhotcutsbase</w>
+      <w>numjoints</w>
+      <w>numjointsbase</w>
+      <w>opsverify</w>
       <w>passwordbox</w>
       <w>pmmssye</w>
       <w>precode</w>
       <w>prefabid</w>
+      <w>prepareandpressure</w>
       <w>profilepic</w>
       <w>projectfield</w>
       <w>qtys</w>
       <w>riggersforboltup</w>
+      <w>rigoutline</w>
+      <w>rigoutlinefit</w>
+      <w>rigoutlinerig</w>
+      <w>rsmallsize</w>
       <w>sapref</w>
+      <w>saprefaccept</w>
+      <w>saprefquality</w>
       <w>savenewprefab</w>
       <w>scoper</w>
       <w>showprefab</w>
@@ -135,12 +186,20 @@
       <w>sizelist</w>
       <w>subestdefs</w>
       <w>subprefab</w>
+      <w>tackandweldernorm</w>
       <w>tastypie</w>
       <w>textboxes</w>
+      <w>totalduration</w>
+      <w>totalmanhour</w>
+      <w>totalresource</w>
       <w>ukqn</w>
       <w>usercode</w>
       <w>usernamebox</w>
       <w>userprofile</w>
+      <w>weldfit</w>
+      <w>weldoutfitter</w>
+      <w>weldoutwelder</w>
+      <w>weldweld</w>
       <w>workpackselected</w>
       <w>wpdetail</w>
       <w>wsgi</w>

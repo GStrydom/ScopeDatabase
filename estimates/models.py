@@ -108,7 +108,7 @@ class EstimateDefaults(models.Model):
 class FieldWeldsBase(models.Model):
     fieldweld_id = models.AutoField(primary_key=True)
     lineclasses_id = models.CharField(max_length=20)
-    diameter_id = models.CharField(max_length=20)
+    diameter_id = models.FloatField()
     numberoffieldwelds = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     workpack = models.ForeignKey(Workpack)
@@ -134,6 +134,7 @@ class DemoLengthBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     demolength = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -148,3 +149,75 @@ class DemoLengthHours(models.Model):
 
     def __unicode__(self):
         return self.resources
+
+
+class InstallLengthBase(models.Model):
+    installlengthbase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    installlength = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
+
+    def __unicode__(self):
+        return self.lineclasses_id
+
+
+class FlangePressureTestBase(models.Model):
+    fptbase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    numfpt = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
+
+    def __unicode__(self):
+        return self.lineclasses_id
+
+
+class FlangeReinstateBase(models.Model):
+    fribase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    numfri = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
+
+    def __unicode__(self):
+        return self.lineclasses_id
+
+
+class NumberOfJointsBase(models.Model):
+    numjointsbase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    numjoints = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
+
+    def __unicode__(self):
+        return self.lineclasses_id
+
+
+class NumberOfColdCutsBase(models.Model):
+    numcoldcutsbase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    numcoldcuts = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
+
+    def __unicode__(self):
+        return self.lineclasses_id
+
+
+class NumberOfHotCutsBase(models.Model):
+    numhotcutsbase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    numhotcuts = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
+
+    def __unicode__(self):
+        return self.lineclasses_id

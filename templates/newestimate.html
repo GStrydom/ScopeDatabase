@@ -139,13 +139,13 @@
                     </div>
                 </div>
                 <div class="maingrouper">
+                    <div id="erectscaffoldduration" class="smallsize">
+                        0
+                    </div>
                     <div id="erectscaffoldresource" class="smallsize">
                         0
                     </div>
                     <div id="erectscaffoldmanhour" class="smallsize">
-                        0
-                    </div>
-                    <div id="erectscaffoldduration" class="smallsize">
                         0
                     </div>
                 </div>
@@ -183,14 +183,14 @@
                     </div>
                 </div>
                 <div class="maingrouper">
+                    <div id="opeverifyduration" class="smallsize">
+                        {{ opsverify.duration }}
+                    </div>
                     <div id="opeverifyresource" class="smallsize">
                         0
                     </div>
                     <div id="opeverifymanhour" class="smallsize">
                         0
-                    </div>
-                    <div id="opeverifyduration" class="smallsize">
-                        {{ bases.opstoverifyspades }}
                     </div>
                 </div>
                 <div class="maingrouper">
@@ -316,10 +316,10 @@
                 </div>
                 <div class="maingrouper">
                     <div id="grindandprepresource" class="smallsize">
-                        0
+
                     </div>
                     <div id="grindandprepmanhour" class="smallsize">
-                        0
+                        {{ fieldweldmanhours.grindprep }}
                     </div>
                     <div id="grindandprepduration" class="smallsize">
                         0
@@ -436,25 +436,25 @@
                     </div>
                 </div>
                 <div class="maingrouper">
+                    <div id="insprepduration" class="smallsize">
+                        {{ inspectionreport.duration }}
+                    </div>
                     <div id="insprepresource" class="smallsize">
-                        0
+                        {{ inspectionreport.inspection }}
                     </div>
                     <div id="insprepmanhour" class="smallsize">
-                        0
-                    </div>
-                    <div id="insprepduration" class="smallsize">
-                        0
+                        {{ inspectionreport.manhours }}
                     </div>
                 </div>
                 <div class="maingrouper">
+                    <div id="prepandpresduration" class="smallsize">
+                        {{ prepareandpressure.duration }}
+                    </div>
                     <div id="prepandpresresource" class="smallsize">
-                        0
+                        {{ prepareandpressure.resources }}
                     </div>
                     <div id="prepandpresmanhour" class="smallsize">
-                        0
-                    </div>
-                    <div id="prepandpresduration" class="smallsize">
-                        0
+                        {{ prepareandpressure.manhours }}
                     </div>
                 </div>
                 <div class="maingrouper">
@@ -503,18 +503,18 @@
                 </div>
                 <div class="maingrouper">
                     <div id="flanmanresource" class="smallsize">
-                        0
+                        {{ flangemanage.resources }}
                     </div>
                     <div id="flanmanmanhour" class="smallsize">
-                        0
+                        {{ flangemanage.manhours }}
                     </div>
                     <div id="flanmanduration" class="smallsize">
-                        0
+                        {{ flangemanage.duration }}
                     </div>
                 </div>
                 <div class="maingrouper">
                     <div id="sapqcresource" class="smallsize">
-                        0
+                        {{ saprefquality.duration }}
                     </div>
                     <div id="sapqcmanhour" class="smallsize">
                         0
@@ -525,13 +525,24 @@
                 </div>
                 <div class="maingrouper">
                     <div id="sapacresource" class="smallsize">
-                        0
+                        {{ saprefaccept.duration }}
                     </div>
                     <div id="sapacmanhour" class="smallsize">
                         0
                     </div>
                     <div id="sapacduration" class="smallsize">
                         0
+                    </div>
+                </div>
+                <div class="maingrouper">
+                    <div id="totalduration" class="smallsize">
+                        {{ total.duration }}
+                    </div>
+                    <div id="totalresource" class="smallsize">
+                        {{ total.resources }}
+                    </div>
+                    <div id="totalmanhour" class="smallsize">
+                        {{ total.manhours }}
                     </div>
                 </div>
             </div>
@@ -967,10 +978,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="button" value="Edit">
+                                    <a href="/fieldwelds/get/{{ fieldwelds.fieldweld_id }}/" class="nodeclinks"><input type="button" value="Edit"></a>
                                 </td>
                                 <td>
-                                    <input type="button" value="Delete">
+                                    <a href="/fieldwelds/delete/{{ fieldwelds.fieldweld_id }}/"><input type="button" value="Delete"></a>
                                 </td>
                             </tr>
                         </table>
