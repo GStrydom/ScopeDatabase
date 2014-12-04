@@ -43,7 +43,8 @@ urlpatterns = patterns('',
                        url(r'^spading/get/(?P<spading_id>\d+)/$', 'spading.views.editspadeitem',
                            name='editspade'),
 
-                       url(r'^newfieldweld/', 'estimates.views.getfieldwelds', name='getfieldweld'),
+                       url(r'^fieldweldresource/', 'estimates.views.getfieldweldhours', name='getfieldweldhours'),
+                       url(r'^newfieldweld/', 'estimates.views.getfieldweldbase', name='getfieldweldbase'),
 
                        url(r'^admin/', include(admin.site.urls)),
                        )

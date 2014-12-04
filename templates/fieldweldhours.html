@@ -4,8 +4,8 @@
 {% block mainBar %}
     {% block contentBar %}
         <form action="" method="post">{% csrf_token %}
-            {{ fieldweldsbaseform.as_p }}
-            <input type="submit" id="fieldweldbasesubmit" value="Save">
+            {{ fieldweldsform.as_p }}
+            <input type="submit" id="fieldweldsubmit" value="Save">
         </form>
     {% endblock %}
     {% block hotBar %}

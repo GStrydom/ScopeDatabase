@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Estimate, EstimateDefaults, Pipingnorms, FieldWeldsBase, Lineclass, Lineclasses
+from .models import Estimate, EstimateDefaults, Pipingnorms, FieldWeldsBase, Lineclass, Lineclasses, DemoLengthHours
+from .models import FieldWeldsHours, DemoLengthBase
 
 
 class NewEstimateForm(forms.ModelForm):
@@ -22,9 +23,30 @@ class NewDefaultEstimates(forms.ModelForm):
         exclude = ('datecreated',)
 
 
-class FieldWeldHoursForm(forms.ModelForm):
-    diameter = forms.ModelChoiceField(queryset=Pipingnorms.objects.values_list('dn', flat=True))
+class FieldWeldsBaseForm(forms.ModelForm):
 
     class Meta:
         model = FieldWeldsBase
-        fields = ('fieldweld_id', 'lineclasses_id', 'diameter_id', 'numberoffieldwelds')
+        fields = ('fieldweld_id', 'lineclasses_id', 'diameter_id', 'numberoffieldwelds', 'workpack')
+        exclude = ('workpack',)
+
+
+class FieldWeldHoursForm(forms.ModelForm):
+
+    class Meta:
+        model = FieldWeldsHours
+        fields = ('fieldweldshours_id', 'resources', 'manhours', 'duration')
+
+
+class DemoLengthHoursForm(forms.ModelForm):
+
+    class Meta:
+        model = DemoLengthHours
+        fields = ('demolengthhours_id', 'resources', 'manhours', 'duration')
+
+
+class DemoLengthBaseForm(forms.ModelForm):
+
+    class Meta:
+        model = DemoLengthBase
+        fields = ('demolengthbase_id', 'lineclasses_id', 'diameter_id', 'demolength')

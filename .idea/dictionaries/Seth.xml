@@ -8,14 +8,24 @@
       <w>basestimate</w>
       <w>bestimate</w>
       <w>bevline</w>
+      <w>biggrouper</w>
       <w>boltupjointhoursriggers</w>
       <w>boltupjointnormhours</w>
+      <w>boltupjointriggersduration</w>
+      <w>boltupjointriggersmanhours</w>
+      <w>boltupjointriggersresources</w>
+      <w>boltupjointsduration</w>
       <w>boltupjointshoursfitter</w>
       <w>boltupjointshoursrigger</w>
+      <w>boltupjointsmanhour</w>
+      <w>boltupjointsresource</w>
       <w>boltupnormfitter</w>
       <w>bomunit</w>
+      <w>boxsizes</w>
+      <w>boxsizess</w>
       <w>bulkqty</w>
       <w>bulkquantity</w>
+      <w>buttongrouper</w>
       <w>caclrescons</w>
       <w>calccoldcut</w>
       <w>calcres</w>
@@ -40,6 +50,12 @@
       <w>coldcutform</w>
       <w>coldcuthours</w>
       <w>coldcuthrs</w>
+      <w>coldcutlineduration</w>
+      <w>coldcutlinemanhour</w>
+      <w>coldcutlineresource</w>
+      <w>coldcutlineriggersduration</w>
+      <w>coldcutlineriggersmanhours</w>
+      <w>coldcutlineriggersresources</w>
       <w>coldcutmanhours</w>
       <w>coldcutnorm</w>
       <w>coldcutnormhours</w>
@@ -63,10 +79,28 @@
       <w>datatype</w>
       <w>datecreated</w>
       <w>datejoined</w>
+      <w>dcinstrduration</w>
+      <w>dcinstrmanhour</w>
+      <w>dcinstrresource</w>
+      <w>dcinstrriggersduration</w>
+      <w>dcinstrriggersmanhours</w>
+      <w>dcinstrriggersresources</w>
       <w>deathenan</w>
       <w>deletecons</w>
       <w>deletepack</w>
+      <w>demolengthbase</w>
+      <w>demolengthhours</w>
+      <w>demolengthhoursform</w>
+      <w>demolengthsubmit</w>
+      <w>despade</w>
+      <w>dimsteamtraceduration</w>
+      <w>dimsteamtracemanhour</w>
+      <w>dimsteamtraceresource</w>
       <w>disp</w>
+      <w>dmstetraceriggersduration</w>
+      <w>dmstetraceriggersmanhours</w>
+      <w>dmstetraceriggersresources</w>
+      <w>durationheader</w>
       <w>editcons</w>
       <w>editform</w>
       <w>editpack</w>
@@ -79,18 +113,62 @@
       <w>editworkpack</w>
       <w>emailaddress</w>
       <w>epds</w>
+      <w>epdsboxes</w>
+      <w>epdsextras</w>
       <w>epdsgrouper</w>
+      <w>epdslabels</w>
       <w>erectscaffoldduration</w>
+      <w>erectscaffoldmanhour</w>
       <w>erectscaffoldmanhours</w>
+      <w>erectscaffoldresource</w>
       <w>erectscaffoldresources</w>
+      <w>esriggersduration</w>
+      <w>esriggersmanhours</w>
+      <w>esriggersresources</w>
       <w>estdef</w>
       <w>estdefs</w>
       <w>estimatehours</w>
+      <w>extragrouper</w>
+      <w>fieldweld</w>
+      <w>fieldweldbase</w>
+      <w>fieldweldbasesubmit</w>
+      <w>fieldweldbut</w>
+      <w>fieldweldhours</w>
       <w>fieldweldinput</w>
+      <w>fieldweldresource</w>
+      <w>fieldweldsbaseform</w>
+      <w>fieldweldsform</w>
+      <w>fieldweldshours</w>
+      <w>fieldweldshoursform</w>
+      <w>fieldweldsubmit</w>
+      <w>fittackweldduration</w>
+      <w>fittackweldmanhour</w>
+      <w>fittackweldresource</w>
+      <w>fittackweldriggersduration</w>
+      <w>fittackweldriggersmanhours</w>
+      <w>fittackweldriggersresources</w>
+      <w>flanmanduration</w>
+      <w>flanmanmanhour</w>
+      <w>flanmanresource</w>
+      <w>flanmanriggersduration</w>
+      <w>flanmanriggersmanhours</w>
+      <w>flanmanriggersresources</w>
       <w>fracestimate</w>
       <w>fuckyouajax</w>
+      <w>fwcons</w>
       <w>getbaseestimates</w>
+      <w>getdemolength</w>
+      <w>getdemolengthhours</w>
+      <w>getfieldweldbase</w>
+      <w>getfieldweldhours</w>
+      <w>getfieldwelds</w>
       <w>getresources</w>
+      <w>grindandprepduration</w>
+      <w>grindandprepmanhour</w>
+      <w>grindandprepresource</w>
+      <w>grindandprepriggersduration</w>
+      <w>grindandprepriggersmanhours</w>
+      <w>grindandprepriggersresources</w>
       <w>grindprepfithours</w>
       <w>handlemeternormshours</w>
       <w>hcdia</w>
@@ -104,13 +182,47 @@
       <w>hotcutform</w>
       <w>hotcuthours</w>
       <w>hotcuthrs</w>
+      <w>hotcutlineduration</w>
+      <w>hotcutlinemanhour</w>
+      <w>hotcutlineresource</w>
+      <w>hotcutlineriggersduration</w>
+      <w>hotcutlineriggersmanhours</w>
+      <w>hotcutlineriggersresources</w>
       <w>hotcutmanhours</w>
       <w>hotcutnorm</w>
       <w>hotcutnormhours</w>
       <w>hotcutshours</w>
+      <w>hotwork</w>
+      <w>hpflushduration</w>
+      <w>hpflushmanhour</w>
+      <w>hpflushresource</w>
+      <w>hpflushriggersduration</w>
+      <w>hpflushriggersmanhours</w>
+      <w>hpflushriggersresources</w>
       <w>inits</w>
       <w>inputrow</w>
+      <w>insprepduration</w>
+      <w>insprepmanhour</w>
+      <w>insprepresource</w>
+      <w>insprepriggersduration</w>
+      <w>insprepriggersmanhours</w>
+      <w>insprepriggersresources</w>
       <w>instatement</w>
+      <w>instpipesupduration</w>
+      <w>instpipesupmanhour</w>
+      <w>instpipesupresource</w>
+      <w>instpipesupriggersduration</w>
+      <w>instpipesupriggersmanhours</w>
+      <w>instpipesupriggersresources</w>
+      <w>inststmtracduration</w>
+      <w>inststmtracmanhour</w>
+      <w>inststmtracresource</w>
+      <w>inststmtracriggersduration</w>
+      <w>inststmtracriggersmanhours</w>
+      <w>inststmtracriggersresources</w>
+      <w>intpipesupduration</w>
+      <w>intpipesupmanhour</w>
+      <w>intpipesupresource</w>
       <w>itemdict</w>
       <w>itemlist</w>
       <w>itemnames</w>
@@ -122,58 +234,195 @@
       <w>logincons</w>
       <w>logoutcons</w>
       <w>logoutpageview</w>
+      <w>maingrouper</w>
       <w>mainrapper</w>
       <w>mainwrapper</w>
       <w>manhours</w>
       <w>manhoursfactor</w>
+      <w>manhoursheader</w>
       <w>mfac</w>
       <w>multipart</w>
       <w>ndata</w>
+      <w>ndtduration</w>
+      <w>ndtmanhour</w>
+      <w>ndtphwtriggersmanhours</w>
+      <w>ndtpwhtduration</w>
+      <w>ndtpwhtmanhour</w>
+      <w>ndtpwhtresource</w>
+      <w>ndtpwhtriggersduration</w>
+      <w>ndtpwhtriggersresources</w>
+      <w>ndtresource</w>
+      <w>ndtriggersduration</w>
+      <w>ndtriggersmanhours</w>
+      <w>ndtriggersresources</w>
+      <w>newcoldcuts</w>
+      <w>newdemolength</w>
+      <w>newfieldweld</w>
+      <w>newflangept</w>
+      <w>newflangeri</w>
+      <w>newhotcuts</w>
+      <w>newinstalllength</w>
+      <w>newnumjoints</w>
       <w>newreinstate</w>
       <w>newspade</w>
       <w>newworkpack</w>
       <w>newwp</w>
       <w>newwpform</w>
+      <w>nodeclinks</w>
+      <w>numberoffieldwelds</w>
       <w>numcc</w>
       <w>numcoldcuts</w>
       <w>numhc</w>
+      <w>opeverifyduration</w>
+      <w>opeverifymanhour</w>
+      <w>opeverifyresource</w>
+      <w>opspermitduration</w>
+      <w>opspermitmanhour</w>
+      <w>opspermitresource</w>
+      <w>opspermitsriggersduration</w>
+      <w>opspermitsriggersmanhours</w>
+      <w>opspermitsriggersresources</w>
+      <w>opstoverifyspades</w>
+      <w>opsverifyriggersduration</w>
+      <w>opsverifyriggersmanhours</w>
+      <w>opsverifyriggersresources</w>
       <w>packinfo</w>
       <w>packselected</w>
+      <w>passivate</w>
+      <w>pbrushduration</w>
+      <w>pbrushmanhour</w>
+      <w>pbrushresource</w>
+      <w>pbrushriggersduration</w>
+      <w>pbrushriggersmanhours</w>
+      <w>pbrushriggersresources</w>
       <w>pfitter</w>
+      <w>phwtriggersmanhours</w>
+      <w>pickleduration</w>
+      <w>picklemanhour</w>
+      <w>pickleresource</w>
+      <w>pickleriggersduration</w>
+      <w>pickleriggersmanhours</w>
+      <w>pickleriggersresources</w>
       <w>pipediameter</w>
       <w>pipingnorms</w>
       <w>pipingscope</w>
+      <w>plumbplugduration</w>
+      <w>plumbplugmanhour</w>
+      <w>plumbplugresource</w>
+      <w>plumbplugriggersduration</w>
+      <w>plumbplugriggersmanhours</w>
+      <w>plumbplugriggersresources</w>
       <w>pmfac</w>
       <w>postgresql</w>
       <w>prefabselected</w>
+      <w>prepandpresduration</w>
+      <w>prepandpresmanhour</w>
+      <w>prepandpresresource</w>
+      <w>prepandpresriggersduration</w>
+      <w>prepandpresriggersmanhours</w>
+      <w>prepandpresriggersresources</w>
       <w>prepnorm</w>
+      <w>pressuretestduration</w>
+      <w>pressuretestmanhour</w>
+      <w>pressuretestresource</w>
       <w>profmains</w>
       <w>proj</w>
       <w>projmains</w>
       <w>projsettings</w>
+      <w>ptriggersduration</w>
+      <w>ptriggersmanhours</w>
+      <w>ptriggersresources</w>
+      <w>pwht</w>
+      <w>pwhtduration</w>
+      <w>pwhtmanhour</w>
+      <w>pwhtresource</w>
+      <w>pwhtriggersduration</w>
+      <w>pwhtriggersresources</w>
       <w>pword</w>
+      <w>qcfitupcheckduration</w>
+      <w>qcfitupcheckmanhour</w>
+      <w>qcfitupcheckresource</w>
+      <w>qcfitupriggersduration</w>
+      <w>qcfitupriggersmanhours</w>
+      <w>qcfitupriggersresources</w>
       <w>registercons</w>
+      <w>reininstrduration</w>
+      <w>reininstrmanhour</w>
+      <w>reininstrresource</w>
+      <w>reininstrriggersduration</w>
+      <w>reininstrriggersmanhours</w>
+      <w>reininstrriggersresources</w>
+      <w>reinlineduration</w>
+      <w>reinlinemanhour</w>
+      <w>reinlineresource</w>
+      <w>reinlineriggersduration</w>
+      <w>reinlineriggersmanhours</w>
+      <w>reinlineriggersresources</w>
       <w>removeinsulationduration</w>
+      <w>removeinsulationmanhour</w>
       <w>removeinsulationmanhours</w>
+      <w>removeinsulationresource</w>
       <w>removeinsulationresources</w>
+      <w>removeinsulationtoduration</w>
+      <w>removeinsulationtomanhour</w>
+      <w>removeinsulationtoresource</w>
+      <w>resourceheader</w>
+      <w>rigactboltupduration</w>
+      <w>rigactboltupmanhour</w>
+      <w>rigactboltupresource</w>
+      <w>rigactboltupriggersduration</w>
+      <w>rigactboltupriggersmanhours</w>
+      <w>rigactboltupriggersresources</w>
+      <w>rigactrigoutduration</w>
+      <w>rigactrigoutmanhour</w>
+      <w>rigactrigoutresource</w>
+      <w>rigactrigoutriggersduration</w>
+      <w>rigactrigoutriggersmanhours</w>
+      <w>rigactrigoutriggersresources</w>
       <w>riggersforcoldcut</w>
       <w>riggersforhotcut</w>
       <w>riginlinehours</w>
       <w>riglinenorm</w>
       <w>rigoutlinehours</w>
       <w>rigoutlinenorm</w>
+      <w>ririggersduration</w>
+      <w>ririggersmanhours</w>
+      <w>ririggersresources</w>
+      <w>ritriggersduration</w>
+      <w>ritriggersmanhours</w>
+      <w>ritriggersresources</w>
+      <w>sapacduration</w>
+      <w>sapacmanhour</w>
+      <w>sapacresource</w>
+      <w>sapqcduration</w>
+      <w>sapqcmanhour</w>
+      <w>sapqcresource</w>
+      <w>sapqcriggersduration</w>
+      <w>sapqcriggersmanhours</w>
+      <w>sapqcriggersresources</w>
       <w>savedform</w>
       <w>schedulenorm</w>
       <w>scopingapp</w>
+      <w>setuppurgeduration</w>
+      <w>setuppurgemanhour</w>
+      <w>setuppurgeresource</w>
+      <w>setuppurgeriggersduration</w>
+      <w>setuppurgeriggersresources</w>
+      <w>setupurgeriggersmanhours</w>
       <w>showpack</w>
       <w>showpcons</w>
       <w>showspade</w>
+      <w>smallsize</w>
       <w>spadejointnormhours</w>
       <w>spadeselected</w>
       <w>submains</w>
       <w>subnewwp</w>
       <w>subwplinenum</w>
       <w>subwpnum</w>
+      <w>tabelstyle</w>
+      <w>tablediv</w>
+      <w>tablegrouper</w>
+      <w>tablestyle</w>
       <w>tackandweldfitterhours</w>
       <w>tackandweldwelder</w>
       <w>tackandweldwelderhours</w>
@@ -184,10 +433,22 @@
       <w>thedict</w>
       <w>thesize</w>
       <w>theworkpacks</w>
+      <w>tsaduration</w>
+      <w>tsamanhour</w>
+      <w>tsaresource</w>
+      <w>tsariggersduration</w>
+      <w>tsariggersmanhours</w>
+      <w>tsariggersresources</w>
       <w>uname</w>
       <w>unboltjointhoursriggers</w>
+      <w>unboltjointriggersduration</w>
+      <w>unboltjointriggersmanhours</w>
+      <w>unboltjointriggersresources</w>
+      <w>unboltjointsduration</w>
       <w>unboltjointshoursfitter</w>
       <w>unboltjointshoursrigger</w>
+      <w>unboltjointsmanhour</w>
+      <w>unboltjointsresource</w>
       <w>useremail</w>
       <w>userpassword</w>
       <w>uservalues</w>

@@ -213,7 +213,7 @@
 .smallsize {
     display: flex;
     flex: 1;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     align-content: center;
 }
 
@@ -234,11 +234,21 @@
 
 .buttongrouper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     background-color: #28dfa9;
     flex: 1;
 }
 
+.tablediv {
+    display: flex;
+    flex-direction: row;
+}
+
 .nodeclinks {
     text-decoration: None;
+}
+
+
+.tablestyle {
+    border: 1px solid black;
 }

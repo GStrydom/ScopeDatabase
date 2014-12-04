@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.urlresolvers import reverse
 
 from datetime import datetime
 
@@ -112,9 +111,10 @@ class FieldWeldsBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     numberoffieldwelds = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
+    workpack = models.ForeignKey(Workpack)
 
     def __unicode__(self):
-        return self.created
+        return self.lineclasses_id
 
 
 class FieldWeldsHours(models.Model):
@@ -125,4 +125,26 @@ class FieldWeldsHours(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.created
+        return self.resources
+
+
+class DemoLengthBase(models.Model):
+    demolengthbase_id = models.AutoField(primary_key=True)
+    lineclasses_id = models.CharField(max_length=20)
+    diameter_id = models.CharField(max_length=20)
+    demolength = models.SmallIntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.lineclasses_id
+
+
+class DemoLengthHours(models.Model):
+    demolengthhours_id = models.AutoField(primary_key=True)
+    resources = models.SmallIntegerField(blank=True)
+    manhours = models.FloatField(blank=True)
+    duration = models.FloatField(blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.resources

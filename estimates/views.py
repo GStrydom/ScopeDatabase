@@ -2,21 +2,28 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.context_processors import csrf
 
-from .models import EstimateDefaults, Pipingnorms, Manhoursfactor, FieldWeldsBase, FieldWeldsHours
+from .models import EstimateDefaults, Pipingnorms, Manhoursfactor, FieldWeldsBase, FieldWeldsHours, DemoLengthHours
+from .models import DemoLengthBase
 
 from workpacks.models import Workpack, Lineclasses
 from materials.models import SizeList
 
 from fractions import Fraction
 
-from .forms import FieldWeldHoursForm
+from .forms import FieldWeldHoursForm, DemoLengthHoursForm, FieldWeldsBaseForm
 
 
 def createestimates(request):
     createestcons = {}
     createestcons.update(csrf(request))
     createestcons['workpacks'] = Workpack.objects.all()
-    createestcons['fieldwelds'] = FieldWeldsBase.objects.all()
+
+    createestcons['bases'] = {
+        'opstoverifyspades': 1
+    }
+
+    createestcons['fieldweldbase'] = FieldWeldsBase.objects.all()
+    createestcons['fieldweldhours'] = FieldWeldsHours.objects.all()
 
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
@@ -96,13 +103,38 @@ def calculateresources(request):
     return render_to_response('getresources.html', caclrescons, context_instance=RequestContext(request))
 
 
-def getfieldwelds(request):
+def getfieldweldhours(request):
     fwcons = dict()
-    fwcons['fieldweldsform'] = FieldWeldHoursForm(request.POST or None)
-    if fwcons['fieldweldsform'].is_valid():
-        fwcons['fieldweldsform'].save()
+    fwcons['fieldweldshoursform'] = FieldWeldHoursForm(request.POST or None)
+    if fwcons['fieldweldshoursform'].is_valid():
+        fwcons['fieldweldshoursform'].save()
         return HttpResponseRedirect('/')
     else:
-        print fwcons['fieldweldsform'].errors
+        print fwcons['fieldweldshoursform'].errors
+
+    return render_to_response('fieldweldhours.html', fwcons, context_instance=RequestContext(request))
+
+
+def getfieldweldbase(request):
+    fwcons = dict()
+    fwcons['fieldweldsbaseform'] = FieldWeldsBaseForm(request.POST or None)
+    if fwcons['fieldweldsbaseform'].is_valid():
+        fwcons['fieldweldsbaseform'].save()
+        fwcons['fieldweldsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
+        return HttpResponseRedirect('/')
+    else:
+        print fwcons['fieldweldsbaseform'].errors
 
     return render_to_response('newfieldweld.html', fwcons, context_instance=RequestContext(request))
+
+
+def getdemolengthhours(request):
+    fwcons = dict()
+    fwcons['demolengthhoursform'] = DemoLengthHoursForm(request.POST or None)
+    if fwcons['demolengthhoursform'].is_valid():
+        fwcons['demolengthhoursform'].save()
+        return HttpResponseRedirect('/')
+    else:
+        print fwcons['demolengthhoursform'].errors
+
+    return render_to_response('demolengthhours.html', fwcons, context_instance=RequestContext(request))
