@@ -7,16 +7,22 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('workpacks', '0001_initial'),
+        ('materials', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Reinstatement',
             fields=[
+                ('reinstatement_id', models.AutoField(serialize=False, primary_key=True)),
+                ('quantity', models.IntegerField(null=True, blank=True)),
+                ('lineclasses', models.ForeignKey(blank=True, to='workpacks.Lineclasses', null=True)),
+                ('matlist', models.ForeignKey(blank=True, to='materials.MatList', null=True)),
+                ('sizelist', models.ForeignKey(blank=True, to='materials.SizeList', null=True)),
+                ('workpack', models.ForeignKey(blank=True, to='workpacks.Workpack', null=True)),
             ],
             options={
-                'db_table': 'reinstatement',
-                'managed': False,
             },
             bases=(models.Model,),
         ),

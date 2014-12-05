@@ -19,10 +19,6 @@ class Estimate(models.Model):
     name = models.CharField(unique=True, max_length=255, blank=True)
     workpack = models.ForeignKey(Workpack, blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'estimate'
-
     def __unicode__(self):
         return self.name
 
@@ -38,10 +34,6 @@ class Manhoursfactor(models.Model):
     material = models.CharField(max_length=30, blank=True)
     pfitter = models.FloatField(blank=True, null=True)
     welder = models.FloatField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'manhoursfactor'
 
     def __unicode__(self):
         return self.manhoursfactor_id
@@ -64,12 +56,8 @@ class Pipingnorms(models.Model):
     tackweldlesseighty = models.FloatField()
     dn = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'pipingnorms'
-
     def __unicode__(self):
-        return self.pipingnorms_id
+        return self.pipediameter
 
 
 class EstimateDefaults(models.Model):
@@ -100,18 +88,14 @@ class EstimateDefaults(models.Model):
     workpack = models.ForeignKey(Workpack)
     datecreated = models.DateTimeField(default=datetime.now())
 
-    class Meta:
-        managed = False
-        db_table = 'estimatedefaults'
-
 
 class FieldWeldsBase(models.Model):
     fieldweld_id = models.AutoField(primary_key=True)
     lineclasses_id = models.CharField(max_length=20)
     diameter_id = models.FloatField()
     numberoffieldwelds = models.SmallIntegerField()
-    created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -123,9 +107,10 @@ class FieldWeldsHours(models.Model):
     manhours = models.FloatField(blank=True)
     duration = models.FloatField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    fieldweldbase = models.ForeignKey(FieldWeldsBase, blank=True, null=True)
 
     def __unicode__(self):
-        return self.resources
+        return self
 
 
 class DemoLengthBase(models.Model):
@@ -134,7 +119,7 @@ class DemoLengthBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     demolength = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -146,6 +131,7 @@ class DemoLengthHours(models.Model):
     manhours = models.FloatField(blank=True)
     duration = models.FloatField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.resources
@@ -157,7 +143,7 @@ class InstallLengthBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     installlength = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -169,7 +155,7 @@ class FlangePressureTestBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     numfpt = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -181,7 +167,7 @@ class FlangeReinstateBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     numfri = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -193,7 +179,7 @@ class NumberOfJointsBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     numjoints = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -205,7 +191,7 @@ class NumberOfColdCutsBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     numcoldcuts = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -217,7 +203,7 @@ class NumberOfHotCutsBase(models.Model):
     diameter_id = models.CharField(max_length=20)
     numhotcuts = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack = models.ForeignKey(Workpack)
+    workpack_id = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses_id

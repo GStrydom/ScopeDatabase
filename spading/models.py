@@ -13,7 +13,3 @@ class Spading(models.Model):
     workpack = models.ForeignKey(Workpack, blank=True, null=True)
     lineclasses = models.ForeignKey(Lineclasses, blank=True, null=True)
     code = models.CharField(max_length=50)
-
-    class Meta:
-        managed = False
-        db_table = 'spading'

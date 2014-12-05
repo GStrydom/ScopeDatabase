@@ -12,7 +12,3 @@ class Reinstatement(models.Model):
     quantity = models.IntegerField(blank=True, null=True)
     workpack = models.ForeignKey(Workpack, blank=True, null=True)
     lineclasses = models.ForeignKey(Lineclasses, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'reinstatement'

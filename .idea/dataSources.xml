@@ -18,8 +18,7 @@
     <data-source source="LOCAL" name="Django default" uuid="6751bf31-5a1e-4d3a-9929-fd87bf26c87b">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/pipingscope</jdbc-url>
-      <user-name>root</user-name>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/pipingscopeapp</jdbc-url>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
@@ -31,4 +30,3 @@
     </data-source>
   </component>
 </project>
-

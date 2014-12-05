@@ -11,10 +11,6 @@ class Lead(models.Model):
     name = models.CharField(max_length=50, blank=True)
     datecreated = models.DateField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'lead'
-
     def __unicode__(self):
         return self.name
 
@@ -29,10 +25,6 @@ class Workpack(models.Model):
     lead = models.ForeignKey(Lead, blank=True, null=True)
     project = models.ForeignKey(Project, blank=True, null=True)
     area = models.ForeignKey(Area, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'workpack'
 
     def __unicode__(self):
         return self.workpacknumber
@@ -55,10 +47,6 @@ class Lineclass(models.Model):
     bulkquantity = models.IntegerField(blank=True, null=True)
     bomunit = models.CharField(max_length=30, blank=True)
 
-    class Meta:
-        managed = False
-        db_table = 'lineclass'
-
     def __unicode__(self):
         return self.lineclassname
 
@@ -66,10 +54,6 @@ class Lineclass(models.Model):
 class Lineclasses(models.Model):
     lineclasses_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
-
-    class Meta:
-        managed = False
-        db_table = 'lineclasses'
 
     def __unicode__(self):
         return self.name

@@ -8,20 +8,12 @@ class Clientinformation(models.Model):
     email = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=255, blank=True)
 
-    class Meta:
-        managed = False
-        db_table = 'clientinformation'
-
 
 class Client(models.Model):
     client_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True)
     datecreated = models.DateField(blank=True, null=True)
     customerinformation = models.ForeignKey(Clientinformation, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'client'
 
     def __unicode__(self):
         return self.name

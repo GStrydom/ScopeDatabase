@@ -12,7 +12,3 @@ class Prefabrication(models.Model):
     workpack = models.ForeignKey(Workpack, blank=True, null=True)
     code = models.CharField(max_length=50)
     lineclasses = models.ForeignKey(Lineclasses)
-
-    class Meta:
-        managed = False
-        db_table = 'prefabrication'

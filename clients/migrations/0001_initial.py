@@ -13,21 +13,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Client',
             fields=[
+                ('client_id', models.AutoField(serialize=False, primary_key=True)),
+                ('name', models.CharField(max_length=50, blank=True)),
+                ('datecreated', models.DateField(null=True, blank=True)),
             ],
             options={
-                'db_table': 'client',
-                'managed': False,
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Clientinformation',
             fields=[
+                ('clientinformation_id', models.AutoField(serialize=False, primary_key=True)),
+                ('contactnumber', models.IntegerField(null=True, blank=True)),
+                ('email', models.CharField(max_length=50, blank=True)),
+                ('address', models.CharField(max_length=255, blank=True)),
             ],
             options={
-                'db_table': 'clientinformation',
-                'managed': False,
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='client',
+            name='customerinformation',
+            field=models.ForeignKey(blank=True, to='clients.Clientinformation', null=True),
+            preserve_default=True,
         ),
     ]

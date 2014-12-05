@@ -59,6 +59,19 @@ def createestimates(request):
     }
 
     createestcons['fieldweldbase'] = FieldWeldsBase.objects.all()
+    schedule40 = [2, 4, 6, 8]
+    s40items = []
+    for item in createestcons['fieldweldbase']:
+        if item.diameter_id in schedule40:
+            s40items.append(item)
+    print s40items
+
+    for item, value in s40items:
+        grind1 = Pipingnorms.objects.filter(pipediameter=item.diameter_id)[0].prep
+        print grind1
+
+
+
     createestcons['fieldweldhours'] = FieldWeldsHours.objects.all()
 
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
@@ -153,14 +166,13 @@ def getfieldweldhours(request):
 
 def getfieldweldbase(request):
     fwcons = dict()
-    schedule80 = [0.5, 0.75, 1, 1.5]
     schedule40 = [2, 3, 4, 6]
-    schedule20 = [8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30]
 
     fwcons['fieldweldsbaseform'] = FieldWeldsBaseForm(request.POST or None)
     if fwcons['fieldweldsbaseform'].is_valid():
-        fwcons['fieldweldsbaseform'].save()
-        fwcons['fieldweldsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
+        savedform = fwcons['fieldweldsbaseform'].save(commit=False)
+        savedform.workpack_id = Workpack.objects.get(workpack_id=request.session['workpackselected'])
+        savedform.save()
         if fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'] in schedule40:
             grind1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].prep
             grind2 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].tackweldlesseighty
@@ -175,6 +187,10 @@ def getfieldweldbase(request):
             else:
                 fieldweldsduration['weldfit'] = math.ceil(fieldweldsduration['weldweld'] * 0.3)
 
+            fwcons['fieldweldshoursform'] = FieldWeldHoursForm(request.POST or None)
+            savedform = fwcons['fieldweldshoursform'].save(commit=False)
+            savedform.manhours = ''
+
         return HttpResponseRedirect('/new-estimates/')
     else:
         print fwcons['fieldweldsbaseform'].errors
@@ -186,6 +202,7 @@ def getdemolengthbase(request):
     fwcons = dict()
     fwcons['demolengthbaseform'] = DemoLengthBaseForm(request.POST or None)
     if fwcons['demolengthbaseform'].is_valid():
+        fwcons['demolengthbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['demolengthbaseform'].save()
         rig1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['demolengthbaseform'].cleaned_data['diameter_id'])[0].handlemeternormshours
         rig2 = fwcons['demolengthbaseform'].cleaned_data['demolength']
@@ -206,6 +223,7 @@ def getinstalllengthbase(request):
     fwcons = dict()
     fwcons['installlengthbaseform'] = InstallLengthBaseForm(request.POST or None)
     if fwcons['installlengthbaseform'].is_valid():
+        fwcons['installlengthbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['installlengthbaseform'].save()
         rig1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['installlengthbaseform'].cleaned_data['diameter_id'])[0].handlemeternormshours
         rig2 = fwcons['installlengthbaseform'].cleaned_data['installlength']
@@ -226,6 +244,7 @@ def getflangeptbase(request):
     fwcons = dict()
     fwcons['flangepressuretestbaseform'] = FlangePressureTestBaseForm(request.POST or None)
     if fwcons['flangepressuretestbaseform'].is_valid():
+        fwcons['flangepressuretestbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['flangepressuretestbaseform'].save()
         instiso1 = ''
         flamgeptmanhours = {
@@ -243,6 +262,7 @@ def getflangeribase(request):
     fwcons = dict()
     fwcons['flangereinstatebaseform'] = FlangeReinstateBaseForm(request.POST or None)
     if fwcons['flangereinstatebaseform'].is_valid():
+        fwcons['flangereinstatebaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['flangereinstatebaseform'].save()
         flamgerimanhours = {
 
@@ -259,6 +279,7 @@ def getnumberofjoints(request):
     fwcons = dict()
     fwcons['numberofjointsbaseform'] = NumberOfJointsBaseForm(request.POST or None)
     if fwcons['numberofjointsbaseform'].is_valid():
+        fwcons['numberofjointsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['numberofjointsbaseform'].save()
         flamgerimanhours = {
 
@@ -275,6 +296,7 @@ def getnumberofcoldcuts(request):
     fwcons = dict()
     fwcons['numberofcoldcutsbaseform'] = NumberOfColdCutsBaseForm(request.POST or None)
     if fwcons['numberofcoldcutsbaseform'].is_valid():
+        fwcons['numberofcoldcutsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['numberofcoldcutsbaseform'].save()
         flamgerimanhours = {
 
@@ -291,6 +313,7 @@ def getnumberofhotcuts(request):
     fwcons = dict()
     fwcons['numberofhotcutsbaseform'] = NumberOfHotCutsBaseForm(request.POST or None)
     if fwcons['numberofhotcutsbaseform'].is_valid():
+        fwcons['numberofhotcutsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['numberofhotcutsbaseform'].save()
         flamgerimanhours = {
 

@@ -28,8 +28,8 @@ class FieldWeldsBaseForm(forms.ModelForm):
 
     class Meta:
         model = FieldWeldsBase
-        fields = ('fieldweld_id', 'lineclasses_id', 'diameter_id', 'numberoffieldwelds', 'workpack')
-        exclude = ('workpack',)
+        fields = ('fieldweld_id', 'lineclasses_id', 'diameter_id', 'numberoffieldwelds', 'workpack_id')
+        exclude = ('workpack_id',)
 
 
 class FieldWeldHoursForm(forms.ModelForm):
@@ -50,46 +50,46 @@ class DemoLengthBaseForm(forms.ModelForm):
 
     class Meta:
         model = DemoLengthBase
-        fields = ('demolengthbase_id', 'lineclasses_id', 'diameter_id', 'demolength', 'workpack')
+        fields = ('demolengthbase_id', 'lineclasses_id', 'diameter_id', 'demolength', 'workpack_id')
 
 
 class InstallLengthBaseForm(forms.ModelForm):
 
     class Meta:
         model = InstallLengthBase
-        fields = ('installlengthbase_id', 'lineclasses_id', 'diameter_id', 'installlength', 'workpack')
+        fields = ('installlengthbase_id', 'lineclasses_id', 'diameter_id', 'installlength', 'workpack_id')
 
 
 class FlangePressureTestBaseForm(forms.ModelForm):
 
     class Meta:
         model = FlangePressureTestBase
-        fields = ('fptbase_id', 'lineclasses_id', 'diameter_id', 'numfpt', 'workpack')
+        fields = ('fptbase_id', 'lineclasses_id', 'diameter_id', 'numfpt', 'workpack_id')
 
 
 class FlangeReinstateBaseForm(forms.ModelForm):
 
     class Meta:
         model = FlangeReinstateBase
-        fields = ('fribase_id', 'lineclasses_id', 'diameter_id', 'numfri', 'workpack')
+        fields = ('fribase_id', 'lineclasses_id', 'diameter_id', 'numfri', 'workpack_id')
 
 
 class NumberOfJointsBaseForm(forms.ModelForm):
 
     class Meta:
         model = NumberOfJointsBase
-        fields = ('numjointsbase_id', 'lineclasses_id', 'diameter_id', 'numjoints', 'workpack')
+        fields = ('numjointsbase_id', 'lineclasses_id', 'diameter_id', 'numjoints', 'workpack_id')
 
 
 class NumberOfColdCutsBaseForm(forms.ModelForm):
 
     class Meta:
         model = NumberOfColdCutsBase
-        fields = ('numcoldcutsbase_id', 'lineclasses_id', 'diameter_id', 'numcoldcuts', 'workpack')
+        fields = ('numcoldcutsbase_id', 'lineclasses_id', 'diameter_id', 'numcoldcuts', 'workpack_id')
 
 
 class NumberOfHotCutsBaseForm(forms.ModelForm):
 
     class Meta:
         model = NumberOfHotCutsBase
-        fields = ('numhotcutsbase_id', 'lineclasses_id', 'diameter_id', 'numhotcuts', 'workpack')
+        fields = ('numhotcutsbase_id', 'lineclasses_id', 'diameter_id', 'numhotcuts', 'workpack_id')

@@ -12,7 +12,3 @@ class Erection(models.Model):
     quantity = models.IntegerField(blank=True, null=True)
     workpack = models.ForeignKey(Workpack, blank=True, null=True)
     lineclass = models.ForeignKey(Lineclass, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'erection'

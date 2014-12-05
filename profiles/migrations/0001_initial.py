@@ -8,8 +8,8 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('clients', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('userprofile_id', models.AutoField(serialize=False, primary_key=True)),
-                ('profilepic', models.ImageField(upload_to='profile_images', blank=True)),
-                ('usercode', models.CharField(max_length=20, blank=True)),
+                ('profilepic', models.CharField(default='i like eggs', max_length=255, blank=True)),
+                ('usercode', models.CharField(default='Peaches and Cream', max_length=20, blank=True)),
                 ('company', models.ForeignKey(to='clients.Client')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],

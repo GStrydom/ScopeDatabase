@@ -7,9 +7,5 @@ class Project(models.Model):
     name = models.CharField(max_length=50, blank=True)
     datecreated = models.DateField(blank=True, null=True)
 
-    class Meta:
-        managed = False
-        db_table = 'project'
-
     def __unicode__(self):
         return self.name
