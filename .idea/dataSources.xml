@@ -19,6 +19,7 @@
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1:3306/pipingscopeapp</jdbc-url>
+      <user-name>root</user-name>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
@@ -30,3 +31,4 @@
     </data-source>
   </component>
 </project>
+

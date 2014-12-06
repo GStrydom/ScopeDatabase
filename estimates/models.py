@@ -44,7 +44,7 @@ class Pipingnorms(models.Model):
     Lookup tables for estimates.
     """
     pipingnorms_id = models.AutoField(primary_key=True)
-    pipediameter = models.CharField(max_length=5)
+    pipediameter = models.FloatField()
     handlemeternormshours = models.FloatField()
     hotcutnormhours = models.FloatField()
     coldcutnormhours = models.FloatField()
@@ -55,9 +55,6 @@ class Pipingnorms(models.Model):
     tackweldgreateighty = models.FloatField()
     tackweldlesseighty = models.FloatField()
     dn = models.IntegerField()
-
-    def __unicode__(self):
-        return self.pipediameter
 
 
 class EstimateDefaults(models.Model):

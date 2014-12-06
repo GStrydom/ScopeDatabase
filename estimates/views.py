@@ -64,13 +64,6 @@ def createestimates(request):
     for item in createestcons['fieldweldbase']:
         if item.diameter_id in schedule40:
             s40items.append(item)
-    print s40items
-
-    for item, value in s40items:
-        grind1 = Pipingnorms.objects.filter(pipediameter=item.diameter_id)[0].prep
-        print grind1
-
-
 
     createestcons['fieldweldhours'] = FieldWeldsHours.objects.all()
 
