@@ -57,6 +57,10 @@ urlpatterns = patterns('',
 
                        url(r'^newhotcuts/$', 'estimates.views.getnumberofhotcuts', name='newhotcuts'),
 
+                       url(r'^newflangept/$', 'estimates.views.getflangeptbase', name='newflangept'),
+
+                       url(r'^newflangeri/$', 'estimates.views.getflangeribase', name='newflangeri'),
+
                        url(r'^admin/', include(admin.site.urls)),
                        )
 

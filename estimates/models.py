@@ -171,6 +171,10 @@ class FlangePressureTestBase(models.Model):
     numfpt = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     workpack_id = models.ForeignKey(Workpack, null=True)
+    flangehndlehotcut = models.BooleanField(default=False)
+    alkybandc = models.BooleanField(default=False)
+    hacksawcutting = models.BooleanField(default=False)
+    fambaset = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -183,6 +187,8 @@ class FlangeReinstateBase(models.Model):
     numfri = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     workpack_id = models.ForeignKey(Workpack, null=True)
+    alkybandc = models.BooleanField(default=False)
+    fambaset = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.lineclasses_id

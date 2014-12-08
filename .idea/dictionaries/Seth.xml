@@ -148,6 +148,7 @@
       <w>estdefs</w>
       <w>estimatehours</w>
       <w>extragrouper</w>
+      <w>famba</w>
       <w>fambaset</w>
       <w>fambavar</w>
       <w>fieldweld</w>
@@ -170,6 +171,7 @@
       <w>fittackweldriggersmanhours</w>
       <w>fittackweldriggersresources</w>
       <w>flangehndlehotcut</w>
+      <w>flangepressuretestbasesubmit</w>
       <w>flangeptmanhours</w>
       <w>flanmanduration</w>
       <w>flanmanmanhour</w>
@@ -438,6 +440,7 @@
       <w>riggersforiso</w>
       <w>riggersforrein</w>
       <w>riggersforunbolt</w>
+      <w>riginlinedemo</w>
       <w>riginlinefit</w>
       <w>riginlinefitdemo</w>
       <w>riginlinehours</w>

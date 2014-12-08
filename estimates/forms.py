@@ -64,14 +64,14 @@ class FlangePressureTestBaseForm(forms.ModelForm):
 
     class Meta:
         model = FlangePressureTestBase
-        fields = ('fptbase_id', 'lineclasses_id', 'diameter_id', 'numfpt', 'workpack_id')
+        fields = ('fptbase_id', 'lineclasses_id', 'diameter_id', 'numfpt', 'workpack_id', 'flangehndlehotcut', 'alkybandc', 'hacksawcutting', 'fambaset')
 
 
 class FlangeReinstateBaseForm(forms.ModelForm):
 
     class Meta:
         model = FlangeReinstateBase
-        fields = ('fribase_id', 'lineclasses_id', 'diameter_id', 'numfri', 'workpack_id')
+        fields = ('fribase_id', 'lineclasses_id', 'diameter_id', 'numfri', 'workpack_id', 'alkybandc', 'fambaset')
 
 
 class NumberOfJointsBaseForm(forms.ModelForm):

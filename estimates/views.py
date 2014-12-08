@@ -161,6 +161,7 @@ totalRigInLineRigdemo = 0
 totalRigInLineFitdemo = 0
 
 
+# TODO: Confirm rig in line with Juan
 def getdemolengthbase(request):
     fwcons = dict()
     global totalRigOutLineRig
@@ -178,10 +179,12 @@ def getdemolengthbase(request):
         }
 
         demolengthmanhours['rigoutlinefit'] = demolengthmanhours['rigoutlinerig']
+        # TODO: Check to remove riginlinedemo
         demolengthmanhours['riginlinerigdemo'] = demolengthmanhours['rigoutlinerig']
         demolengthmanhours['riginlinefitdemo'] = demolengthmanhours['rigoutlinerig']
         totalRigOutLineRig += demolengthmanhours['rigoutlinerig']
         totalRigOutLineFit += demolengthmanhours['rigoutlinefit']
+        # TODO: Check to remove riginlinedemo
         totalRigInLineRigdemo += demolengthmanhours['riginlinerigdemo']
         totalRigInLineFitdemo += demolengthmanhours['riginlinefitdemo']
 
@@ -221,36 +224,39 @@ def getinstalllengthbase(request):
 
     return render_to_response('newinstalllength.html', fwcons, context_instance=RequestContext(request))
 
+totalInstIso2 = 0
+
 
 def getflangeptbase(request):
     fwcons = dict()
+    global totalInstIso2
     fwcons['flangepressuretestbaseform'] = FlangePressureTestBaseForm(request.POST or None)
     if fwcons['flangepressuretestbaseform'].is_valid():
         fwcons['flangepressuretestbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['flangepressuretestbaseform'].save()
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['flangehndlehotcut']:
-            flgvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].cuttingfactorhw)-1
+            flgvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].cuttingfactorhw - 1
         else:
             flgvar = 1
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['alkybandc']:
-            alkyvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].alky_factor_b_and_c_class)-1
+            alkyvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].alkyfactor_b_and_c_class - 1
         else:
             alkyvar = 0
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['hacksawcutting']:
-            hacksawvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].cuttingfactorhacksaw)-1
+            hacksawvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].cuttingfactorhacksaw - 1
         else:
             hacksawvar = 0
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['fambaset']:
-            fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].fambafactor)-1
+            fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].fambafactor - 1
         else:
             fambavar = 0
 
         instiso1 = fwcons['flangepressuretestbaseform'].cleaned_data['numfpt']
-        instiso2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].manhrs)
+        instiso2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].manhrs
         flangeptmanhours = {
             'installisoandpt': instiso1 * instiso2 * flgvar + alkyvar + hacksawvar + fambavar
         }
@@ -259,6 +265,15 @@ def getflangeptbase(request):
             riggersforiso = flangeptmanhours['installisoandpt']
         else:
             riggersforiso = 0
+
+        print 'Instiso1 %d' % instiso1
+        print 'Instiso1 %d' % instiso2
+        print 'Install Iso and PT: %f' % flangeptmanhours['installisoandpt']
+        print 'Rigger For ISo: %f' % riggersforiso
+        print 'FlgVar: %f' % flgvar
+        print 'AlkyVar: %f' % alkyvar
+        print 'HacksawVar: %f' % hacksawvar
+        print 'FambaVar: %f' % fambavar
 
         return HttpResponseRedirect('/')
     else:

@@ -1,0 +1,13 @@
+{% extends 'site_base.html' %}
+
+
+{% block mainBar %}
+    {% block contentBar %}
+        <form action="" method="post">{% csrf_token %}
+            {{ flangereinstatebaseform.as_p }}
+            <input type="submit" id="flangereinstatebaseform" value="Save">
+        </form>
+    {% endblock %}
+    {% block hotBar %}
+    {% endblock %}
+{% endblock %}
