@@ -4,23 +4,30 @@
       <w>addprefab</w>
       <w>addreinstate</w>
       <w>addspade</w>
+      <w>alkybandc</w>
+      <w>alkyfactor</w>
+      <w>alkyvar</w>
+      <w>bafactor</w>
       <w>basecalcs</w>
       <w>basestimate</w>
       <w>bestimate</w>
       <w>bevline</w>
       <w>biggrouper</w>
       <w>boltupjointhoursriggers</w>
+      <w>boltupjointnorm</w>
       <w>boltupjointnormhours</w>
       <w>boltupjointriggersduration</w>
       <w>boltupjointriggersmanhours</w>
       <w>boltupjointriggersresources</w>
       <w>boltupjointsduration</w>
+      <w>boltupjointsfitter</w>
       <w>boltupjointshoursfitter</w>
       <w>boltupjointshoursrigger</w>
       <w>boltupjointsmanhour</w>
       <w>boltupjointsresource</w>
       <w>boltupnormfitter</w>
       <w>bomunit</w>
+      <w>boolval</w>
       <w>boxsizes</w>
       <w>boxsizess</w>
       <w>bulkqty</w>
@@ -30,6 +37,7 @@
       <w>calccoldcut</w>
       <w>calcres</w>
       <w>calcresources</w>
+      <w>calcs</w>
       <w>calculateresources</w>
       <w>calcwrapper</w>
       <w>calcx</w>
@@ -41,6 +49,8 @@
       <w>ccmanhours</w>
       <w>ccsave</w>
       <w>ccssrf</w>
+      <w>ceiled</w>
+      <w>cldcutmanhours</w>
       <w>clientcons</w>
       <w>clientinfo</w>
       <w>clientinformation</w>
@@ -50,6 +60,7 @@
       <w>coldcutform</w>
       <w>coldcuthours</w>
       <w>coldcuthrs</w>
+      <w>coldcutline</w>
       <w>coldcutlineduration</w>
       <w>coldcutlinemanhour</w>
       <w>coldcutlineresource</w>
@@ -60,6 +71,7 @@
       <w>coldcutnorm</w>
       <w>coldcutnormhours</w>
       <w>coldcutresources</w>
+      <w>coldcutsbase</w>
       <w>coldcutshours</w>
       <w>contactno</w>
       <w>contactnumber</w>
@@ -75,6 +87,9 @@
       <w>customerinformation</w>
       <w>customerlistview</w>
       <w>cutnorm</w>
+      <w>cuttingfactorhacksaw</w>
+      <w>cuttingfactorhw</w>
+      <w>cuttinghw</w>
       <w>datas</w>
       <w>datatype</w>
       <w>datecreated</w>
@@ -89,6 +104,7 @@
       <w>deletecons</w>
       <w>deletepack</w>
       <w>demolengthbase</w>
+      <w>demolengthbasesubmit</w>
       <w>demolengthhours</w>
       <w>demolengthhoursform</w>
       <w>demolengthsubmit</w>
@@ -96,11 +112,14 @@
       <w>dimsteamtraceduration</w>
       <w>dimsteamtracemanhour</w>
       <w>dimsteamtraceresource</w>
+      <w>disconnectinstruments</w>
       <w>disp</w>
       <w>dmstetraceriggersduration</w>
       <w>dmstetraceriggersmanhours</w>
       <w>dmstetraceriggersresources</w>
       <w>durationheader</w>
+      <w>durationhwfactor</w>
+      <w>durtopenclose</w>
       <w>editcons</w>
       <w>editform</w>
       <w>editpack</w>
@@ -129,6 +148,8 @@
       <w>estdefs</w>
       <w>estimatehours</w>
       <w>extragrouper</w>
+      <w>fambaset</w>
+      <w>fambavar</w>
       <w>fieldweld</w>
       <w>fieldweldbase</w>
       <w>fieldweldbasesubmit</w>
@@ -141,18 +162,22 @@
       <w>fieldweldshours</w>
       <w>fieldweldshoursform</w>
       <w>fieldweldsubmit</w>
+      <w>fitdemo</w>
       <w>fittackweldduration</w>
       <w>fittackweldmanhour</w>
       <w>fittackweldresource</w>
       <w>fittackweldriggersduration</w>
       <w>fittackweldriggersmanhours</w>
       <w>fittackweldriggersresources</w>
+      <w>flangehndlehotcut</w>
+      <w>flangeptmanhours</w>
       <w>flanmanduration</w>
       <w>flanmanmanhour</w>
       <w>flanmanresource</w>
       <w>flanmanriggersduration</w>
       <w>flanmanriggersmanhours</w>
       <w>flanmanriggersresources</w>
+      <w>flgvar</w>
       <w>fracestimate</w>
       <w>fuckyouajax</w>
       <w>fwcons</w>
@@ -170,9 +195,14 @@
       <w>grindandprepriggersmanhours</w>
       <w>grindandprepriggersresources</w>
       <w>grindprepfithours</w>
+      <w>hacksawcutbolts</w>
+      <w>hacksawcutting</w>
+      <w>hacksawfactor</w>
+      <w>hacksawvar</w>
       <w>handlemeternormshours</w>
       <w>hcdia</w>
       <w>hcdiameter</w>
+      <w>hckcutvar</w>
       <w>hclc</w>
       <w>hclineclass</w>
       <w>hcsave</w>
@@ -182,6 +212,7 @@
       <w>hotcutform</w>
       <w>hotcuthours</w>
       <w>hotcuthrs</w>
+      <w>hotcutline</w>
       <w>hotcutlineduration</w>
       <w>hotcutlinemanhour</w>
       <w>hotcutlineresource</w>
@@ -191,6 +222,7 @@
       <w>hotcutmanhours</w>
       <w>hotcutnorm</w>
       <w>hotcutnormhours</w>
+      <w>hotcutsbase</w>
       <w>hotcutshours</w>
       <w>hotwork</w>
       <w>hpflushduration</w>
@@ -200,6 +232,8 @@
       <w>hpflushriggersmanhours</w>
       <w>hpflushriggersresources</w>
       <w>inits</w>
+      <w>inlinefit</w>
+      <w>inlinerig</w>
       <w>inputrow</w>
       <w>insprepduration</w>
       <w>insprepmanhour</w>
@@ -207,6 +241,9 @@
       <w>insprepriggersduration</w>
       <w>insprepriggersmanhours</w>
       <w>insprepriggersresources</w>
+      <w>installisoandpt</w>
+      <w>installlengthbasesubmit</w>
+      <w>installlengthmanhours</w>
       <w>instatement</w>
       <w>instpipesupduration</w>
       <w>instpipesupmanhour</w>
@@ -214,12 +251,14 @@
       <w>instpipesupriggersduration</w>
       <w>instpipesupriggersmanhours</w>
       <w>instpipesupriggersresources</w>
+      <w>instrumentsboltup</w>
       <w>inststmtracduration</w>
       <w>inststmtracmanhour</w>
       <w>inststmtracresource</w>
       <w>inststmtracriggersduration</w>
       <w>inststmtracriggersmanhours</w>
       <w>inststmtracriggersresources</w>
+      <w>intotalgrindprep</w>
       <w>intpipesupduration</w>
       <w>intpipesupmanhour</w>
       <w>intpipesupresource</w>
@@ -240,6 +279,7 @@
       <w>manhours</w>
       <w>manhoursfactor</w>
       <w>manhoursheader</w>
+      <w>manhrs</w>
       <w>mfac</w>
       <w>multipart</w>
       <w>ndata</w>
@@ -257,6 +297,7 @@
       <w>ndtriggersresources</w>
       <w>newcoldcuts</w>
       <w>newdemolength</w>
+      <w>newdemolengthbase</w>
       <w>newfieldweld</w>
       <w>newflangept</w>
       <w>newflangeri</w>
@@ -269,13 +310,21 @@
       <w>newwp</w>
       <w>newwpform</w>
       <w>nodeclinks</w>
+      <w>numberofcoldcutsbasesubmit</w>
       <w>numberoffieldwelds</w>
+      <w>numberofhotcutsbasesubmit</w>
+      <w>numberofjointsbase</w>
+      <w>numberofjointsbasesubmit</w>
       <w>numcc</w>
       <w>numcoldcuts</w>
+      <w>numcuts</w>
+      <w>numfieldwelds</w>
       <w>numhc</w>
+      <w>numjointsmanhours</w>
       <w>opeverifyduration</w>
       <w>opeverifymanhour</w>
       <w>opeverifyresource</w>
+      <w>opspermit</w>
       <w>opspermitduration</w>
       <w>opspermitmanhour</w>
       <w>opspermitresource</w>
@@ -339,6 +388,7 @@
       <w>pwhtriggersduration</w>
       <w>pwhtriggersresources</w>
       <w>pword</w>
+      <w>qcfitupcheck</w>
       <w>qcfitupcheckduration</w>
       <w>qcfitupcheckmanhour</w>
       <w>qcfitupcheckresource</w>
@@ -379,9 +429,20 @@
       <w>rigactrigoutriggersduration</w>
       <w>rigactrigoutriggersmanhours</w>
       <w>rigactrigoutriggersresources</w>
+      <w>rigdemo</w>
+      <w>rigforcoldcut</w>
+      <w>rigforhotcut</w>
+      <w>rigforjoints</w>
       <w>riggersforcoldcut</w>
       <w>riggersforhotcut</w>
+      <w>riggersforiso</w>
+      <w>riggersforrein</w>
+      <w>riggersforunbolt</w>
+      <w>riginlinefit</w>
+      <w>riginlinefitdemo</w>
       <w>riginlinehours</w>
+      <w>riginlinerig</w>
+      <w>riginlinerigdemo</w>
       <w>riglinenorm</w>
       <w>rigoutlinehours</w>
       <w>rigoutlinenorm</w>
@@ -433,6 +494,18 @@
       <w>thedict</w>
       <w>thesize</w>
       <w>theworkpacks</w>
+      <w>totalboltupjointsfitter</w>
+      <w>totalcoldcutline</w>
+      <w>totalfieldweldduration</w>
+      <w>totalfieldwelds</w>
+      <w>totalgrindprep</w>
+      <w>totalhotcutline</w>
+      <w>totalrig</w>
+      <w>totalrigoutlinefit</w>
+      <w>totalrigoutlinerig</w>
+      <w>totalunboltjointsfitter</w>
+      <w>totalweldfit</w>
+      <w>totalweldweld</w>
       <w>tsaduration</w>
       <w>tsamanhour</w>
       <w>tsaresource</w>
@@ -445,6 +518,7 @@
       <w>unboltjointriggersmanhours</w>
       <w>unboltjointriggersresources</w>
       <w>unboltjointsduration</w>
+      <w>unboltjointsfitter</w>
       <w>unboltjointshoursfitter</w>
       <w>unboltjointshoursrigger</w>
       <w>unboltjointsmanhour</w>

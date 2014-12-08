@@ -29,8 +29,6 @@ urlpatterns = patterns('',
 
                        url(r'showspade/$', 'workpacks.views.showspade', name='showspade'),
 
-                       url(r'^calcresources/$', 'estimates.views.calculateresources', name='calcres'),
-
                        url(r'showreinstate/$', 'workpacks.views.showreinstate', name='showreinstate'),
 
                        url(r'deletepack/$', 'workpacks.views.deletepack', name="deletepack"),
@@ -43,12 +41,21 @@ urlpatterns = patterns('',
                        url(r'^spading/get/(?P<spading_id>\d+)/$', 'spading.views.editspadeitem',
                            name='editspade'),
 
-                       url(r'^fieldweldresource/', 'estimates.views.getfieldweldhours', name='getfieldweldhours'),
                        url(r'^newfieldweld/', 'estimates.views.getfieldweldbase', name='getfieldweldbase'),
                        url(r'^fieldwelds/get/(?P<fieldweld_id>\d+)/$', 'estimates.views.editfieldweld',
                            name="editfieldweld"),
                        url(r'^fieldwelds/delete/(?P<fieldweld_id>\d+)/$', 'estimates.views.deletefieldweld',
                            name="deletefieldweld"),
+
+                       url(r'^newdemolength/$', 'estimates.views.getdemolengthbase', name='newdemolength'),
+
+                       url(r'^newinstalllength/$', 'estimates.views.getinstalllengthbase', name='newinstalllength'),
+
+                       url(r'^newnumjoints/$', 'estimates.views.getnumberofjoints', name='newnumjoints'),
+
+                       url(r'^newcoldcuts/$', 'estimates.views.getnumberofcoldcuts', name='newcoldcuts'),
+
+                       url(r'^newhotcuts/$', 'estimates.views.getnumberofhotcuts', name='newhotcuts'),
 
                        url(r'^admin/', include(admin.site.urls)),
                        )

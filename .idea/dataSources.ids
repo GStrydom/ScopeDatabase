@@ -1,9 +1,526 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - pipingscope@localhost" uuid="aedd5c3a-7c6f-4ee0-a0b8-c64946d6992b">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
-  </data-source>
-  <data-source name="Django default" uuid="6751bf31-5a1e-4d3a-9929-fd87bf26c87b">
-    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  <data-source name="MySQL - pipingscopeapp@localhost" uuid="0fae3752-a92f-4e91-8b14-14251ee97ef0">
+    <database-info product="MySQL" version="5.6.16" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="pipingscopeapp"/>
+    <table name="areas_area" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="area_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="zone_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="area_id"/>
+      <foreign-key name="areas_area_zone_id_44251104_fk_areas_zone_zone_id" columns="zone_id" ref-table="areas_zone" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="zone_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="workpacks_workpack_area_id_474a7c21_fk_areas_area_area_id" table="workpacks_workpack" schema="" catalog="pipingscopeapp" columns="area_id"/>
+      <index name="areas_area_06342dd7" unique="false" columns="zone_id"/>
+    </table>
+    <table name="areas_zone" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="zone_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="zone_id"/>
+      <exported-key name="areas_area_zone_id_44251104_fk_areas_zone_zone_id" table="areas_area" schema="" catalog="pipingscopeapp" columns="zone_id"/>
+    </table>
+    <table name="auth_group" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="auth_group_permissions_group_id_58c48ba9_fk_auth_group_id" table="auth_group_permissions" schema="" catalog="pipingscopeapp" columns="group_id"/>
+      <exported-key name="auth_user_groups_group_id_30a071c9_fk_auth_group_id" table="auth_user_groups" schema="" catalog="pipingscopeapp" columns="group_id"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="auth_group_permissions" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_group_permissions_group_id_58c48ba9_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_group_permissi_permission_id_23962d04_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="group_id" unique="true" columns="permission_id"/>
+      <index name="auth_group_permissions_0e939a4f" unique="false" columns="group_id"/>
+      <index name="auth_group_permissions_8373b171" unique="false" columns="permission_id"/>
+    </table>
+    <table name="auth_permission" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="content_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="codename" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_permissi_content_type_id_51277a81_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="auth_group_permissi_permission_id_23962d04_fk_auth_permission_id" table="auth_group_permissions" schema="" catalog="pipingscopeapp" columns="permission_id"/>
+      <exported-key name="auth_user_user_perm_permission_id_3d7071f0_fk_auth_permission_id" table="auth_user_user_permissions" schema="" catalog="pipingscopeapp" columns="permission_id"/>
+      <index name="content_type_id" unique="true" columns="codename"/>
+      <index name="auth_permission_417f1b1c" unique="false" columns="content_type_id"/>
+    </table>
+    <table name="auth_user" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="password" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_login" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="is_superuser" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="username" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="first_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="75" scale="0" nullable="false" jdbcType="12"/>
+      <column name="is_staff" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="is_active" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="date_joined" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="auth_user_groups_user_id_24702650_fk_auth_user_id" table="auth_user_groups" schema="" catalog="pipingscopeapp" columns="user_id"/>
+      <exported-key name="auth_user_user_permissions_user_id_7cd7acb6_fk_auth_user_id" table="auth_user_user_permissions" schema="" catalog="pipingscopeapp" columns="user_id"/>
+      <exported-key name="django_admin_log_user_id_1c5f563_fk_auth_user_id" table="django_admin_log" schema="" catalog="pipingscopeapp" columns="user_id"/>
+      <exported-key name="profiles_userprofile_user_id_657ed028_fk_auth_user_id" table="profiles_userprofile" schema="" catalog="pipingscopeapp" columns="user_id"/>
+      <exported-key name="tastypie_apikey_user_id_e0b406b_fk_auth_user_id" table="tastypie_apikey" schema="" catalog="pipingscopeapp" columns="user_id"/>
+      <index name="username" unique="true" columns="username"/>
+    </table>
+    <table name="auth_user_groups" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_user_groups_group_id_30a071c9_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_user_groups_user_id_24702650_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="user_id" unique="true" columns="group_id"/>
+      <index name="auth_user_groups_0e939a4f" unique="false" columns="group_id"/>
+      <index name="auth_user_groups_e8701ad4" unique="false" columns="user_id"/>
+    </table>
+    <table name="auth_user_user_permissions" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_user_user_permissions_user_id_7cd7acb6_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_user_user_perm_permission_id_3d7071f0_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="user_id" unique="true" columns="permission_id"/>
+      <index name="auth_user_user_permissions_8373b171" unique="false" columns="permission_id"/>
+      <index name="auth_user_user_permissions_e8701ad4" unique="false" columns="user_id"/>
+    </table>
+    <table name="clients_client" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="client_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="datecreated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="customerinformation_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="client_id"/>
+      <foreign-key name="D04dd8b581bdbd0dcba7bccfb9b2796a" columns="customerinformation_id" ref-table="clients_clientinformation" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="clientinformation_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="profiles_userpro_company_id_3505bf73_fk_clients_client_client_id" table="profiles_userprofile" schema="" catalog="pipingscopeapp" columns="company_id"/>
+      <exported-key name="workpacks_workpac_client_id_6d1bf663_fk_clients_client_client_id" table="workpacks_workpack" schema="" catalog="pipingscopeapp" columns="client_id"/>
+      <index name="clients_client_a0f36819" unique="false" columns="customerinformation_id"/>
+    </table>
+    <table name="clients_clientinformation" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="clientinformation_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="contactnumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="clientinformation_id"/>
+      <exported-key name="D04dd8b581bdbd0dcba7bccfb9b2796a" table="clients_client" schema="" catalog="pipingscopeapp" columns="customerinformation_id"/>
+    </table>
+    <table name="customers_customer" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="customer_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="datecreated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="customerinformation_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="customer_id"/>
+      <foreign-key name="D530b9e742baa0b6c3897d25e6d17b8d" columns="customerinformation_id" ref-table="customers_customerinformation" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="customerinformation_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="customers_customer_a0f36819" unique="false" columns="customerinformation_id"/>
+    </table>
+    <table name="customers_customerinformation" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="customerinformation_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="contactnumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="email" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="customerinformation_id"/>
+      <exported-key name="D530b9e742baa0b6c3897d25e6d17b8d" table="customers_customer" schema="" catalog="pipingscopeapp" columns="customerinformation_id"/>
+    </table>
+    <table name="django_admin_log" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="action_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="object_id" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="object_repr" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="action_flag" sqlType="SMALLINT UNSIGNED" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="change_message" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="content_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="django_admin_log_user_id_1c5f563_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="django_admin__content_type_id_5151027a_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="django_admin_log_417f1b1c" unique="false" columns="content_type_id"/>
+      <index name="django_admin_log_e8701ad4" unique="false" columns="user_id"/>
+    </table>
+    <table name="django_content_type" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="app_label" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="model" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="auth_permissi_content_type_id_51277a81_fk_django_content_type_id" table="auth_permission" schema="" catalog="pipingscopeapp" columns="content_type_id"/>
+      <exported-key name="django_admin__content_type_id_5151027a_fk_django_content_type_id" table="django_admin_log" schema="" catalog="pipingscopeapp" columns="content_type_id"/>
+      <index name="django_content_type_app_label_3ec8c61c_uniq" unique="true" columns="app_label,model"/>
+    </table>
+    <table name="django_migrations" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="applied" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="django_session" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="session_key" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="session_data" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="expire_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="session_key"/>
+      <index name="django_session_de54fa62" unique="false" columns="expire_date"/>
+    </table>
+    <table name="erection_erection" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="erection_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="size" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="lineclass_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="erection_id"/>
+      <foreign-key name="erection__workpack_id_3afc4fa6_fk_workpacks_workpack_workpack_id" columns="workpack_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="erecti_lineclass_id_72e52b23_fk_workpacks_lineclass_lineclass_id" columns="lineclass_id" ref-table="workpacks_lineclass" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="lineclass_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="erection_erection_5d955a46" unique="false" columns="workpack_id"/>
+      <index name="erection_erection_fd3e5b58" unique="false" columns="lineclass_id"/>
+    </table>
+    <table name="estimates_demolengthbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="demolengthbase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="demolength" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="demolengthbase_id"/>
+      <foreign-key name="estimat_workpack_id_id_c5e8f79_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_demolengthbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_demolengthhours" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="demolengthhours_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="resources" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="manhours" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="duration" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="demolengthhours_id"/>
+      <foreign-key name="estima_workpack_id_id_79b65492_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_demolengthhours_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_estimate" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="estimate_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="manhours" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="duration" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="resources" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="estimate_id"/>
+      <foreign-key name="estimates_workpack_id_1455860e_fk_workpacks_workpack_workpack_id" columns="workpack_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="name" unique="true" columns="name"/>
+      <index name="estimates_estimate_5d955a46" unique="false" columns="workpack_id"/>
+    </table>
+    <table name="estimates_estimatedefaults" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="estimatedefaults_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="diameter" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="schedule" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="material" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="fieldwelds" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="demolength" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="installlength" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="flangesforisolation" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="flangesforreinstate" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="flangehandlinghotcuts" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="flangehandlingalky" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="flangehandlinghacksaw" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="flangehandlingbaset" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="numberofjoints" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="instrumentsforboltup" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="riggersforboltup" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="numberofcoldcuts" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="numberofhotcuts" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="datecreated" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="lineclasses_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="estimatedefaults_id"/>
+      <foreign-key name="estimates_workpack_id_73800e34_fk_workpacks_workpack_workpack_id" columns="workpack_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="lineclasses_id_79519199_fk_workpacks_lineclasses_lineclasses_id" columns="lineclasses_id" ref-table="workpacks_lineclasses" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="lineclasses_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_estimatedefaults_5d955a46" unique="false" columns="workpack_id"/>
+      <index name="estimates_estimatedefaults_c85309d5" unique="false" columns="lineclasses_id"/>
+    </table>
+    <table name="estimates_fieldweldsbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="fieldweld_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="numberoffieldwelds" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="fieldweld_id"/>
+      <foreign-key name="estima_workpack_id_id_7f38adb7_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="D9d3fe0b1edc1feee0d0724ddc22aa91" table="estimates_fieldweldshours" schema="" catalog="pipingscopeapp" columns="fieldweldbase_id"/>
+      <index name="estimates_fieldweldsbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_fieldweldshours" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="fieldweldshours_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="resources" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="manhours" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="duration" sqlType="DOUBLE" precision="22" scale="0" nullable="false" jdbcType="8"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="fieldweldbase_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="fieldweldshours_id"/>
+      <foreign-key name="D9d3fe0b1edc1feee0d0724ddc22aa91" columns="fieldweldbase_id" ref-table="estimates_fieldweldsbase" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="fieldweld_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_fieldweldshours_e23ccf8c" unique="false" columns="fieldweldbase_id"/>
+    </table>
+    <table name="estimates_flangepressuretestbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="fptbase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="numfpt" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="fptbase_id"/>
+      <foreign-key name="estimat_workpack_id_id_24b40cc_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_flangepressuretestbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_flangereinstatebase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="fribase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="numfri" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="fribase_id"/>
+      <foreign-key name="estima_workpack_id_id_1cb8ddc1_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_flangereinstatebase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_installlengthbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="installlengthbase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="installlength" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="installlengthbase_id"/>
+      <foreign-key name="estima_workpack_id_id_7cf40664_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_installlengthbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_manhoursfactor" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="manhoursfactor_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="material" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="pfitter" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="welder" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <primary-key name="PRIMARY" columns="manhoursfactor_id"/>
+    </table>
+    <table name="estimates_numberofcoldcutsbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="numcoldcutsbase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="numcoldcuts" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="numcoldcutsbase_id"/>
+      <foreign-key name="estima_workpack_id_id_7c9ed51f_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_numberofcoldcutsbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_numberofhotcutsbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="numhotcutsbase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="numhotcuts" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="numhotcutsbase_id"/>
+      <foreign-key name="estima_workpack_id_id_79743797_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_numberofhotcutsbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_numberofjointsbase" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="numjointsbase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclasses_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="diameter_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="numjoints" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="workpack_id_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="numjointsbase_id"/>
+      <foreign-key name="estima_workpack_id_id_2ff90551_fk_workpacks_workpack_workpack_id" columns="workpack_id_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="estimates_numberofjointsbase_3cd5b5cd" unique="false" columns="workpack_id_id"/>
+    </table>
+    <table name="estimates_pipingnorms" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="pipingnorms_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="pipediameter" sqlType="VARCHAR" precision="5" scale="0" nullable="true" jdbcType="12"/>
+      <column name="handlemeternormshours" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="hotcutnormhours" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="coldcutnormhours" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="boltupjointnormhours" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="spadejointnormhours" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="cut" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="prep" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="tackweldgreateighty" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="tackweldlesseighty" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="dn" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="pipingnorms_id"/>
+    </table>
+    <table name="materials_matlist" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="matlist_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="matlist_id"/>
+      <exported-key name="reinstatemen_matlist_id_605769e3_fk_materials_matlist_matlist_id" table="reinstatement_reinstatement" schema="" catalog="pipingscopeapp" columns="matlist_id"/>
+      <exported-key name="spading_spad_matlist_id_167264f7_fk_materials_matlist_matlist_id" table="spading_spading" schema="" catalog="pipingscopeapp" columns="matlist_id"/>
+    </table>
+    <table name="materials_sizelist" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="sizelist_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sizelist_id"/>
+      <exported-key name="reinstate_sizelist_id_796d2dbd_fk_materials_sizelist_sizelist_id" table="reinstatement_reinstatement" schema="" catalog="pipingscopeapp" columns="sizelist_id"/>
+      <exported-key name="spading_s_sizelist_id_75ed046f_fk_materials_sizelist_sizelist_id" table="spading_spading" schema="" catalog="pipingscopeapp" columns="sizelist_id"/>
+    </table>
+    <table name="prefabrication_prefabrication" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="prefabrication_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="matlist" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="sizelist" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lineclasses_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="prefabrication_id"/>
+      <foreign-key name="prefabric_workpack_id_3efc7846_fk_workpacks_workpack_workpack_id" columns="workpack_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="p_lineclasses_id_14f7c6d_fk_workpacks_lineclasses_lineclasses_id" columns="lineclasses_id" ref-table="workpacks_lineclasses" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="lineclasses_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="prefabrication_prefabrication_5d955a46" unique="false" columns="workpack_id"/>
+      <index name="prefabrication_prefabrication_c85309d5" unique="false" columns="lineclasses_id"/>
+    </table>
+    <table name="profiles_userprofile" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="userprofile_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="profilepic" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="usercode" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="company_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="userprofile_id"/>
+      <foreign-key name="profiles_userprofile_user_id_657ed028_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="profiles_userpro_company_id_3505bf73_fk_clients_client_client_id" columns="company_id" ref-table="clients_client" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="client_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="profiles_userprofile_447d3092" unique="false" columns="company_id"/>
+    </table>
+    <table name="projects_project" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="project_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="datecreated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="project_id"/>
+      <exported-key name="workpacks_wor_project_id_270a065a_fk_projects_project_project_id" table="workpacks_workpack" schema="" catalog="pipingscopeapp" columns="project_id"/>
+    </table>
+    <table name="reinstatement_reinstatement" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="reinstatement_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="lineclasses_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="matlist_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="sizelist_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="reinstatement_id"/>
+      <foreign-key name="lineclasses_id_65db643b_fk_workpacks_lineclasses_lineclasses_id" columns="lineclasses_id" ref-table="workpacks_lineclasses" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="lineclasses_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="reinstatemen_matlist_id_605769e3_fk_materials_matlist_matlist_id" columns="matlist_id" ref-table="materials_matlist" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="matlist_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="reinstate_sizelist_id_796d2dbd_fk_materials_sizelist_sizelist_id" columns="sizelist_id" ref-table="materials_sizelist" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="sizelist_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="reinstate_workpack_id_10dfe148_fk_workpacks_workpack_workpack_id" columns="workpack_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="reinstatement_reinstatement_210a92fb" unique="false" columns="matlist_id"/>
+      <index name="reinstatement_reinstatement_5d955a46" unique="false" columns="workpack_id"/>
+      <index name="reinstatement_reinstatement_c08f075c" unique="false" columns="sizelist_id"/>
+      <index name="reinstatement_reinstatement_c85309d5" unique="false" columns="lineclasses_id"/>
+    </table>
+    <table name="spading_spading" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="spading_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="lineclasses_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="matlist_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sizelist_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="spading_id"/>
+      <foreign-key name="lineclasses_id_2b6390ff_fk_workpacks_lineclasses_lineclasses_id" columns="lineclasses_id" ref-table="workpacks_lineclasses" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="lineclasses_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="spading_spad_matlist_id_167264f7_fk_materials_matlist_matlist_id" columns="matlist_id" ref-table="materials_matlist" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="matlist_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="spading_s_sizelist_id_75ed046f_fk_materials_sizelist_sizelist_id" columns="sizelist_id" ref-table="materials_sizelist" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="sizelist_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="spading_s_workpack_id_73a256cc_fk_workpacks_workpack_workpack_id" columns="workpack_id" ref-table="workpacks_workpack" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="workpack_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="spading_spading_210a92fb" unique="false" columns="matlist_id"/>
+      <index name="spading_spading_5d955a46" unique="false" columns="workpack_id"/>
+      <index name="spading_spading_c08f075c" unique="false" columns="sizelist_id"/>
+      <index name="spading_spading_c85309d5" unique="false" columns="lineclasses_id"/>
+    </table>
+    <table name="tastypie_apiaccess" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="identifier" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="url" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="request_method" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="accessed" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tastypie_apikey" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="key" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="created" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="tastypie_apikey_user_id_e0b406b_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="tastypie_apikey_3c6e0b8a" unique="false" columns="key"/>
+    </table>
+    <table name="workpacks_lead" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="lead_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="datecreated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="lead_id"/>
+      <exported-key name="workpacks_workpack_lead_id_57aebf70_fk_workpacks_lead_lead_id" table="workpacks_workpack" schema="" catalog="pipingscopeapp" columns="lead_id"/>
+    </table>
+    <table name="workpacks_lineclass" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="lineclass_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="lineclassname" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="itemname" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="itemid" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="material" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dn1" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="dn2" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="code" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="unit" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bulkquantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="bomunit" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="lineclass_id"/>
+      <exported-key name="erecti_lineclass_id_72e52b23_fk_workpacks_lineclass_lineclass_id" table="erection_erection" schema="" catalog="pipingscopeapp" columns="lineclass_id"/>
+    </table>
+    <table name="workpacks_lineclasses" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="lineclasses_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="lineclasses_id"/>
+      <exported-key name="lineclasses_id_79519199_fk_workpacks_lineclasses_lineclasses_id" table="estimates_estimatedefaults" schema="" catalog="pipingscopeapp" columns="lineclasses_id"/>
+      <exported-key name="p_lineclasses_id_14f7c6d_fk_workpacks_lineclasses_lineclasses_id" table="prefabrication_prefabrication" schema="" catalog="pipingscopeapp" columns="lineclasses_id"/>
+      <exported-key name="lineclasses_id_65db643b_fk_workpacks_lineclasses_lineclasses_id" table="reinstatement_reinstatement" schema="" catalog="pipingscopeapp" columns="lineclasses_id"/>
+      <exported-key name="lineclasses_id_2b6390ff_fk_workpacks_lineclasses_lineclasses_id" table="spading_spading" schema="" catalog="pipingscopeapp" columns="lineclasses_id"/>
+    </table>
+    <table name="workpacks_workpack" schema="" catalog="pipingscopeapp" type="TABLE">
+      <column name="workpack_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="workpacknumber" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="workpacklineclass" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="workpacklinenumber" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="datecreated" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="area_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="client_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="lead_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="project_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="workpack_id"/>
+      <foreign-key name="workpacks_workpack_area_id_474a7c21_fk_areas_area_area_id" columns="area_id" ref-table="areas_area" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="area_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="workpacks_workpack_lead_id_57aebf70_fk_workpacks_lead_lead_id" columns="lead_id" ref-table="workpacks_lead" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="lead_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="workpacks_workpac_client_id_6d1bf663_fk_clients_client_client_id" columns="client_id" ref-table="clients_client" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="client_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="workpacks_wor_project_id_270a065a_fk_projects_project_project_id" columns="project_id" ref-table="projects_project" ref-schema="" ref-catalog="pipingscopeapp" ref-columns="project_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="erection__workpack_id_3afc4fa6_fk_workpacks_workpack_workpack_id" table="erection_erection" schema="" catalog="pipingscopeapp" columns="workpack_id"/>
+      <exported-key name="estimat_workpack_id_id_c5e8f79_fk_workpacks_workpack_workpack_id" table="estimates_demolengthbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estima_workpack_id_id_79b65492_fk_workpacks_workpack_workpack_id" table="estimates_demolengthhours" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estimates_workpack_id_1455860e_fk_workpacks_workpack_workpack_id" table="estimates_estimate" schema="" catalog="pipingscopeapp" columns="workpack_id"/>
+      <exported-key name="estimates_workpack_id_73800e34_fk_workpacks_workpack_workpack_id" table="estimates_estimatedefaults" schema="" catalog="pipingscopeapp" columns="workpack_id"/>
+      <exported-key name="estima_workpack_id_id_7f38adb7_fk_workpacks_workpack_workpack_id" table="estimates_fieldweldsbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estimat_workpack_id_id_24b40cc_fk_workpacks_workpack_workpack_id" table="estimates_flangepressuretestbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estima_workpack_id_id_1cb8ddc1_fk_workpacks_workpack_workpack_id" table="estimates_flangereinstatebase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estima_workpack_id_id_7cf40664_fk_workpacks_workpack_workpack_id" table="estimates_installlengthbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estima_workpack_id_id_7c9ed51f_fk_workpacks_workpack_workpack_id" table="estimates_numberofcoldcutsbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estima_workpack_id_id_79743797_fk_workpacks_workpack_workpack_id" table="estimates_numberofhotcutsbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="estima_workpack_id_id_2ff90551_fk_workpacks_workpack_workpack_id" table="estimates_numberofjointsbase" schema="" catalog="pipingscopeapp" columns="workpack_id_id"/>
+      <exported-key name="prefabric_workpack_id_3efc7846_fk_workpacks_workpack_workpack_id" table="prefabrication_prefabrication" schema="" catalog="pipingscopeapp" columns="workpack_id"/>
+      <exported-key name="reinstate_workpack_id_10dfe148_fk_workpacks_workpack_workpack_id" table="reinstatement_reinstatement" schema="" catalog="pipingscopeapp" columns="workpack_id"/>
+      <exported-key name="spading_s_workpack_id_73a256cc_fk_workpacks_workpack_workpack_id" table="spading_spading" schema="" catalog="pipingscopeapp" columns="workpack_id"/>
+      <index name="workpacknumber" unique="true" columns="workpacknumber"/>
+      <index name="workpacks_workpack_2bfe9d72" unique="false" columns="client_id"/>
+      <index name="workpacks_workpack_8f635513" unique="false" columns="lead_id"/>
+      <index name="workpacks_workpack_b098ad43" unique="false" columns="project_id"/>
+      <index name="workpacks_workpack_d266de13" unique="false" columns="area_id"/>
+    </table>
   </data-source>
 </component>

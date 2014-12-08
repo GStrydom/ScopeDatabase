@@ -195,13 +195,25 @@
                 </div>
                 <div class="maingrouper">
                     <div id="opspermitresource" class="smallsize">
-                        0
+                        {% if coldcutsbase.totalcoldcutline > 0 %}
+                            {{ opspermit.resources }}
+                        {% else %}
+                            0
+                        {% endif %}
                     </div>
                     <div id="opspermitmanhour" class="smallsize">
-                        0
+                        {% if coldcutsbase.totalcoldcutline > 0 %}
+                            {{ opspermit.manhours }}
+                        {% else %}
+                            0
+                        {% endif %}
                     </div>
                     <div id="opspermitduration" class="smallsize">
-                        0
+                        {% if coldcutsbase.totalcoldcutline > 0 %}
+                            {{ opspermit.duration }}
+                        {% else %}
+                            0
+                        {% endif %}
                     </div>
                 </div>
                 <div class="maingrouper">
@@ -242,7 +254,7 @@
                         0
                     </div>
                     <div id="coldcutlinemanhour" class="smallsize">
-                        0
+                        {{ coldcutsbase.totalcoldcutline }}
                     </div>
                     <div id="coldcutlineduration" class="smallsize">
                         0
@@ -253,7 +265,7 @@
                         0
                     </div>
                     <div id="hotcutlinemanhour" class="smallsize">
-                        0
+                        {{ hotcutsbase.totalhotcutline }}
                     </div>
                     <div id="hotcutlineduration" class="smallsize">
                         0
@@ -275,7 +287,7 @@
                         0
                     </div>
                     <div id="unboltjointsmanhour" class="smallsize">
-                        0
+                        {{ numberofjointsbase.totalunboltjointsfitter }}
                     </div>
                     <div id="unboltjointsduration" class="smallsize">
                         0
@@ -286,7 +298,7 @@
                         0
                     </div>
                     <div id="rigactrigoutmanhour" class="smallsize">
-                        0
+                        {{ demolengthbase.totalrigoutlinerig }}
                     </div>
                     <div id="rigactrigoutduration" class="smallsize">
                         0
@@ -319,7 +331,7 @@
 
                     </div>
                     <div id="grindandprepmanhour" class="smallsize">
-                        {{ fieldweldmanhours.grindprep }}
+                        {{ fieldweldbase.totalgrindprep }}
                     </div>
                     <div id="grindandprepduration" class="smallsize">
                         0
@@ -352,7 +364,7 @@
                         0
                     </div>
                     <div id="boltupjointsmanhour" class="smallsize">
-                        0
+                        {{ numberofjointsbase.totalboltupjointsfitter }}
                     </div>
                     <div id="boltupjointsduration" class="smallsize">
                         0

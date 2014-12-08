@@ -1,0 +1,13 @@
+{% extends 'site_base.html' %}
+
+
+{% block mainBar %}
+    {% block contentBar %}
+        <form action="" method="post">{% csrf_token %}
+            {{ numberofcoldcutsbaseform.as_p }}
+            <input type="submit" id="numberofcoldcutsbasesubmit" value="Save">
+        </form>
+    {% endblock %}
+    {% block hotBar %}
+    {% endblock %}
+{% endblock %}

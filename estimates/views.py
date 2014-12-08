@@ -3,7 +3,7 @@ from django.template import RequestContext
 from django.core.context_processors import csrf
 
 from .models import EstimateDefaults, Pipingnorms, Manhoursfactor, FieldWeldsBase, FieldWeldsHours
-from .models import DemoLengthBase
+from .models import DemoLengthBase, SpadingNorms
 
 from workpacks.models import Workpack, Lineclasses
 from materials.models import SizeList
@@ -22,6 +22,12 @@ def createestimates(request):
 
     createestcons['opsverify'] = {
         'duration': 1,
+    }
+
+    createestcons['opspermit'] = {
+        'resources': 1,
+        'duration': 4,
+        'manhours': 4
     }
 
     createestcons['inspectionreport'] = {
@@ -50,6 +56,41 @@ def createestimates(request):
         'duration': 2
     }
 
+    createestcons['fieldweldbase'] = {
+        'totalgrindprep': math.ceil(totalGrindPrep),
+        'totalweldweld': math.ceil(totalWeldWeld),
+        'totalweldfit': math.ceil(totalWeldFit)
+    }
+
+    createestcons['qcfitupcheck'] = {
+        'resources': 1,
+        'manhours': totalQcFitUpCheck,
+        'duration': totalQcFitUpCheck
+    }
+
+    createestcons['demolengthbase'] = {
+        'totalrigoutlinerig': math.ceil(totalRigOutLineRig),
+        'totalrigoutlinefit': math.ceil(totalRigOutLineFit)
+    }
+
+    createestcons['installlengthbase'] = {
+        'totalrigInlinerig': math.ceil(totalRigInLineRig),
+        'totalrigInlinefit': math.ceil(totalRigInLineFit)
+    }
+
+    createestcons['numberofjointsbase'] = {
+        'totalunboltjointsfitter': math.ceil(totalUnboltJointsFitter),
+        'totalboltupjointsfitter': math.ceil(totalBoltUpJointsFitter)
+    }
+
+    createestcons['coldcutsbase'] = {
+        'totalcoldcutline': math.ceil(totalColdCutLine)
+    }
+
+    createestcons['hotcutsbase'] = {
+        'totalhotcutline': math.ceil(totalHotCutLine)
+    }
+
     createestcons['total'] = {
         'duration': createestcons['inspectionreport']['duration'] + createestcons['prepareandpressure']['duration']
         + createestcons['flangemanage']['duration'] + createestcons['saprefquality']['duration'] +
@@ -58,127 +99,50 @@ def createestimates(request):
         + createestcons['flangemanage']['manhours']
     }
 
-    createestcons['fieldweldbase'] = FieldWeldsBase.objects.all()
-    schedule40 = [2, 4, 6, 8]
-    s40items = []
-    for item in createestcons['fieldweldbase']:
-        if item.diameter_id in schedule40:
-            s40items.append(item)
-
-    createestcons['fieldweldhours'] = FieldWeldsHours.objects.all()
-
     return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
 
 
-def calculateresources(request):
-    caclrescons = dict()
-
-    # Get the base estimates given by the user...
-    basestimate = EstimateDefaults.objects.get(workpack_id=request.session['workpackselected'])
-
-    # The material factor...
-    pmfac = Manhoursfactor.objects.filter(material__exact=basestimate.material)[0].pfitter
-    # wmfac = Manhoursfactor.objects.filter(material__exact=basestimate.material)[0].wfitter
-
-    tackandweldweldernorm = basestimate.schedule
-
-    hotcutnorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].hotcutnormhours
-    boltupnormfitter = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].boltupjointnormhours
-    riglinenorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].handlemeternormshours
-    cutnorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].cut
-    prepnorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].prep
-
-    if tackandweldweldernorm == 80:
-        schedulenorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].tackweldgreateighty
-    else:
-        schedulenorm = Pipingnorms.objects.filter(pipediameter__exact=basestimate.diameter)[0].tackweldlesseighty
-
-    result = {
-        'coldcutmanhours': basestimate.numberofcoldcuts * coldcutnorm * pmfac,
-
-        'hotcutmanhours': basestimate.numberofhotcuts * hotcutnorm * pmfac,
-
-        'tackandweldwelderhours': basestimate.fieldwelds * schedulenorm * pmfac,
-
-        'boltupjointshoursfitter': basestimate.numberofjoints * boltupnormfitter,
-
-        'rigoutlinehours': basestimate.demolength * riglinenorm,
-
-        'riginlinehours': basestimate.installlength * riglinenorm,
-
-        'grindprepfithours': basestimate.fieldwelds * (cutnorm + prepnorm) * 2
-    }
-
-    result['unboltjointshoursfitter'] = result['boltupjointshoursfitter']
-
-    fracestimate = Fraction(basestimate.diameter)
-
-    if basestimate.riggersforboltup:
-        boltupjointhoursriggers = result['boltupjointshoursfitter']
-        unboltjointhoursriggers = result['unboltjointshoursfitter']
-    else:
-        boltupjointhoursriggers = 0
-        unboltjointhoursriggers = 0
-
-    result['boltupjointshoursrigger'] = boltupjointhoursriggers
-    result['unboltjointshoursrigger'] = unboltjointhoursriggers
-
-    if fracestimate > 4:
-        tackandweldfitterhours = result['tackandweldwelderhours'] * 0.3
-    else:
-        tackandweldfitterhours = result['tackandweldwelderhours'] * 0.15
-
-    result['tackandweldfitterhours'] = tackandweldfitterhours
-
-    if fracestimate < 4:
-        riggersforcoldcut = 0
-        riggersforhotcut = 0
-    else:
-        riggersforcoldcut = result['coldcutmanhours']
-        riggersforhotcut = result['hotcutmanhours']
-
-    result['riggersforcoldcut'] = riggersforcoldcut
-    result['riggersforhotcut'] = riggersforhotcut
-
-    print result
-
-    return render_to_response('getresources.html', caclrescons, context_instance=RequestContext(request))
-
-
-def getfieldweldhours(request):
-    fwcons = dict()
-    fwcons['fieldweldshoursform'] = FieldWeldHoursForm(request.POST or None)
-    if fwcons['fieldweldshoursform'].is_valid():
-        fwcons['fieldweldshoursform'].save()
-        return HttpResponseRedirect('/')
-    else:
-        print fwcons['fieldweldshoursform'].errors
-
-    return render_to_response('fieldweldhours.html', fwcons, context_instance=RequestContext(request))
+totalGrindPrep = 0
+totalWeldWeld = 0
+totalWeldFit = 0
+totalFieldWelds = 0
+totalQcFitUpCheck = 0
 
 
 def getfieldweldbase(request):
     fwcons = dict()
-    schedule40 = [2, 3, 4, 6]
-
+    global totalGrindPrep
+    global totalWeldWeld
+    global totalWeldFit
+    global totalFieldWelds
+    global totalQcFitUpCheck
+    schedule40 = [1.5, 1, 2, 3, 4, 6]
     fwcons['fieldweldsbaseform'] = FieldWeldsBaseForm(request.POST or None)
     if fwcons['fieldweldsbaseform'].is_valid():
         savedform = fwcons['fieldweldsbaseform'].save(commit=False)
         savedform.workpack_id = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         savedform.save()
         if fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'] in schedule40:
-            grind1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].prep
-            grind2 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].tackweldlesseighty
+            grind1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].cut
+            grind2 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].prep
             grind3 = fwcons['fieldweldsbaseform'].cleaned_data['numberoffieldwelds']
             weld1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'])[0].tackweldlesseighty
             fieldweldsduration = {
-                'grindprep': grind1 + grind2 * 2 * grind3 * 1,
-                'weldweld': weld1 * grind3 * 1
+                'grindprep': (grind1 + grind2) * 2 * grind3 * 1,
+                'weldweld': weld1 * grind3 * 1,
+                'qcfitupcheck': 1 * grind3
             }
-            if fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'] > 4:
-                fieldweldsduration['weldfit'] = math.ceil(fieldweldsduration['weldweld'] * 0.15)
+
+            totalQcFitUpCheck += grind3
+
+            if fwcons['fieldweldsbaseform'].cleaned_data['diameter_id'] < 4:
+                fieldweldsduration['weldfit'] = fieldweldsduration['weldweld'] * 0.15
             else:
-                fieldweldsduration['weldfit'] = math.ceil(fieldweldsduration['weldweld'] * 0.3)
+                fieldweldsduration['weldfit'] = fieldweldsduration['weldweld'] * 0.3
+            totalGrindPrep += fieldweldsduration['grindprep']
+            totalWeldWeld += fieldweldsduration['weldweld']
+            totalWeldFit += fieldweldsduration['weldfit']
+            totalFieldWelds = totalGrindPrep + totalWeldFit + totalWeldWeld
 
             fwcons['fieldweldshoursform'] = FieldWeldHoursForm(request.POST or None)
             savedform = fwcons['fieldweldshoursform'].save(commit=False)
@@ -191,8 +155,18 @@ def getfieldweldbase(request):
     return render_to_response('newfieldweld.html', fwcons, context_instance=RequestContext(request))
 
 
+totalRigOutLineRig = 0
+totalRigOutLineFit = 0
+totalRigInLineRigdemo = 0
+totalRigInLineFitdemo = 0
+
+
 def getdemolengthbase(request):
     fwcons = dict()
+    global totalRigOutLineRig
+    global totalRigOutLineFit
+    global totalRigInLineRigdemo
+    global totalRigInLineFitdemo
     fwcons['demolengthbaseform'] = DemoLengthBaseForm(request.POST or None)
     if fwcons['demolengthbaseform'].is_valid():
         fwcons['demolengthbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
@@ -204,6 +178,12 @@ def getdemolengthbase(request):
         }
 
         demolengthmanhours['rigoutlinefit'] = demolengthmanhours['rigoutlinerig']
+        demolengthmanhours['riginlinerigdemo'] = demolengthmanhours['rigoutlinerig']
+        demolengthmanhours['riginlinefitdemo'] = demolengthmanhours['rigoutlinerig']
+        totalRigOutLineRig += demolengthmanhours['rigoutlinerig']
+        totalRigOutLineFit += demolengthmanhours['rigoutlinefit']
+        totalRigInLineRigdemo += demolengthmanhours['riginlinerigdemo']
+        totalRigInLineFitdemo += demolengthmanhours['riginlinefitdemo']
 
         return HttpResponseRedirect('/')
     else:
@@ -212,7 +192,13 @@ def getdemolengthbase(request):
     return render_to_response('demolengthbase.html', fwcons, context_instance=RequestContext(request))
 
 
+totalRigInLineRig = 0
+totalRigInLineFit = 0
+
+
 def getinstalllengthbase(request):
+    global totalRigInLineRig
+    global totalRigInLineFit
     fwcons = dict()
     fwcons['installlengthbaseform'] = InstallLengthBaseForm(request.POST or None)
     if fwcons['installlengthbaseform'].is_valid():
@@ -220,17 +206,20 @@ def getinstalllengthbase(request):
         fwcons['installlengthbaseform'].save()
         rig1 = Pipingnorms.objects.filter(pipediameter__exact=fwcons['installlengthbaseform'].cleaned_data['diameter_id'])[0].handlemeternormshours
         rig2 = fwcons['installlengthbaseform'].cleaned_data['installlength']
-        demolengthmanhours = {
-            'rigoutlinerig': rig1 * rig2
+        installlengthmanhours = {
+            'riginlinerig': rig1 * rig2
         }
 
-        demolengthmanhours['rigoutlinefit'] = demolengthmanhours['rigoutlinerig']
+        installlengthmanhours['riginlinefit'] = installlengthmanhours['riginlinerig']
+
+        totalRigInLineRig += installlengthmanhours['riginlinerig']
+        totalRigInLineFit += installlengthmanhours['riginlinefit']
 
         return HttpResponseRedirect('/')
     else:
         print fwcons['installlengthbaseform'].errors
 
-    return render_to_response('installlengthbase.html', fwcons, context_instance=RequestContext(request))
+    return render_to_response('newinstalllength.html', fwcons, context_instance=RequestContext(request))
 
 
 def getflangeptbase(request):
@@ -239,10 +228,37 @@ def getflangeptbase(request):
     if fwcons['flangepressuretestbaseform'].is_valid():
         fwcons['flangepressuretestbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['flangepressuretestbaseform'].save()
-        instiso1 = ''
-        flamgeptmanhours = {
-            'installisolation': ''
+
+        if fwcons['flangepressuretestbaseform'].cleaned_data['flangehndlehotcut']:
+            flgvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].cuttingfactorhw)-1
+        else:
+            flgvar = 1
+
+        if fwcons['flangepressuretestbaseform'].cleaned_data['alkybandc']:
+            alkyvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].alky_factor_b_and_c_class)-1
+        else:
+            alkyvar = 0
+
+        if fwcons['flangepressuretestbaseform'].cleaned_data['hacksawcutting']:
+            hacksawvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].cuttingfactorhacksaw)-1
+        else:
+            hacksawvar = 0
+
+        if fwcons['flangepressuretestbaseform'].cleaned_data['fambaset']:
+            fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].fambafactor)-1
+        else:
+            fambavar = 0
+
+        instiso1 = fwcons['flangepressuretestbaseform'].cleaned_data['numfpt']
+        instiso2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].manhrs)
+        flangeptmanhours = {
+            'installisoandpt': instiso1 * instiso2 * flgvar + alkyvar + hacksawvar + fambavar
         }
+
+        if fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'] >= 10:
+            riggersforiso = flangeptmanhours['installisoandpt']
+        else:
+            riggersforiso = 0
 
         return HttpResponseRedirect('/')
     else:
@@ -257,9 +273,28 @@ def getflangeribase(request):
     if fwcons['flangereinstatebaseform'].is_valid():
         fwcons['flangereinstatebaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['flangereinstatebaseform'].save()
-        flamgerimanhours = {
 
+        if fwcons['flangepressuretestbaseform'].cleaned_data['alkybandc']:
+            alkyvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].alky_factor_b_and_c_class)-1
+        else:
+            alkyvar = 0
+
+        if fwcons['flangepressuretestbaseform'].cleaned_data['fambaset']:
+            fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].fambafactor)-1
+        else:
+            fambavar = 0
+
+        rein1 = fwcons['flangereinstatebaseform'].cleaned_data['numfri']
+        rein2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].manhrs)
+
+        flamgerimanhours = {
+            'reinstate': rein1 * rein2 * alkyvar + fambavar
         }
+
+        if fwcons['flangereinstatebaseform'].cleaned_data['diameter_id'] >= 10:
+            riggersforrein = flamgerimanhours['reinstate']
+        else:
+            riggersforrein = 0
 
         return HttpResponseRedirect('/')
     else:
@@ -267,16 +302,52 @@ def getflangeribase(request):
 
     return render_to_response('flangeribase.html', fwcons, context_instance=RequestContext(request))
 
+totalUnboltJointsFitter = 0
+totalBoltUpJointsFitter = 0
+totalUnboltJointsRigger = 0
+totalBoltupJointsRigger = 0
+instrumentsBool = []
+
 
 def getnumberofjoints(request):
     fwcons = dict()
+    global totalUnboltJointsFitter
+    global totalBoltUpJointsFitter
+    global totalBoltupJointsRigger
+    global totalUnboltJointsRigger
+    global instrumentsBool
+
     fwcons['numberofjointsbaseform'] = NumberOfJointsBaseForm(request.POST or None)
     if fwcons['numberofjointsbaseform'].is_valid():
         fwcons['numberofjointsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['numberofjointsbaseform'].save()
-        flamgerimanhours = {
-
+        boltupjointnorm = Pipingnorms.objects.filter(pipediameter__exact=fwcons['numberofjointsbaseform'].cleaned_data['diameter_id'])[0].boltupjointnormhours
+        numjoints = fwcons['numberofjointsbaseform'].cleaned_data['numjoints']
+        numjointsmanhours = {
+            'unboltjointsfitter': numjoints * boltupjointnorm,
+            'boltupjointsfitter': numjoints * boltupjointnorm
         }
+
+        totalUnboltJointsFitter += numjointsmanhours['unboltjointsfitter']
+        totalBoltUpJointsFitter += numjointsmanhours['boltupjointsfitter']
+
+        if fwcons['numberofjointsbaseform'].cleaned_data['instrumentsboltup']:
+            instrumentsBool.append(True)
+        else:
+            instrumentsBool.append(False)
+
+        for boolval in instrumentsBool:
+            if boolval:
+                disconnectinstruments = 3
+            else:
+                disconnectinstruments = 0
+
+        if fwcons['numberofjointsbaseform'].cleaned_data['rigforjoints']:
+            riggersforunbolt = numjointsmanhours['unboltjointsfitter']
+            riggersforboltup = numjointsmanhours['boltupjointsfitter']
+
+            totalUnboltJointsRigger += riggersforunbolt
+            totalBoltupJointsRigger += riggersforboltup
 
         return HttpResponseRedirect('/')
     else:
@@ -284,16 +355,33 @@ def getnumberofjoints(request):
 
     return render_to_response('numjointsbase.html', fwcons, context_instance=RequestContext(request))
 
+totalColdCutLine = 0
+totalRiggersForColdCut = 0
+
 
 def getnumberofcoldcuts(request):
     fwcons = dict()
+    global totalColdCutLine
+    global totalRiggersForColdCut
     fwcons['numberofcoldcutsbaseform'] = NumberOfColdCutsBaseForm(request.POST or None)
     if fwcons['numberofcoldcutsbaseform'].is_valid():
         fwcons['numberofcoldcutsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['numberofcoldcutsbaseform'].save()
-        flamgerimanhours = {
-
+        coldcutnorm = Pipingnorms.objects.filter(pipediameter__exact=fwcons['numberofcoldcutsbaseform'].cleaned_data['diameter_id'])[0].coldcutnormhours
+        numcuts = fwcons['numberofcoldcutsbaseform'].cleaned_data['numcoldcuts']
+        coldcutmanhours = {
+            'coldcutline': coldcutnorm * numcuts * 1
         }
+
+        totalColdCutLine += coldcutmanhours['coldcutline']
+
+        if fwcons['numberofcoldcutsbaseform'].cleaned_data['diameter_id'] >= 4:
+            riggersforcoldcut = coldcutmanhours['coldcutline']
+        else:
+            riggersforcoldcut = 0
+        request.session['rigforcoldcut'] = riggersforcoldcut
+
+        totalRiggersForColdCut += riggersforcoldcut
 
         return HttpResponseRedirect('/')
     else:
@@ -302,15 +390,32 @@ def getnumberofcoldcuts(request):
     return render_to_response('numcoldcutsbase.html', fwcons, context_instance=RequestContext(request))
 
 
+totalHotCutLine = 0
+totalRiggersForHotCut = 0
+
+
 def getnumberofhotcuts(request):
     fwcons = dict()
+    global totalHotCutLine
+    global totalRiggersForHotCut
     fwcons['numberofhotcutsbaseform'] = NumberOfHotCutsBaseForm(request.POST or None)
     if fwcons['numberofhotcutsbaseform'].is_valid():
         fwcons['numberofhotcutsbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
         fwcons['numberofhotcutsbaseform'].save()
-        flamgerimanhours = {
-
+        hotcutnorm = Pipingnorms.objects.filter(pipediameter__exact=fwcons['numberofhotcutsbaseform'].cleaned_data['diameter_id'])[0].hotcutnormhours
+        numcuts = fwcons['numberofhotcutsbaseform'].cleaned_data['numhotcuts']
+        hotcutmanhours = {
+            'hotcutline': hotcutnorm * numcuts * 1
         }
+
+        totalHotCutLine += hotcutmanhours['hotcutline']
+
+        if fwcons['numberofhotcutsbaseform'].cleaned_data['diameter_id'] >= 4:
+            riggersforhotcut = hotcutmanhours['hotcutline']
+        else:
+            riggersforhotcut = 0
+        request.session['rigforcoldcut'] = riggersforhotcut
+        totalRiggersForHotCut += riggersforhotcut
 
         return HttpResponseRedirect('/')
     else:

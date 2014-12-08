@@ -7,7 +7,7 @@ class CreateWorkPackForm(forms.ModelForm):
     class Meta:
         model = Workpack
         fields = ('workpack_id', 'workpacknumber', 'workpacklinenumber', 'workpacklineclass', 'datecreated',
-                  'client', 'lead', 'project', 'area')
+                  'lead', 'project', 'area')
 
 
 class EditWorkPackForm(forms.ModelForm):

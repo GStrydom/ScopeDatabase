@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from .models import Client, Clientinformation
+from .models import Client
 
-admin.site.register(Clientinformation)
 admin.site.register(Client)

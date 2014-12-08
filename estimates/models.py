@@ -6,6 +6,9 @@ from workpacks.models import Workpack, Lineclasses, Lineclass
 
 from materials.models import SizeList
 
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
 
 class Estimate(models.Model):
     """
@@ -55,6 +58,21 @@ class Pipingnorms(models.Model):
     tackweldgreateighty = models.FloatField()
     tackweldlesseighty = models.FloatField()
     dn = models.IntegerField()
+
+
+class SpadingNorms(models.Model):
+    sizes = models.FloatField(blank=True, null=True)
+    manhrs = models.FloatField(blank=True, null=True)
+    res = models.FloatField(blank=True, null=True)
+    durtopenclose = models.FloatField(blank=True, null=True)
+    cuttingfactorhw = models.FloatField(blank=True, null=True)
+    durationhwfactor = models.FloatField(blank=True, null=True)
+    alkyfactor_b_and_c_class = models.FloatField(blank=True, null=True)
+    duration_w_alkyfactor = models.FloatField(blank=True,null=True)
+    cuttingfactorhacksaw = models.FloatField(blank=True, null=True)
+    duration_w_hacksawfactor = models.FloatField(blank=True, null=True)
+    fam_bafactor = models.FloatField(blank=True, null=True)
+    duration_w_fam_bafactor = models.FloatField(blank=True, null=True)
 
 
 class EstimateDefaults(models.Model):
@@ -177,6 +195,8 @@ class NumberOfJointsBase(models.Model):
     numjoints = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     workpack_id = models.ForeignKey(Workpack, null=True)
+    rigforjoints = models.BooleanField(default=False)
+    instrumentsboltup = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.lineclasses_id
@@ -201,6 +221,7 @@ class NumberOfHotCutsBase(models.Model):
     numhotcuts = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     workpack_id = models.ForeignKey(Workpack, null=True)
+    rigforhotcut = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.lineclasses_id

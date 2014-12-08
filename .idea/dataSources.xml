@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="274834622">
-    <data-source source="LOCAL" name="MySQL - pipingscope@localhost" uuid="aedd5c3a-7c6f-4ee0-a0b8-c64946d6992b">
+  <component name="DataSourceManagerImpl" format="xml" hash="2757911867">
+    <data-source source="LOCAL" name="MySQL - pipingscopeapp@localhost" uuid="0fae3752-a92f-4e91-8b14-14251ee97ef0">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/pipingscope</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/pipingscopeapp</jdbc-url>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
@@ -15,20 +15,5 @@
       </driver-properties>
       <libraries />
     </data-source>
-    <data-source source="LOCAL" name="Django default" uuid="6751bf31-5a1e-4d3a-9929-fd87bf26c87b">
-      <driver-ref>mysql</driver-ref>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/pipingscopeapp</jdbc-url>
-      <user-name>root</user-name>
-      <libraries>
-        <library>
-          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
-        </library>
-        <library>
-          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-java-5.1.31-bin.jar</url>
-        </library>
-      </libraries>
-    </data-source>
   </component>
 </project>
-

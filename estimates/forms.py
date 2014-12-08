@@ -78,7 +78,7 @@ class NumberOfJointsBaseForm(forms.ModelForm):
 
     class Meta:
         model = NumberOfJointsBase
-        fields = ('numjointsbase_id', 'lineclasses_id', 'diameter_id', 'numjoints', 'workpack_id')
+        fields = ('numjointsbase_id', 'lineclasses_id', 'diameter_id', 'numjoints', 'workpack_id', 'rigforjoints', 'instrumentsboltup')
 
 
 class NumberOfColdCutsBaseForm(forms.ModelForm):
