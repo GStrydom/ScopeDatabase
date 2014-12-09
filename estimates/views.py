@@ -148,6 +148,21 @@ def getfieldweldbase(request):
             savedform = fwcons['fieldweldshoursform'].save(commit=False)
             savedform.manhours = ''
 
+            print 'Fields Weld Vars:'
+            print 'Cutting Norm: %f' % grind1
+            print 'Prep Norm: %f' % grind2
+            print 'Number of field welds: %f' % grind3
+            print
+            print 'Field Welds Vars:'
+            print 'Grind and Prep: %f' % fieldweldsduration['grindprep']
+            print 'Tack Weld Welder %f' % fieldweldsduration['weldweld']
+            print 'Tack Weld Fitter %f' % fieldweldsduration['weldfit']
+            print
+            print 'Field Weld Totals:'
+            print 'Total Grind Prep: %f' % totalGrindPrep
+            print 'Total Tack Weld: %f' % totalWeldWeld
+            print 'Total Tack Fit: %f' % totalWeldFit
+
         return HttpResponseRedirect('/new-estimates/')
     else:
         print fwcons['fieldweldsbaseform'].errors
@@ -265,15 +280,6 @@ def getflangeptbase(request):
             riggersforiso = flangeptmanhours['installisoandpt']
         else:
             riggersforiso = 0
-
-        print 'Instiso1 %d' % instiso1
-        print 'Instiso1 %d' % instiso2
-        print 'Install Iso and PT: %f' % flangeptmanhours['installisoandpt']
-        print 'Rigger For ISo: %f' % riggersforiso
-        print 'FlgVar: %f' % flgvar
-        print 'AlkyVar: %f' % alkyvar
-        print 'HacksawVar: %f' % hacksawvar
-        print 'FambaVar: %f' % fambavar
 
         return HttpResponseRedirect('/')
     else:
