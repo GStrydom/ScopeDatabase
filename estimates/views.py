@@ -20,6 +20,10 @@ def createestimates(request):
     createestcons.update(csrf(request))
     createestcons['workpacks'] = Workpack.objects.all()
 
+    if request.method == 'POST':
+        grindprepresource = request.POST['resource']
+        print grindprepresource
+
     createestcons['opsverify'] = {
         'duration': 1,
     }
@@ -56,10 +60,14 @@ def createestimates(request):
         'duration': 2
     }
 
+    totalgrindprep = int(math.ceil(totalGrindPrep))
+    totalweldweld = int(math.ceil(totalWeldWeld))
+    totalweldfit = int(math.ceil(totalWeldFit))
+
     createestcons['fieldweldbase'] = {
-        'totalgrindprep': math.ceil(totalGrindPrep),
-        'totalweldweld': math.ceil(totalWeldWeld),
-        'totalweldfit': math.ceil(totalWeldFit)
+        'totalgrindprep': totalgrindprep,
+        'totalweldweld': totalweldweld,
+        'totalweldfit': totalweldfit
     }
 
     createestcons['qcfitupcheck'] = {
@@ -69,8 +77,8 @@ def createestimates(request):
     }
 
     createestcons['demolengthbase'] = {
-        'totalrigoutlinerig': math.ceil(totalRigOutLineRig),
-        'totalrigoutlinefit': math.ceil(totalRigOutLineFit)
+        'totalrigoutlinerig': int(math.ceil(totalRigOutLineRig)),
+        'totalrigoutlinefit': int(math.ceil(totalRigOutLineFit))
     }
 
     createestcons['installlengthbase'] = {
@@ -91,15 +99,10 @@ def createestimates(request):
         'totalhotcutline': math.ceil(totalHotCutLine)
     }
 
-    createestcons['total'] = {
-        'duration': createestcons['inspectionreport']['duration'] + createestcons['prepareandpressure']['duration']
-        + createestcons['flangemanage']['duration'] + createestcons['saprefquality']['duration'] +
-        createestcons['saprefaccept']['duration'] + createestcons['opsverify']['duration'],
-        'manhours':  createestcons['inspectionreport']['manhours'] + createestcons['prepareandpressure']['manhours']
-        + createestcons['flangemanage']['manhours']
+    createestcons['totals'] = {
     }
 
-    return render_to_response('newestimate.html', createestcons, context_instance=RequestContext(request))
+    return render_to_response('estimates.html', createestcons, context_instance=RequestContext(request))
 
 
 totalGrindPrep = 0
@@ -148,21 +151,6 @@ def getfieldweldbase(request):
             savedform = fwcons['fieldweldshoursform'].save(commit=False)
             savedform.manhours = ''
 
-            print 'Fields Weld Vars:'
-            print 'Cutting Norm: %f' % grind1
-            print 'Prep Norm: %f' % grind2
-            print 'Number of field welds: %f' % grind3
-            print
-            print 'Field Welds Vars:'
-            print 'Grind and Prep: %f' % fieldweldsduration['grindprep']
-            print 'Tack Weld Welder %f' % fieldweldsduration['weldweld']
-            print 'Tack Weld Fitter %f' % fieldweldsduration['weldfit']
-            print
-            print 'Field Weld Totals:'
-            print 'Total Grind Prep: %f' % totalGrindPrep
-            print 'Total Tack Weld: %f' % totalWeldWeld
-            print 'Total Tack Fit: %f' % totalWeldFit
-
         return HttpResponseRedirect('/new-estimates/')
     else:
         print fwcons['fieldweldsbaseform'].errors
@@ -202,6 +190,19 @@ def getdemolengthbase(request):
         # TODO: Check to remove riginlinedemo
         totalRigInLineRigdemo += demolengthmanhours['riginlinerigdemo']
         totalRigInLineFitdemo += demolengthmanhours['riginlinefitdemo']
+
+        print 'Demo Length Vars:'
+        print 'Handle Meter Norms: %f' % rig1
+        print 'Demo length: %f' % rig2
+
+        print 'Demo length manhours riggers: '
+        print 'Rig out line rigger: %f' % demolengthmanhours['rigoutlinerig']
+        print 'Rig out line fitter: %f' % demolengthmanhours['rigoutlinefit']
+        print 'Rig in line rigger demo: %f' % demolengthmanhours['riginlinerigdemo']
+        print 'Rig in line fitter demo: %f' % demolengthmanhours['riginlinefitdemo']
+        print
+        print 'Total Rig In Line Rig Demo %f' % totalRigInLineRigdemo
+        print 'Total Rig In Line Fit Demo %f' % totalRigInLineFitdemo
 
         return HttpResponseRedirect('/')
     else:

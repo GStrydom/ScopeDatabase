@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2757911867">
+  <component name="DataSourceManagerImpl" format="xml" hash="1002419960">
     <data-source source="LOCAL" name="MySQL - pipingscopeapp@localhost" uuid="0fae3752-a92f-4e91-8b14-14251ee97ef0">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -15,5 +15,13 @@
       </driver-properties>
       <libraries />
     </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="6fd2cbbd-1f05-4c75-ae14-f9995b8f50f0">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/pipingscopeapp</jdbc-url>
+      <user-name>root</user-name>
+      <libraries />
+    </data-source>
   </component>
 </project>
+
