@@ -14,7 +14,6 @@
 <script src="../static/javascript/jquery.ui.sortable.min.js"></script>
 <script src="../static/javascript/jquery.ui.tabs.min.js"></script>
 <script src="../static/javascript/jquery.ui.button.min.js"></script>
-<script src="http://malsup.github.com/jquery.form.js"></script>
 <script>
 $(document).ready(function()
 {
@@ -31,23 +30,6 @@ $(document).ready(function()
    $("#jQueryButton4").button();
    $("#jQueryButton5").button();
 });
-</script>
-<script>
-    $(document).ready(function() {
-       $('#grindprepresource').focusout(function() {
-           $.ajax({
-               type: 'POST',
-               url: '/new-estimates/',
-               data: {
-                   csrfmiddlewaretoken: {{ csrf_token }},
-                   resource: $('#grindprepresource').val()
-               },
-               success: function(data) {
-                   $('#grindprepduration').html(data);
-               }
-           });
-       });
-    });
 </script>
 </head>
 <body>
@@ -1029,7 +1011,7 @@ $(document).ready(function()
 <td style="background-color:#DCDCDC;border:1px #000000 solid;text-align:left;vertical-align:top;width:26px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
-<td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>f
+<td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
@@ -1038,7 +1020,7 @@ $(document).ready(function()
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:22px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:center;vertical-align:middle;width:20px;height:22px;font-size:14px"></td>
 <td id="grindprepduration" style="background-color:#DCDCDC;border:1px #000000 solid;text-align:center;vertical-align:middle;width:20px;height:22px;font-size:14px"></td>
-<td id="grindprepresource" style="background-color:#FFA07A;border:1px #000000 solid;text-align:center;vertical-align:middle;width:22px;height:22px;font-size:14px" contenteditable="true"></td>
+<form action="" method="post"><td id="grindprepresource" style="background-color:#FFA07A;border:1px #000000 solid;text-align:center;vertical-align:middle;width:22px;height:22px;font-size:14px" contenteditable="true"></td></form>
 <td id="grindprepmanhours" style="background-color:#DCDCDC;border:1px #000000 solid;text-align:center;vertical-align:middle;width:20px;height:22px;font-size:14px">{{ fieldweldbase.totalgrindprep }}</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:20px;height:22px;">&nbsp;</td>
 <td style="background-color:transparent;border:1px #C0C0C0 none;text-align:left;vertical-align:top;width:18px;height:22px;">&nbsp;</td>

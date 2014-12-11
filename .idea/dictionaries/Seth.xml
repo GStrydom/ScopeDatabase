@@ -25,6 +25,7 @@
       <w>boltupjointshoursrigger</w>
       <w>boltupjointsmanhour</w>
       <w>boltupjointsresource</w>
+      <w>boltupnorm</w>
       <w>boltupnormfitter</w>
       <w>bomunit</w>
       <w>boolval</w>
@@ -35,6 +36,12 @@
       <w>buttongrouper</w>
       <w>caclrescons</w>
       <w>calccoldcut</w>
+      <w>calcdemolength</w>
+      <w>calcfieldwelds</w>
+      <w>calcinstalllength</w>
+      <w>calcnumberofcoldcuts</w>
+      <w>calcnumberofhotcuts</w>
+      <w>calcnumberofjoints</w>
       <w>calcres</w>
       <w>calcresources</w>
       <w>calcs</w>
@@ -180,6 +187,7 @@
       <w>flanmanriggersmanhours</w>
       <w>flanmanriggersresources</w>
       <w>flgvar</w>
+      <w>formobj</w>
       <w>fracestimate</w>
       <w>fuckyouajax</w>
       <w>fwcons</w>
@@ -355,8 +363,12 @@
       <w>pickleriggersmanhours</w>
       <w>pickleriggersresources</w>
       <w>pipediameter</w>
+      <w>pipenorm</w>
+      <w>pipenorms</w>
       <w>pipingnorms</w>
       <w>pipingscope</w>
+      <w>pipnorm</w>
+      <w>pipnorms</w>
       <w>plumbplugduration</w>
       <w>plumbplugmanhour</w>
       <w>plumbplugresource</w>
@@ -478,6 +490,7 @@
       <w>showspade</w>
       <w>smallsize</w>
       <w>spadejointnormhours</w>
+      <w>spadenorm</w>
       <w>spadeselected</w>
       <w>submains</w>
       <w>subnewwp</w>
