@@ -100,9 +100,11 @@
       <w>estschedule</w>
       <w>estschedulebox</w>
       <w>estschedulefield</w>
+      <w>fieldwelditem</w>
       <w>fieldweldmanhours</w>
       <w>fieldwelds</w>
       <w>fieldweldsduration</w>
+      <w>fieldweldvalues</w>
       <w>flamgeptmanhours</w>
       <w>flamgerimanhours</w>
       <w>flangehandlingalky</w>
@@ -132,6 +134,7 @@
       <w>grindprepduration</w>
       <w>grindprepmanhours</w>
       <w>grindprepresource</w>
+      <w>hotcutvar</w>
       <w>inspectionreport</w>
       <w>installisolation</w>
       <w>installlength</w>
@@ -151,6 +154,7 @@
       <w>newestform</w>
       <w>newestimate</w>
       <w>newprefab</w>
+      <w>numberfieldwelds</w>
       <w>numberofcoldcuts</w>
       <w>numberofcoldcutsbaseform</w>
       <w>numberofcoldcutsmanhours</w>
@@ -159,12 +163,14 @@
       <w>numberofjoints</w>
       <w>numberofjointsbaseform</w>
       <w>numcoldcutsbase</w>
+      <w>numflanges</w>
       <w>numfpt</w>
       <w>numfri</w>
       <w>numhotcuts</w>
       <w>numhotcutsbase</w>
       <w>numjoints</w>
       <w>numjointsbase</w>
+      <w>ogpss</w>
       <w>opsverify</w>
       <w>passwordbox</w>
       <w>pipehandlediameter</w>
@@ -207,6 +213,7 @@
       <w>usercode</w>
       <w>usernamebox</w>
       <w>userprofile</w>
+      <w>weldernorm</w>
       <w>weldfit</w>
       <w>weldoutfitter</w>
       <w>weldoutwelder</w>

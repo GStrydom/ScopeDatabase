@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.context_processors import csrf
 
-from .models import EstimateDefaults, Pipingnorms, Manhoursfactor, FieldWeldsBase, FieldWeldsHours
+from .models import Pipingnorms, Manhoursfactor, FieldWeldsBase
 from .models import DemoLengthBase, SpadingNorms
 
 from workpacks.models import Workpack, Lineclasses
@@ -11,7 +11,7 @@ from materials.models import SizeList
 from fractions import Fraction
 import math
 
-from .forms import FieldWeldHoursForm, FieldWeldsBaseForm, DemoLengthBaseForm, InstallLengthBaseForm, FlangePressureTestBaseForm
+from .forms import FieldWeldsBaseForm, DemoLengthBaseForm, InstallLengthBaseForm, FlangePressureTestBaseForm
 from .forms import FlangeReinstateBaseForm, NumberOfJointsBaseForm, NumberOfColdCutsBaseForm, NumberOfHotCutsBaseForm
 
 
@@ -43,7 +43,14 @@ def createestimates(request):
     createestcons.update(csrf(request))
     createestcons['workpacks'] = Workpack.objects.all()
 
-    fieldwelds = FieldWeldsBase.objects.all()
+    try:
+        fieldwelds = FieldWeldsBase.objects.all(id=request.session['workpackselected'])
+        fieldweldvalues = {}
+        for fieldweld in fieldwelds:
+            fieldweldvalues[fieldweld.id] = calcfieldwelds(fieldweld, Pipingnorms)
+            request.session['totalQcFitUpCheck'] += fieldweldvalues[fieldweld.id].qcfitupcheck
+    except ValueError:
+        FieldWeldsBase.DoesNotExist()
 
     createestcons['opsverify'] = {
         'duration': 1,
@@ -126,24 +133,20 @@ def createestimates(request):
     return render_to_response('estimates.html', createestcons, context_instance=RequestContext(request))
 
 
-def calcfieldwelds(formobj, pipnorm):
-    global totalQcFitUpCheck
-    global totalWeldWeld
-    global totalWeldFit
-    global totalGrindPrep
-    grind1 = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].cut
-    grind2 = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].prep
-    grind3 = formobj.cleaned_data['numberoffieldwelds']
-    weld1 = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].tackweldlesseighty
+def calcfieldwelds(fieldwelditem, pipnorm):
+    cutnorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].cut
+    prepnorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].prep
+    numberfieldwelds = fieldwelditem.numberof
+    weldernorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].tackweldlesseighty
     fieldweldhours = {
-        'grindprep': (grind1 + grind2) * 2 * grind3 * 1,
-        'weldweld': weld1 * grind3 * 1,
-        'qcfitupcheck': 1 * grind3
+        'grindprep': (cutnorm + prepnorm) * 2 * weldernorm * 1,
+        'weldweld': weldernorm * numberfieldwelds * 1,
+        'qcfitupcheck': 1 * numberfieldwelds
     }
 
-    totalQcFitUpCheck += grind3
+    totalQcFitUpCheck += numberfieldwelds
 
-    if formobj.cleaned_data['diameter_id'] < 4:
+    if fieldwelditem.diameter < 4:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.15
     else:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
@@ -253,9 +256,9 @@ def getflangeptbase(request):
         fwcons['flangepressuretestbaseform'].save()
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['flangehndlehotcut']:
-            flgvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].cuttingfactorhw - 1
+            hotcutvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].cuttingfactorhw - 1
         else:
-            flgvar = 1
+            hotcutvar = 1
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['alkybandc']:
             alkyvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].alkyfactor_b_and_c_class - 1
@@ -272,10 +275,10 @@ def getflangeptbase(request):
         else:
             fambavar = 0
 
-        instiso1 = fwcons['flangepressuretestbaseform'].cleaned_data['numfpt']
-        instiso2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].manhrs
+        numflanges = fwcons['flangepressuretestbaseform'].cleaned_data['numfpt']
+        manhrs = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].manhrs
         flangeptmanhours = {
-            'installisoandpt': instiso1 * instiso2 * flgvar + alkyvar + hacksawvar + fambavar
+            'installisoandpt': numflanges * manhrs * (hotcutvar + alkyvar + hacksawvar + fambavar)
         }
 
         if fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'] >= 10:
