@@ -16,24 +16,25 @@ from .forms import FlangeReinstateBaseForm, NumberOfJointsBaseForm, NumberOfCold
 def createestimates(request):
     createestcons = {}
     createestcons.update(csrf(request))
-    createestcons['workpacks'] = Workpack.objects.all()
+    try:
+        createestcons['workpacks'] = Workpack.objects.all()
+    except KeyError:
+        Workpack.DoesNotExist()
 
     fieldwelds = FieldWeldsBase.objects.all()
-    fieldweldvalues = {}
-    for fieldweld in fieldwelds:
-        fieldweldvalues[fieldweld.id] = calcfieldwelds(fieldweld, Pipingnorms)
-        print fieldweldvalues
-        request.session['totalQcFitUpCheck'] += fieldweldvalues[fieldweld.id]['qcfitupcheck']
-        request.session['totalGrindPrep'] += fieldweldvalues[fieldweld.id]['grindprep']
-        request.session['totalWeldWeld'] += fieldweldvalues[fieldweld.id]['weldweld']
-        request.session['totalWeldFit'] += fieldweldvalues[fieldweld.id]['weldfit']
-    createestcons['fieldweldbase'] = {
-        'qcfitupcheck': int(math.ceil(request.session['totalQcFitUpCheck'])),
-        'grindprep': int(math.ceil(request.session['totalGrindPrep'])),
-        'weldweld': int(math.ceil(request.session['totalWeldWeld'])),
-        'weldfit': int(math.ceil(request.session['totalWeldFit']))
 
-    }
+    fieldweldvalues = []
+    for fieldweld in fieldwelds:
+        fieldweldvalues.append(calcfieldwelds(fieldweld, Pipingnorms))
+        print fieldweldvalues[0][len(fieldwelds)-1]
+
+        createestcons['fieldweldbase'] = {
+            'qcfitupcheck': int(math.ceil(request.session['totalQcFitUpCheck'])),
+            'grindprep': int(math.ceil(request.session['totalGrindPrep'])),
+            'weldweld': int(math.ceil(request.session['totalWeldWeld'])),
+            'weldfit': int(math.ceil(request.session['totalWeldFit']))
+        }
+
     createestcons['opsverify'] = {
         'duration': 1,
     }
@@ -89,7 +90,7 @@ def calcfieldwelds(fieldwelditem, pipnorm):
     else:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
 
-    return fieldweldhours
+    return fieldweldhours['qcfitupcheck'], fieldweldhours['grindprep'], fieldweldhours['weldweld'], fieldweldhours['weldfit']
 
 
 def calcfieldweldsform(formobj, pipnorm):
@@ -113,11 +114,27 @@ def calcfieldweldsform(formobj, pipnorm):
 
 def getfieldweldbase(request):
     fwcons = dict()
+
+    if ('totalQcFitUpCheck' not in request.session) and ('totalGrindPrep' not in request.session) and \
+                ('totalWeldWeld' not in request.session) and ('totalWeldFit' not in request.session):
+        request.session['totalQcFitUpCheck'] = 0
+        request.session['totalGrindPrep'] = 0
+        request.session['totalWeldWeld'] = 0
+        request.session['totalWeldFit'] = 0
+
     fwcons['fieldweldsbaseform'] = FieldWeldsBaseForm(request.POST or None)
     if fwcons['fieldweldsbaseform'].is_valid():
         savedform = fwcons['fieldweldsbaseform'].save(commit=False)
         savedform.workpack = Workpack.objects.get(id=request.session['workpackselected'])
         savedform.save()
+
+        fieldwelds = calcfieldweldsform(fwcons['fieldweldsbaseform'], Pipingnorms)
+
+        request.session['totalQcFitUpCheck'] += fieldwelds['qcfitupcheck']
+        request.session['totalGrindPrep'] += fieldwelds['grindprep']
+        request.session['totalWeldWeld'] += fieldwelds['weldweld']
+        request.session['totalWeldFit'] += fieldwelds['weldfit']
+
         return HttpResponseRedirect('/new-estimates/')
     else:
         print fwcons['fieldweldsbaseform'].errors
