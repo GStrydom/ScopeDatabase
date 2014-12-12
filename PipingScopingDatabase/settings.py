@@ -58,12 +58,8 @@ WSGI_APPLICATION = 'PipingScopingDatabase.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pipingscopeapp',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': 'ogpss2011'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'pipingscopedatabase',
     }
 }
 

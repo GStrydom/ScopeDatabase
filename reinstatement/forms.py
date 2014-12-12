@@ -7,4 +7,4 @@ class CreateNewReinstateForm(forms.ModelForm):
 
     class Meta:
         model = Reinstatement
-        fields = ('reinstatement_id', 'matlist', 'sizelist', 'quantity', 'workpack', 'lineclasses')
+        fields = ('matlist', 'sizelist', 'quantity', 'workpack', 'lineclasses')

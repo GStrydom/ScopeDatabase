@@ -6,4 +6,4 @@ from .models import Spading
 class CreateSpadingForm(forms.ModelForm):
     class Meta:
         model = Spading
-        fields = ('spading_id', 'matlist', 'sizelist', 'quantity', 'workpack', 'lineclasses')
+        fields = ('matlist', 'sizelist', 'quantity', 'workpack', 'lineclasses')

@@ -2,40 +2,15 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.context_processors import csrf
 
-from .models import Pipingnorms, Manhoursfactor, FieldWeldsBase
-from .models import DemoLengthBase, SpadingNorms
+from .models import Pipingnorms, FieldWeldsBase
+from .models import SpadingNorms
 
-from workpacks.models import Workpack, Lineclasses
-from materials.models import SizeList
+from workpacks.models import Workpack
 
-from fractions import Fraction
 import math
 
 from .forms import FieldWeldsBaseForm, DemoLengthBaseForm, InstallLengthBaseForm, FlangePressureTestBaseForm
 from .forms import FlangeReinstateBaseForm, NumberOfJointsBaseForm, NumberOfColdCutsBaseForm, NumberOfHotCutsBaseForm
-
-
-totalGrindPrep = 0
-totalWeldWeld = 0
-totalWeldFit = 0
-totalFieldWelds = 0
-totalQcFitUpCheck = 0
-totalRigOutLineRig = 0
-totalRigOutLineFit = 0
-totalRigInLineRigdemo = 0
-totalRigInLineFitdemo = 0
-totalRigInLineRig = 0
-totalRigInLineFit = 0
-totalInstIso2 = 0
-totalUnboltJointsFitter = 0
-totalBoltUpJointsFitter = 0
-totalUnboltJointsRigger = 0
-totalBoltupJointsRigger = 0
-instrumentsBool = []
-totalColdCutLine = 0
-totalRiggersForColdCut = 0
-totalHotCutLine = 0
-totalRiggersForHotCut = 0
 
 
 def createestimates(request):
@@ -43,15 +18,22 @@ def createestimates(request):
     createestcons.update(csrf(request))
     createestcons['workpacks'] = Workpack.objects.all()
 
-    try:
-        fieldwelds = FieldWeldsBase.objects.all(id=request.session['workpackselected'])
-        fieldweldvalues = {}
-        for fieldweld in fieldwelds:
-            fieldweldvalues[fieldweld.id] = calcfieldwelds(fieldweld, Pipingnorms)
-            request.session['totalQcFitUpCheck'] += fieldweldvalues[fieldweld.id].qcfitupcheck
-    except ValueError:
-        FieldWeldsBase.DoesNotExist()
+    fieldwelds = FieldWeldsBase.objects.all()
+    fieldweldvalues = {}
+    for fieldweld in fieldwelds:
+        fieldweldvalues[fieldweld.id] = calcfieldwelds(fieldweld, Pipingnorms)
+        print fieldweldvalues
+        request.session['totalQcFitUpCheck'] += fieldweldvalues[fieldweld.id]['qcfitupcheck']
+        request.session['totalGrindPrep'] += fieldweldvalues[fieldweld.id]['grindprep']
+        request.session['totalWeldWeld'] += fieldweldvalues[fieldweld.id]['weldweld']
+        request.session['totalWeldFit'] += fieldweldvalues[fieldweld.id]['weldfit']
+    createestcons['fieldweldbase'] = {
+        'qcfitupcheck': int(math.ceil(request.session['totalQcFitUpCheck'])),
+        'grindprep': int(math.ceil(request.session['totalGrindPrep'])),
+        'weldweld': int(math.ceil(request.session['totalWeldWeld'])),
+        'weldfit': int(math.ceil(request.session['totalWeldFit']))
 
+    }
     createestcons['opsverify'] = {
         'duration': 1,
     }
@@ -88,55 +70,13 @@ def createestimates(request):
         'duration': 2
     }
 
-    totalgrindprep = int(math.ceil(totalGrindPrep))
-    totalweldweld = int(math.ceil(totalWeldWeld))
-    totalweldfit = int(math.ceil(totalWeldFit))
-
-    createestcons['fieldweldbase'] = {
-        'totalgrindprep': totalgrindprep,
-        'totalweldweld': totalweldweld,
-        'totalweldfit': totalweldfit
-    }
-
-    createestcons['qcfitupcheck'] = {
-        'resources': 1,
-        'manhours': totalQcFitUpCheck,
-        'duration': totalQcFitUpCheck
-    }
-
-    createestcons['demolengthbase'] = {
-        'totalrigoutlinerig': int(math.ceil(totalRigOutLineRig)),
-        'totalrigoutlinefit': int(math.ceil(totalRigOutLineFit))
-    }
-
-    createestcons['installlengthbase'] = {
-        'totalrigInlinerig': math.ceil(totalRigInLineRig),
-        'totalrigInlinefit': math.ceil(totalRigInLineFit)
-    }
-
-    createestcons['numberofjointsbase'] = {
-        'totalunboltjointsfitter': math.ceil(totalUnboltJointsFitter),
-        'totalboltupjointsfitter': math.ceil(totalBoltUpJointsFitter)
-    }
-
-    createestcons['coldcutsbase'] = {
-        'totalcoldcutline': math.ceil(totalColdCutLine)
-    }
-
-    createestcons['hotcutsbase'] = {
-        'totalhotcutline': math.ceil(totalHotCutLine)
-    }
-
-    createestcons['totals'] = {
-    }
-
     return render_to_response('estimates.html', createestcons, context_instance=RequestContext(request))
 
 
 def calcfieldwelds(fieldwelditem, pipnorm):
     cutnorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].cut
     prepnorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].prep
-    numberfieldwelds = fieldwelditem.numberof
+    numberfieldwelds = fieldwelditem.numberoffieldwelds
     weldernorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].tackweldlesseighty
     fieldweldhours = {
         'grindprep': (cutnorm + prepnorm) * 2 * weldernorm * 1,
@@ -144,16 +84,29 @@ def calcfieldwelds(fieldwelditem, pipnorm):
         'qcfitupcheck': 1 * numberfieldwelds
     }
 
-    totalQcFitUpCheck += numberfieldwelds
-
     if fieldwelditem.diameter < 4:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.15
     else:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
 
-    totalGrindPrep += fieldweldhours['grindprep']
-    totalWeldWeld += fieldweldhours['weldweld']
-    totalWeldFit += fieldweldhours['weldfit']
+    return fieldweldhours
+
+
+def calcfieldweldsform(formobj, pipnorm):
+    cutnorm = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter'])[0].cut
+    prepnorm = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter'])[0].prep
+    numberfieldwelds = formobj.cleaned_data['numberoffieldwelds']
+    weldernorm = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter'])[0].tackweldlesseighty
+    fieldweldhours = {
+        'grindprep': (cutnorm + prepnorm) * 2 * weldernorm * 1,
+        'weldweld': weldernorm * numberfieldwelds * 1,
+        'qcfitupcheck': 1 * numberfieldwelds
+    }
+
+    if formobj.cleaned_data['diameter'] < 4:
+        fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.15
+    else:
+        fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
 
     return fieldweldhours
 
@@ -163,11 +116,8 @@ def getfieldweldbase(request):
     fwcons['fieldweldsbaseform'] = FieldWeldsBaseForm(request.POST or None)
     if fwcons['fieldweldsbaseform'].is_valid():
         savedform = fwcons['fieldweldsbaseform'].save(commit=False)
-        savedform.workpack_id = Workpack.objects.get(workpack_id=request.session['workpackselected'])
+        savedform.workpack = Workpack.objects.get(id=request.session['workpackselected'])
         savedform.save()
-
-        calcfieldwelds(fwcons['fieldweldsbaseform'], Pipingnorms)
-
         return HttpResponseRedirect('/new-estimates/')
     else:
         print fwcons['fieldweldsbaseform'].errors

@@ -11,4 +11,4 @@ class CreateNewPrefabForm(forms.ModelForm):
 
     class Meta:
         model = Prefabrication
-        fields = ('prefabrication_id', 'matlist', 'sizelist', 'quantity', 'workpack', 'lineclasses')
+        fields = ('matlist', 'sizelist', 'quantity', 'workpack', 'lineclasses')

@@ -6,7 +6,6 @@ from materials.models import MatList, SizeList
 
 
 class Reinstatement(models.Model):
-    reinstatement_id = models.AutoField(primary_key=True)
     matlist = models.ForeignKey(MatList, blank=True, null=True)
     sizelist = models.ForeignKey(SizeList, blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)

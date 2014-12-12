@@ -6,12 +6,12 @@ from .models import Workpack, Lineclass
 class CreateWorkPackForm(forms.ModelForm):
     class Meta:
         model = Workpack
-        fields = ('workpack_id', 'workpacknumber', 'workpacklinenumber', 'workpacklineclass', 'datecreated',
-                  'lead', 'project', 'area')
+        fields = ('workpacknumber', 'workpacklinenumber', 'workpacklineclass', 'datecreated',
+                  'lead', 'project', 'zone')
 
 
 class EditWorkPackForm(forms.ModelForm):
         class Meta:
             model = Workpack
-            fields = ('workpack_id', 'workpacknumber', 'workpacklinenumber', 'workpacklineclass', 'datecreated',
-                      'client', 'lead', 'project', 'area')
+            fields = ('workpacknumber', 'workpacklinenumber', 'workpacklineclass', 'datecreated',
+                      'client', 'lead', 'project', 'zone')

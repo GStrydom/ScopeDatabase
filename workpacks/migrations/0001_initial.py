@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Lead',
             fields=[
-                ('lead_id', models.AutoField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50, blank=True)),
                 ('datecreated', models.DateField(null=True, blank=True)),
             ],
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Lineclass',
             fields=[
-                ('lineclass_id', models.AutoField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('lineclassname', models.CharField(max_length=10, blank=True)),
                 ('itemname', models.CharField(max_length=30, blank=True)),
                 ('itemid', models.CharField(max_length=10, blank=True)),
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Lineclasses',
             fields=[
-                ('lineclasses_id', models.AutoField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=30)),
             ],
             options={
@@ -57,15 +57,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Workpack',
             fields=[
-                ('workpack_id', models.AutoField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('workpacknumber', models.CharField(unique=True, max_length=30, blank=True)),
                 ('workpacklineclass', models.CharField(max_length=30, blank=True)),
                 ('workpacklinenumber', models.CharField(max_length=30, blank=True)),
                 ('datecreated', models.DateField(null=True, blank=True)),
-                ('area', models.ForeignKey(blank=True, to='areas.Area', null=True)),
                 ('client', models.ForeignKey(blank=True, to='clients.Client', null=True)),
                 ('lead', models.ForeignKey(blank=True, to='workpacks.Lead', null=True)),
                 ('project', models.ForeignKey(blank=True, to='projects.Project', null=True)),
+                ('zone', models.ForeignKey(blank=True, to='areas.Zone', null=True)),
             ],
             options={
             },

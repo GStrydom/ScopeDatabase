@@ -7,7 +7,6 @@ from clients.models import Client
 
 
 class UserProfile(models.Model):
-    userprofile_id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User)
     company = models.ForeignKey(Client)
     profilepic = models.CharField(max_length=255, blank=True, default=u"i like eggs")
@@ -17,6 +16,3 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return self.profilepic
-
-    def get_aboslute_url(self):
-        return reverse('profiles.views.createnewuser', args=[str(self.id)])

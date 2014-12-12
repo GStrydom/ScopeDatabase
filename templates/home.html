@@ -14,7 +14,7 @@
             Workpacks
         </div>
         {% for workpack in workpacks %}
-            <div class="worckpackinner"><a class="workpacklinks" href="/workpacks/get/{{ workpack.workpack_id }}">
+            <div class="worckpackinner"><a class="workpacklinks" href="/workpacks/get/{{ workpack.id }}">
                 {{ workpack.workpacknumber }}</a></div>
         {% endfor %}
     {% endif %}

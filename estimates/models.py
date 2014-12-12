@@ -1,13 +1,8 @@
 from django.db import models
 
-from datetime import datetime
-
 from workpacks.models import Workpack, Lineclasses, Lineclass
 
 from materials.models import SizeList
-
-from django.db.models.signals import pre_delete
-from django.dispatch import receiver
 
 
 class Manhoursfactor(models.Model):
@@ -47,7 +42,7 @@ class SpadingNorms(models.Model):
     cuttingfactorhw = models.FloatField(blank=True, null=True)
     durationhwfactor = models.FloatField(blank=True, null=True)
     alkyfactor_b_and_c_class = models.FloatField(blank=True, null=True)
-    duration_w_alkyfactor = models.FloatField(blank=True,null=True)
+    duration_w_alkyfactor = models.FloatField(blank=True, null=True)
     cuttingfactorhacksaw = models.FloatField(blank=True, null=True)
     duration_w_hacksawfactor = models.FloatField(blank=True, null=True)
     fam_bafactor = models.FloatField(blank=True, null=True)
@@ -70,7 +65,7 @@ class DemoLengthBase(models.Model):
     diameter = models.CharField(max_length=20)
     demolength = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
-    workpack_id = models.ForeignKey(Workpack, null=True)
+    workpack = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
         return self.lineclasses
@@ -134,6 +129,7 @@ class NumberOfColdCutsBase(models.Model):
     numcoldcuts = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True)
     workpack = models.ForeignKey(Workpack, null=True)
+    rigforcoldcut = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.lineclasses

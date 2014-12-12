@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Erection',
             fields=[
-                ('erection_id', models.AutoField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=30, blank=True)),
                 ('size', models.CharField(max_length=30, blank=True)),
                 ('quantity', models.IntegerField(null=True, blank=True)),

@@ -5,7 +5,6 @@ from workpacks.models import Workpack, Lineclasses
 
 
 class Prefabrication(models.Model):
-    prefabrication_id = models.AutoField(primary_key=True)
     matlist = models.CharField(max_length=50, blank=True)
     sizelist = models.CharField(max_length=50, blank=True)
     quantity = models.IntegerField(blank=True, null=True)

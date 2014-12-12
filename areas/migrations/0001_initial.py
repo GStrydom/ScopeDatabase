@@ -11,29 +11,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Area',
-            fields=[
-                ('area_id', models.AutoField(serialize=False, primary_key=True)),
-                ('name', models.CharField(max_length=30, blank=True)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='Zone',
             fields=[
-                ('zone_id', models.AutoField(serialize=False, primary_key=True)),
-                ('name', models.CharField(max_length=30, blank=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=30, null=True, blank=True)),
+                ('area', models.CharField(max_length=10, null=True, blank=True)),
             ],
             options={
             },
             bases=(models.Model,),
-        ),
-        migrations.AddField(
-            model_name='area',
-            name='zone',
-            field=models.ForeignKey(blank=True, to='areas.Zone', null=True),
-            preserve_default=True,
         ),
     ]

@@ -6,7 +6,6 @@ from materials.models import MatList, SizeList
 
 
 class Spading(models.Model):
-    spading_id = models.AutoField(primary_key=True)
     matlist = models.ForeignKey(MatList)
     sizelist = models.ForeignKey(SizeList)
     quantity = models.IntegerField(blank=True, null=True)

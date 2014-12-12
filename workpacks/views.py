@@ -4,7 +4,6 @@ from django.template import RequestContext
 
 from .forms import CreateWorkPackForm, EditWorkPackForm
 from .models import Workpack
-from estimates.models import EstimateDefaults
 from prefabrication.models import Prefabrication
 from spading.models import Spading
 from reinstatement.models import Reinstatement
@@ -27,8 +26,8 @@ def createworkpack(request):
 
 def showworkpack(request, workpack_id):
     showpcons = dict()
-    showpcons['workpack'] = Workpack.objects.get(workpack_id=workpack_id)
-    request.session['workpackselected'] = showpcons['workpack'].workpack_id
+    showpcons['workpack'] = Workpack.objects.get(id=workpack_id)
+    request.session['workpackselected'] = showpcons['workpack'].id
     showpcons['workpacks'] = Workpack.objects.all()
     return render_to_response('detail.html', showpcons, context_instance=RequestContext(request))
 
