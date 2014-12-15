@@ -18,16 +18,15 @@
     <data-source source="LOCAL" name="Django default" uuid="6fd2cbbd-1f05-4c75-ae14-f9995b8f50f0">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Greg\PycharmProjects\ScopeDatabase\pipingscopedatabase</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/pipingscopedb1</jdbc-url>
       <libraries>
         <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/xerial-sqlite-license.txt</url>
+          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-license.txt</url>
         </library>
         <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/sqlite-jdbc-3.7.6.3-20110609.081603-3.jar</url>
+          <url>file://$USER_HOME$/.PyCharm30/config/jdbc-drivers/mysql-connector-java-5.1.31-bin.jar</url>
         </library>
       </libraries>
     </data-source>
   </component>
 </project>
-

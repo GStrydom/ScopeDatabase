@@ -31,11 +31,7 @@ INSTALLED_APPS = (
     'clients',
     'projects',
     'workpacks',
-    'erection',
     'estimates',
-    'spading',
-    'reinstatement',
-    'prefabrication',
     'materials',
     'profiles',
 )
@@ -58,8 +54,11 @@ WSGI_APPLICATION = 'PipingScopingDatabase.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'pipingscopedatabase',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pipingscopedb1',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root'
     }
 }
 

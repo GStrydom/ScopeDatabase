@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Pipingnorms, FieldWeldsBase, Lineclass, Lineclasses
+from .models import FieldWeldsBase
 from .models import DemoLengthBase, InstallLengthBase, FlangePressureTestBase, FlangeReinstateBase
 from .models import NumberOfJointsBase, NumberOfColdCutsBase, NumberOfHotCutsBase
 

@@ -83,6 +83,8 @@
       <w>coldcutshours</w>
       <w>contactno</w>
       <w>contactnumber</w>
+      <w>createdby</w>
+      <w>creatematerialitem</w>
       <w>createreinstate</w>
       <w>createreinstatecons</w>
       <w>createreinstatematlist</w>
@@ -130,6 +132,8 @@
       <w>durtopenclose</w>
       <w>editcons</w>
       <w>editform</w>
+      <w>editmaterialform</w>
+      <w>editmaterialitem</w>
       <w>editpack</w>
       <w>editreinstate</w>
       <w>editreinstateform</w>
@@ -178,6 +182,7 @@
       <w>fittackweldriggersduration</w>
       <w>fittackweldriggersmanhours</w>
       <w>fittackweldriggersresources</w>
+      <w>fitup</w>
       <w>flangehndlehotcut</w>
       <w>flangepressuretestbasesubmit</w>
       <w>flangeptmanhours</w>
@@ -291,8 +296,11 @@
       <w>manhoursfactor</w>
       <w>manhoursheader</w>
       <w>manhrs</w>
+      <w>materialitem</w>
+      <w>matitem</w>
       <w>mfac</w>
       <w>multipart</w>
+      <w>nameofitemclicked</w>
       <w>ndata</w>
       <w>ndtduration</w>
       <w>ndtmanhour</w>
@@ -515,14 +523,18 @@
       <w>totalcoldcutline</w>
       <w>totalfieldweldduration</w>
       <w>totalfieldwelds</w>
+      <w>totalgp</w>
       <w>totalgrindprep</w>
       <w>totalhotcutline</w>
+      <w>totalqc</w>
       <w>totalrig</w>
       <w>totalrigoutlinefit</w>
       <w>totalrigoutlinerig</w>
       <w>totalunboltjointsfitter</w>
       <w>totalweldfit</w>
       <w>totalweldweld</w>
+      <w>totalwf</w>
+      <w>totalww</w>
       <w>tsaduration</w>
       <w>tsamanhour</w>
       <w>tsaresource</w>
@@ -542,7 +554,9 @@
       <w>unboltjointsresource</w>
       <w>useremail</w>
       <w>userpassword</w>
+      <w>usertype</w>
       <w>uservalues</w>
+      <w>viewcontext</w>
       <w>vvalues</w>
       <w>wfitter</w>
       <w>wmfac</w>

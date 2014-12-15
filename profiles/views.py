@@ -1,13 +1,14 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
+from django.template import RequestContext
 
 from .forms import UserProfileForm, UserForm
 
 
 def register(request):
-    registercons = dict()
-    registercons.update(csrf(request))
+    viewcontext = dict()
+    viewcontext.update(csrf(request))
     registered = False
 
     if request.method == 'POST':
@@ -32,11 +33,11 @@ def register(request):
         user_form = UserForm
         profile_form = UserProfileForm
 
-    registercons['user_form'] = user_form
-    registercons['profile_form'] = profile_form
-    registercons['registered'] = registered
+    viewcontext['user_form'] = user_form
+    viewcontext['profile_form'] = profile_form
+    viewcontext['registered'] = registered
 
-    return render_to_response('createuser.html', registercons)
+    return render_to_response('createuser.html', viewcontext, context_instance=RequestContext(request))
 
 
 def loginuser(request):

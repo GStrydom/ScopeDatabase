@@ -22,7 +22,7 @@ INSTALLED_APPS = (
     'estimates',
     'spading',
     'reinstatement',
-    'prefabrication'
+    'materials'
 )
 
 MIDDLEWARE_CLASSES = (

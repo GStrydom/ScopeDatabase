@@ -22,10 +22,15 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7">
+        <schema name="pipingscopedb1" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-list connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7" dataset="pipingscope.estimatedefaults" active-filter-id="EMPTY_FILTER" />
+    <filter-list connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7" dataset="pipingscopedb1.areas_zone" active-filter-id="EMPTY_FILTER" />
     <filter-list connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7" dataset="pipingscope.lineclass" active-filter-id="EMPTY_FILTER" />
     <filter-list connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7" dataset="pipingscope.auth_group_permissions" active-filter-id="EMPTY_FILTER" />
   </component>
@@ -131,6 +136,12 @@
           <object-type name="DBLINK" enabled="true" />
         </object-type-filter>
       </filters>
+      <sorting>
+        <object-type name="COLUMN" sorting-type="NAME" />
+        <object-type name="FUNCTION" sorting-type="NAME" />
+        <object-type name="PROCEDURE" sorting-type="NAME" />
+        <object-type name="ARGUMENT" sorting-type="POSITION" />
+      </sorting>
     </browser-settings>
     <navigation-settings>
       <lookup-filters>

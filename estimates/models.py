@@ -1,8 +1,6 @@
 from django.db import models
 
-from workpacks.models import Workpack, Lineclasses, Lineclass
-
-from materials.models import SizeList
+from workpacks.models import Workpack
 
 
 class Manhoursfactor(models.Model):

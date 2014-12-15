@@ -4,9 +4,6 @@ from django.template import RequestContext
 
 from .forms import CreateWorkPackForm, EditWorkPackForm
 from .models import Workpack
-from prefabrication.models import Prefabrication
-from spading.models import Spading
-from reinstatement.models import Reinstatement
 
 
 def createworkpack(request):
@@ -17,7 +14,6 @@ def createworkpack(request):
     if request.method == 'POST':
         if createwpcons['newwpform'].is_valid():
             createwpcons['newwpform'].save()
-            return HttpResponseRedirect('/')
 
     createwpcons['workpacks'] = Workpack.objects.all()
 
@@ -49,39 +45,3 @@ def deletepack(request):
     workpack.delete()
     deletecons['workpacks'] = Workpack.objects.all()
     return HttpResponseRedirect('/')
-
-
-def showprefab(request):
-    """
-    Show all prefabrication items currently listed under the workpack.
-    """
-    showprefabcons = dict()
-    showprefabcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
-    showprefabcons['prefabs'] = Prefabrication.objects.select_related()\
-                                            .filter(workpack_id=showprefabcons['workpack'].workpack_id)
-    showprefabcons['workpacks'] = Workpack.objects.all()
-    return render_to_response('showprefab.html', showprefabcons, context_instance=RequestContext(request))
-
-
-def showspade(request):
-    """
-    Show all prefabrication items currently listed under the workpack.
-    """
-    showprefabcons = dict()
-    showprefabcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
-    showprefabcons['prefabs'] = Spading.objects.select_related()\
-                                            .filter(workpack_id=showprefabcons['workpack'].workpack_id)
-    showprefabcons['workpacks'] = Workpack.objects.all()
-    return render_to_response('showspade.html', showprefabcons, context_instance=RequestContext(request))
-
-
-def showreinstate(request):
-    """
-    Show all prefabrication items currently listed under the workpack.
-    """
-    showprefabcons = dict()
-    showprefabcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
-    showprefabcons['prefabs'] = Reinstatement.objects.select_related()\
-                                            .filter(workpack_id=showprefabcons['workpack'].workpack_id)
-    showprefabcons['workpacks'] = Workpack.objects.all()
-    return render_to_response('showreinstate.html', showprefabcons, context_instance=RequestContext(request))

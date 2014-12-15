@@ -23,17 +23,29 @@ def createestimates(request):
 
     fieldwelds = FieldWeldsBase.objects.all()
 
+    # Store each of the saves into a list...
     fieldweldvalues = []
     for fieldweld in fieldwelds:
         fieldweldvalues.append(calcfieldwelds(fieldweld, Pipingnorms))
-        print fieldweldvalues[0][len(fieldwelds)-1]
 
-        createestcons['fieldweldbase'] = {
-            'qcfitupcheck': int(math.ceil(request.session['totalQcFitUpCheck'])),
-            'grindprep': int(math.ceil(request.session['totalGrindPrep'])),
-            'weldweld': int(math.ceil(request.session['totalWeldWeld'])),
-            'weldfit': int(math.ceil(request.session['totalWeldFit']))
-        }
+    # Temporary vars to hold values extracted from each tuple(fieldweld)...
+    totalqc = 0
+    totalgp = 0
+    totalww = 0
+    totalwf = 0
+
+    for value in fieldweldvalues:
+        totalqc += value[0]
+        totalgp += value[1]
+        totalww += value[2]
+        totalwf += value[3]
+
+    createestcons['fieldweldbase'] = {
+        'qcfitupcheck': int(math.ceil(totalqc)),
+        'grindprep': int(math.ceil(totalgp)),
+        'weldweld': int(math.ceil(totalww)),
+        'weldfit': int(math.ceil(totalwf))
+    }
 
     createestcons['opsverify'] = {
         'duration': 1,
@@ -85,55 +97,29 @@ def calcfieldwelds(fieldwelditem, pipnorm):
         'qcfitupcheck': 1 * numberfieldwelds
     }
 
+    print 'Grind Prep %f' % fieldweldhours['grindprep']
+    print 'Weld Weld %f' % fieldweldhours['weldweld']
+
+    print 'WC Fitup %f' % fieldweldhours['qcfitupcheck']
+
     if fieldwelditem.diameter < 4:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.15
     else:
         fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
 
+    print 'Weld Fit %f' % fieldweldhours['weldfit']
+
     return fieldweldhours['qcfitupcheck'], fieldweldhours['grindprep'], fieldweldhours['weldweld'], fieldweldhours['weldfit']
-
-
-def calcfieldweldsform(formobj, pipnorm):
-    cutnorm = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter'])[0].cut
-    prepnorm = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter'])[0].prep
-    numberfieldwelds = formobj.cleaned_data['numberoffieldwelds']
-    weldernorm = pipnorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter'])[0].tackweldlesseighty
-    fieldweldhours = {
-        'grindprep': (cutnorm + prepnorm) * 2 * weldernorm * 1,
-        'weldweld': weldernorm * numberfieldwelds * 1,
-        'qcfitupcheck': 1 * numberfieldwelds
-    }
-
-    if formobj.cleaned_data['diameter'] < 4:
-        fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.15
-    else:
-        fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
-
-    return fieldweldhours
 
 
 def getfieldweldbase(request):
     fwcons = dict()
-
-    if ('totalQcFitUpCheck' not in request.session) and ('totalGrindPrep' not in request.session) and \
-                ('totalWeldWeld' not in request.session) and ('totalWeldFit' not in request.session):
-        request.session['totalQcFitUpCheck'] = 0
-        request.session['totalGrindPrep'] = 0
-        request.session['totalWeldWeld'] = 0
-        request.session['totalWeldFit'] = 0
 
     fwcons['fieldweldsbaseform'] = FieldWeldsBaseForm(request.POST or None)
     if fwcons['fieldweldsbaseform'].is_valid():
         savedform = fwcons['fieldweldsbaseform'].save(commit=False)
         savedform.workpack = Workpack.objects.get(id=request.session['workpackselected'])
         savedform.save()
-
-        fieldwelds = calcfieldweldsform(fwcons['fieldweldsbaseform'], Pipingnorms)
-
-        request.session['totalQcFitUpCheck'] += fieldwelds['qcfitupcheck']
-        request.session['totalGrindPrep'] += fieldwelds['grindprep']
-        request.session['totalWeldWeld'] += fieldwelds['weldweld']
-        request.session['totalWeldFit'] += fieldwelds['weldfit']
 
         return HttpResponseRedirect('/new-estimates/')
     else:
@@ -143,10 +129,6 @@ def getfieldweldbase(request):
 
 
 def calcdemolength(formobj, pipenorms):
-    global totalRigOutLineRig
-    global totalRigOutLineFit
-    global totalRigInLineRigdemo
-    global totalRigInLineFitdemo
     rig1 = pipenorms.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].handlemeternormshours
     rig2 = formobj.cleaned_data['demolength']
     demolengthhours = {
@@ -158,10 +140,6 @@ def calcdemolength(formobj, pipenorms):
     demolengthhours['rigoutlinefit'] = demolengthhours['rigoutlinerig']
     demolengthhours['riginlinerigdemo'] = demolengthhours['rigoutlinerig']
     demolengthhours['riginlinefitdemo'] = demolengthhours['rigoutlinerig']
-    totalRigOutLineRig += demolengthhours['rigoutlinerig']
-    totalRigOutLineFit += demolengthhours['rigoutlinefit']
-    totalRigInLineRigdemo += demolengthhours['riginlinerigdemo']
-    totalRigInLineFitdemo += demolengthhours['riginlinefitdemo']
     return demolengthhours
 
 
@@ -182,8 +160,6 @@ def getdemolengthbase(request):
 
 
 def calcinstalllength(formobj, pipnorms):
-    global totalRigInLineRig
-    global totalRigInLineFit
     rig1 = pipnorms.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].handlemeternormshours
     rig2 = formobj.cleaned_data['installlength']
     installlengthmanhours = {
@@ -192,8 +168,6 @@ def calcinstalllength(formobj, pipnorms):
 
     installlengthmanhours['riginlinefit'] = installlengthmanhours['riginlinerig']
 
-    totalRigInLineRig += installlengthmanhours['riginlinerig']
-    totalRigInLineFit += installlengthmanhours['riginlinefit']
     return installlengthmanhours
 
 
@@ -216,7 +190,6 @@ def getinstalllengthbase(request):
 
 def getflangeptbase(request):
     fwcons = dict()
-    global totalInstIso2
     fwcons['flangepressuretestbaseform'] = FlangePressureTestBaseForm(request.POST or None)
     if fwcons['flangepressuretestbaseform'].is_valid():
         fwcons['flangepressuretestbaseform'].fields['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
@@ -297,11 +270,6 @@ def getflangeribase(request):
 
 
 def calcnumberofjoints(formobj, pipenorm):
-    global totalUnboltJointsFitter
-    global totalBoltUpJointsFitter
-    global totalBoltupJointsRigger
-    global totalUnboltJointsRigger
-    global instrumentsBool
 
     boltupnorm = pipenorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].boltupjointnormhours
     numjoints = formobj.cleaned_data['numjoints']
@@ -311,8 +279,6 @@ def calcnumberofjoints(formobj, pipenorm):
         'boltupjointsfitter': numjoints * boltupnorm
     }
 
-    totalUnboltJointsFitter += numjointsmanhours['unboltjointsfitter']
-    totalBoltUpJointsFitter += numjointsmanhours['boltupjointsfitter']
 
     if formobj.cleaned_data['instrumentsboltup']:
         instrumentsBool.append(True)
@@ -328,9 +294,6 @@ def calcnumberofjoints(formobj, pipenorm):
     if formobj.cleaned_data['rigforjoints']:
         riggersforunbolt = numjointsmanhours['unboltjointsfitter']
         riggersforboltup = numjointsmanhours['boltupjointsfitter']
-
-        totalUnboltJointsRigger = riggersforunbolt
-        totalBoltupJointsRigger = riggersforboltup
 
     return numjointsmanhours
 
@@ -353,8 +316,6 @@ def getnumberofjoints(request):
 
 
 def calcnumberofcoldcuts(formobj, pipenorm):
-    global totalColdCutLine
-    global totalRiggersForColdCut
 
     coldcutnorm = pipenorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].coldcutnormhours
     numcuts = formobj.cleaned_data['numcoldcuts']
@@ -363,14 +324,10 @@ def calcnumberofcoldcuts(formobj, pipenorm):
         'coldcutline': coldcutnorm * numcuts * 1
     }
 
-    totalColdCutLine += coldcutmanhours['coldcutline']
-
     if formobj.cleaned_data['diameter_id'] >= 4:
         riggersforcoldcut = coldcutmanhours['coldcutline']
     else:
         riggersforcoldcut = 0
-
-    totalRiggersForColdCut += riggersforcoldcut
 
 
 def getnumberofcoldcuts(request):
@@ -390,8 +347,6 @@ def getnumberofcoldcuts(request):
 
 
 def calcnumberofhotcuts(formobj, pipenorm):
-    global totalHotCutLine
-    global totalRiggersForHotCut
 
     hotcutnorm = pipenorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].hotcutnormhours
     numcuts = formobj.cleaned_data['numhotcuts']
@@ -400,14 +355,10 @@ def calcnumberofhotcuts(formobj, pipenorm):
         'hotcutline': hotcutnorm * numcuts * 1
     }
 
-    totalHotCutLine += hotcutmanhours['hotcutline']
-
     if formobj.cleaned_data['diameter_id'] >= 4:
         riggersforhotcut = hotcutmanhours['hotcutline']
     else:
         riggersforhotcut = 0
-
-    totalRiggersForHotCut += riggersforhotcut
 
     return hotcutmanhours
 
