@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Workpack, Lineclass
+from .models import Workpack
 
 
 class CreateWorkPackForm(forms.ModelForm):

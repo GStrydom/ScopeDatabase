@@ -51,6 +51,10 @@ def createestimates(request):
         'duration': 1,
     }
 
+    createestcons['installisoandpt'] = {
+        'duration': 0,
+    }
+
     createestcons['opspermit'] = {
         'resources': 1,
         'duration': 4,
@@ -83,7 +87,47 @@ def createestimates(request):
         'duration': 2
     }
 
-    return render_to_response('estimates.html', createestcons, context_instance=RequestContext(request))
+    createestcons['powerbrush'] = {
+        'duration': 0
+    }
+
+    createestcons['unboltjoints'] = {
+        'duration': 0
+    }
+
+    createestcons['riggingactivitiesrigout'] = {
+        'duration': 0
+    }
+
+    createestcons['coldcutline'] = {
+        'duration': 0
+    }
+
+    createestcons['hotcutline'] = {
+        'duration': 0
+    }
+
+    createestcons['dismantlesteam'] = {
+        'duration': 0
+    }
+
+    createestcons['hpflushing'] = {
+        'duration': 0
+    }
+
+    createestcons['executiontotal'] = {
+        'insulationduration': 0,
+        'mfitterduration': createestcons['installisoandpt']['duration'] + createestcons['powerbrush']['duration'] +
+        createestcons['unboltjoints']['duration'],
+        'riggersduration': createestcons['riggingactivitiesrigout']['duration'],
+        'scafoldersduration': 0,
+        'pfitterduration': createestcons['opspermit']['duration'] + createestcons['coldcutline']['duration'] +
+        createestcons['hotcutline']['duration'] + createestcons['dismantlesteam']['duration'] +
+        createestcons['riggingactivitiesrigout']['duration'],
+        'hydrojettingduration': createestcons['hpflushing']['duration']
+    }
+
+    return render_to_response('page2.html', createestcons, context_instance=RequestContext(request))
 
 
 def calcfieldwelds(fieldwelditem, pipnorm):

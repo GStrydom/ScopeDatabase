@@ -41,6 +41,8 @@ def register(request):
 
 
 def loginuser(request):
+    context = {}
+    context.update(csrf(request))
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -48,13 +50,9 @@ def loginuser(request):
         user = authenticate(username=username, password=password)
 
         if user:
-            if user.is_active():
-                login(request, user)
-                return HttpResponseRedirect('/home/')
-            else:
-                return HttpResponse('This account has been disabled. Please contact a system admin for further '
-                                    'assistance.')
+            login(request, user)
+            return HttpResponseRedirect('/home/')
         else:
             return HttpResponse('Invalid login details supplied.')
     else:
-        return render_to_response('login.html')
+        return render_to_response('index.html', context)

@@ -4,26 +4,43 @@ from workpacks.models import Workpack, Lead
 
 
 class MaterialItem(models.Model):
-    lineclass11011 = 11011,
-    lineclass11071 = 11011,
-    lineclass11261 = 11261,
-    lineclass31011 = 31011,
-    lineclass31071 = 31071,
-    lineclass31261 = 31261
-
-    lineclasses = (
-        (lineclass11011, 11011),
-        (lineclass11071, 11071),
-        (lineclass11261, 11261),
-        (lineclass31011, 31011),
-        (lineclass31071, 31071),
-        (lineclass31261, 31261)
-    )
     name = models.CharField(max_length=10, blank=True, null=True)
-    lineclass = models.CharField(max_length=10, choices=lineclasses, blank=True, null=True)
+    lineclass = models.CharField(max_length=10, blank=True, null=True)
     diameter = models.CharField(max_length=5, blank=True)
     quantity = models.IntegerField(blank=True, null=True)
     workpack = models.ForeignKey(Workpack, blank=True, null=True)
     code = models.CharField(max_length=20)
     datecreated = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     createdby = models.ForeignKey(Lead, blank=True, null=True)
+
+
+class Lineclass11011(models.Model):
+    itemname = models.CharField(max_length=30, blank=True)
+    itemid = models.CharField(max_length=10, blank=True)
+    material = models.CharField(max_length=20, blank=True)
+    dn1 = models.CharField(max_length=20, blank=True)
+    dn2 = models.CharField(max_length=20, blank=True)
+    code = models.CharField(max_length=30, blank=True)
+    quantity = models.IntegerField(blank=True, null=True)
+    unit = models.CharField(max_length=10, blank=True)
+    bulkquantity = models.IntegerField(blank=True, null=True)
+    bomunit = models.CharField(max_length=30, blank=True)
+
+    def __unicode__(self):
+        return self.itemname
+
+
+class Lineclass11071(models.Model):
+    itemname = models.CharField(max_length=30, blank=True)
+    itemid = models.CharField(max_length=10, blank=True)
+    material = models.CharField(max_length=20, blank=True)
+    dn1 = models.CharField(max_length=20, blank=True)
+    dn2 = models.CharField(max_length=20, blank=True)
+    code = models.CharField(max_length=30, blank=True)
+    quantity = models.IntegerField(blank=True, null=True)
+    unit = models.CharField(max_length=10, blank=True)
+    bulkquantity = models.IntegerField(blank=True, null=True)
+    bomunit = models.CharField(max_length=30, blank=True)
+
+    def __unicode__(self):
+        return self.itemname

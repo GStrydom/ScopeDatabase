@@ -8,9 +8,9 @@ urlpatterns = patterns('',
 
                        url(r'^registration/$', 'profiles.views.register', name='register'),
 
-                       url(r'^login$', 'profiles.views.loginuser', name='loginuser'),
+                       url(r'^$', 'profiles.views.loginuser', name='loginuser'),
 
-                       url(r'^$', views.homepageview, name='homepage'),
+                       url(r'^home/$', views.homepageview, name='homepage'),
 
                        url(r'^new-workpack/$', 'workpacks.views.createworkpack', name='createworkpack'),
 

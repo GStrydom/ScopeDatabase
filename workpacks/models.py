@@ -25,20 +25,3 @@ class Workpack(models.Model):
 
     def __unicode__(self):
         return self.workpacknumber
-
-
-class Lineclass(models.Model):
-    lineclassname = models.CharField(max_length=10, blank=True)
-    itemname = models.CharField(max_length=30, blank=True)
-    itemid = models.CharField(max_length=10, blank=True)
-    material = models.CharField(max_length=20, blank=True)
-    dn1 = models.CharField(max_length=20, blank=True)
-    dn2 = models.CharField(max_length=20, blank=True)
-    code = models.CharField(max_length=30, blank=True)
-    quantity = models.IntegerField(blank=True, null=True)
-    unit = models.CharField(max_length=10, blank=True)
-    bulkquantity = models.IntegerField(blank=True, null=True)
-    bomunit = models.CharField(max_length=30, blank=True)
-
-    def __unicode__(self):
-        return self.lineclassname

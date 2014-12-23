@@ -31,7 +31,8 @@ class FlangePressureTestBaseForm(forms.ModelForm):
 
     class Meta:
         model = FlangePressureTestBase
-        fields = ('lineclasses', 'diameter', 'numfpt', 'workpack', 'flangehndlehotcut', 'alkybandc', 'hacksawcutting', 'fambaset')
+        fields = ('lineclasses', 'diameter', 'numfpt', 'workpack', 'flangehndlehotcut', 'alkybandc', 'hacksawcutting',
+                  'fambaset')
 
 
 class FlangeReinstateBaseForm(forms.ModelForm):

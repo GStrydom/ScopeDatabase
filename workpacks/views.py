@@ -17,7 +17,7 @@ def createworkpack(request):
 
     createwpcons['workpacks'] = Workpack.objects.all()
 
-    return render_to_response('new.html', createwpcons, context_instance=RequestContext(request))
+    return render_to_response('home.html', createwpcons, context_instance=RequestContext(request))
 
 
 def showworkpack(request, workpack_id):
@@ -25,7 +25,7 @@ def showworkpack(request, workpack_id):
     showpcons['workpack'] = Workpack.objects.get(id=workpack_id)
     request.session['workpackselected'] = showpcons['workpack'].id
     showpcons['workpacks'] = Workpack.objects.all()
-    return render_to_response('detail.html', showpcons, context_instance=RequestContext(request))
+    return render_to_response('home.html', showpcons, context_instance=RequestContext(request))
 
 
 def editworkpack(request):

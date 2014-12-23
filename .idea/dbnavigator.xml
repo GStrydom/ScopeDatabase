@@ -22,11 +22,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7">
-        <schema name="pipingscopedb1" object-types="column, constraint, function, index, procedure, table, dataset trigger, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-list connection-id="9d44ba05-edb8-4984-9d0a-854edcf507b7" dataset="pipingscope.estimatedefaults" active-filter-id="EMPTY_FILTER" />
@@ -98,7 +94,9 @@
           </object-type-filter>
           <object-name-filters />
         </object-filters>
-        <consoles />
+        <consoles>
+          <console name="localhost" />
+        </consoles>
       </connection>
     </connections>
     <browser-settings>
