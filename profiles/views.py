@@ -55,4 +55,8 @@ def loginuser(request):
         else:
             return HttpResponse('Invalid login details supplied.')
     else:
-        return render_to_response('index.html', context)
+        return render_to_response('login.html', context)
+
+
+def user_info(request):
+    pass
