@@ -5,13 +5,16 @@
       <w>addestimate</w>
       <w>addspading</w>
       <w>aestbasetfield</w>
+      <w>affecf</w>
       <w>alky</w>
       <w>ammended</w>
       <w>areafield</w>
       <w>backends</w>
+      <w>bcabcdc</w>
       <w>boltup</w>
       <w>borderestdiv</w>
       <w>builtwithwwb</w>
+      <w>caee</w>
       <w>clickjacking</w>
       <w>clientfield</w>
       <w>coldcut</w>
@@ -22,16 +25,23 @@
       <w>createnewuser</w>
       <w>createprefab</w>
       <w>createprefabcons</w>
+      <w>createprefabitem</w>
       <w>createprefabmatlist</w>
       <w>createprefabricationlist</w>
+      <w>createreinstateitem</w>
+      <w>createspadingitem</w>
       <w>createworkpack</w>
       <w>createwpcons</w>
       <w>csrf</w>
+      <w>dafa</w>
       <w>datefield</w>
       <w>defests</w>
       <w>defestsform</w>
       <w>deletefieldweld</w>
       <w>deleteprefab</w>
+      <w>deleteprefabitem</w>
+      <w>deletereinstateitem</w>
+      <w>deletespadingitem</w>
       <w>demolength</w>
       <w>demolengthbaseform</w>
       <w>demolengthmanhours</w>
@@ -43,6 +53,7 @@
       <w>editprefabform</w>
       <w>editprefabitem</w>
       <w>editprefabmatlist</w>
+      <w>editspadingitem</w>
       <w>estalky</w>
       <w>estalkybox</w>
       <w>estbaset</w>
@@ -100,6 +111,7 @@
       <w>estschedule</w>
       <w>estschedulebox</w>
       <w>estschedulefield</w>
+      <w>ffeddba</w>
       <w>fieldwelditem</w>
       <w>fieldweldmanhours</w>
       <w>fieldwelds</w>
@@ -144,6 +156,7 @@
       <w>instrumentsforboltup</w>
       <w>itemid</w>
       <w>itemname</w>
+      <w>landers</w>
       <w>leadfield</w>
       <w>lineclasses</w>
       <w>loginuser</w>
@@ -171,6 +184,7 @@
       <w>numjoints</w>
       <w>numjointsbase</w>
       <w>ogpss</w>
+      <w>omudte</w>
       <w>opsverify</w>
       <w>passwordbox</w>
       <w>pipehandlediameter</w>
@@ -180,6 +194,7 @@
       <w>pmmssye</w>
       <w>precode</w>
       <w>prefabid</w>
+      <w>prefabitems</w>
       <w>prepareandpressure</w>
       <w>profilepic</w>
       <w>projectfield</w>
@@ -194,12 +209,20 @@
       <w>saprefquality</w>
       <w>savenewprefab</w>
       <w>scoper</w>
+      <w>serifwebresources</w>
       <w>showprefab</w>
       <w>showprefabcons</w>
+      <w>showprefabitems</w>
+      <w>showprefabs</w>
       <w>showreinstate</w>
+      <w>showreinstateitems</w>
+      <w>showreinstates</w>
+      <w>showspadingitems</w>
+      <w>showspadings</w>
       <w>showworkpack</w>
       <w>showwpcons</w>
       <w>sizelist</w>
+      <w>spadings</w>
       <w>subestdefs</w>
       <w>subprefab</w>
       <w>tackandweldernorm</w>
@@ -219,6 +242,7 @@
       <w>weldoutwelder</w>
       <w>weldweld</w>
       <w>workpackselected</w>
+      <w>wpca</w>
       <w>wpdetail</w>
       <w>wsgi</w>
       <w>wyshtmls</w>

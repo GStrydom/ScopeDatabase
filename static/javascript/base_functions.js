@@ -35,3 +35,91 @@ function checkMoreEstimates() {
         })
     }
 }
+
+
+$(document).ready(function() {
+   $('.workpacklinks').click(function(event) {
+       event.preventDefault();
+       $.ajax({
+           url: '/home/',
+           type: 'POST',
+           datatype: 'json',
+           data: {
+               csrfmiddlewaretoken: "{{ csrf_token }}",
+               workpacknumber: $('#wpnum').html()
+           },
+           success: function(data) {
+               $('#worknumber').html($('#wpnum').html());
+
+           }
+       });
+   });
+});
+
+
+$(function() {
+  $( "#addPrefabDialog" ).dialog({
+      autoOpen: false,
+      buttons: {
+          CANCEL: function() {
+              $(this).dialog("close");
+          },
+          SAVE: function() {
+              var lineclass = $('#Combobox1').val();
+              var itemname = $('#Combobox2').val();
+              var diameter = $('#Combobox3').val();
+              var quantity = $('#Combobox4').val();
+
+              $.ajax({
+                 url: '/home/',
+                 type: 'POST',
+                 data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    lineclass: lineclass,
+                    itemname: itemname,
+                    diameter: diameter,
+                    quantity: quantity,
+                    name: 'Prefab'
+                 },
+                 success: function(data) {
+                    $('#prefablineclass').html(lineclass);
+                    $('#prefabname').html(itemname);
+                    $('#prefabdiameter').html(diameter);
+                    $('#prefabquantity').html(quantity);
+                    $(this).dialog("close");
+                 },
+                 failure: function(data) {
+                    alert('The post could not happen.');
+                 }
+              });
+          }},
+      height: 230,
+
+      title: "Enter Prefab Item",
+      position: {
+          my: "center",
+          at: "center"
+      }
+  });
+
+  $( "#jQueryButton1" ).click(function() {
+     $( "#addPrefabDialog" ).dialog( "open" );
+     $('#Combobox1').on('change', function() {
+         var lineclass = $(this).val();
+         $.ajax({
+             url: '/home/',
+             type: 'POST',
+             data: {
+                 csrfmiddlewaretoken: "{{ csrf_token }}",
+                 lineclass: lineclass
+             },
+             success: function(data) {
+
+             },
+             failure: function(data) {
+
+             }
+         })
+     });
+  });
+});

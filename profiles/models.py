@@ -5,15 +5,6 @@ from clients.models import Client
 
 
 class UserProfile(models.Model):
-    lead = 'Lead',
-    admin = 'Admin',
-    superuser = 'SuperUser'
-
-    users = (
-        (lead, 'Lead'),
-        (admin, 'Admin'),
-        (superuser, 'SuperUser')
-    )
 
     user = models.OneToOneField(User)
     company = models.ForeignKey(Client)
@@ -21,7 +12,7 @@ class UserProfile(models.Model):
 
     # Holds specific user id information such as Sapref badge number
     usercode = models.CharField(max_length=20, blank=True, null=True)
-    usertype = models.CharField(max_length=10, blank=True, null=True, choices=users)
+    usertype = models.CharField(max_length=10, blank=True, null=True)
 
     def __unicode__(self):
         return '%s' % self.profilepic

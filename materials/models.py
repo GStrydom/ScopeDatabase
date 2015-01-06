@@ -5,6 +5,7 @@ from workpacks.models import Workpack, Lead
 
 class MaterialItem(models.Model):
     name = models.CharField(max_length=10, blank=True, null=True)
+    type = models.CharField(max_length=10, blank=True, null=True)
     lineclass = models.CharField(max_length=10, blank=True, null=True)
     diameter = models.CharField(max_length=5, blank=True)
     quantity = models.IntegerField(blank=True, null=True)

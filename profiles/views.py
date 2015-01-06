@@ -37,15 +37,15 @@ def register(request):
     viewcontext['profile_form'] = profile_form
     viewcontext['registered'] = registered
 
-    return render_to_response('createuser.html', viewcontext, context_instance=RequestContext(request))
+    return render_to_response('register.html', viewcontext, context_instance=RequestContext(request))
 
 
 def loginuser(request):
     context = {}
     context.update(csrf(request))
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST['Email']
+        password = request.POST['Password']
 
         user = authenticate(username=username, password=password)
 
@@ -55,4 +55,8 @@ def loginuser(request):
         else:
             return HttpResponse('Invalid login details supplied.')
     else:
-        return render_to_response('index.html', context)
+        return render_to_response('login.html', context)
+
+
+def user_info(request):
+    pass

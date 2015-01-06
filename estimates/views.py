@@ -21,12 +21,13 @@ def createestimates(request):
     except KeyError:
         Workpack.DoesNotExist()
 
-    fieldwelds = FieldWeldsBase.objects.all()
+    temp_fieldwelds = FieldWeldsBase.objects.all()
 
-    # Store each of the saves into a list...
-    fieldweldvalues = []
-    for fieldweld in fieldwelds:
-        fieldweldvalues.append(calcfieldwelds(fieldweld, Pipingnorms))
+    for fieldweld in temp_fieldwelds:
+        pass
+
+    del temp_fieldwelds
+
 
     # Temporary vars to hold values extracted from each tuple(fieldweld)...
     totalqc = 0
@@ -128,32 +129,6 @@ def createestimates(request):
     }
 
     return render_to_response('page2.html', createestcons, context_instance=RequestContext(request))
-
-
-def calcfieldwelds(fieldwelditem, pipnorm):
-    cutnorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].cut
-    prepnorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].prep
-    numberfieldwelds = fieldwelditem.numberoffieldwelds
-    weldernorm = pipnorm.objects.filter(pipediameter__exact=fieldwelditem.diameter)[0].tackweldlesseighty
-    fieldweldhours = {
-        'grindprep': (cutnorm + prepnorm) * 2 * weldernorm * 1,
-        'weldweld': weldernorm * numberfieldwelds * 1,
-        'qcfitupcheck': 1 * numberfieldwelds
-    }
-
-    print 'Grind Prep %f' % fieldweldhours['grindprep']
-    print 'Weld Weld %f' % fieldweldhours['weldweld']
-
-    print 'WC Fitup %f' % fieldweldhours['qcfitupcheck']
-
-    if fieldwelditem.diameter < 4:
-        fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.15
-    else:
-        fieldweldhours['weldfit'] = fieldweldhours['weldweld'] * 0.30
-
-    print 'Weld Fit %f' % fieldweldhours['weldfit']
-
-    return fieldweldhours['qcfitupcheck'], fieldweldhours['grindprep'], fieldweldhours['weldweld'], fieldweldhours['weldfit']
 
 
 def getfieldweldbase(request):
