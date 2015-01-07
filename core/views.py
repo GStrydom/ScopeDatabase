@@ -13,4 +13,4 @@ def homepageview(request):
 
     context['lineclass11011'] = Lineclass11011.objects.all().distinct()
 
-    return render_to_response('home.html', context)
+    return render_to_response('index.html', context)

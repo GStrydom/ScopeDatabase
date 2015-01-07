@@ -2,41 +2,42 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
 
-from .forms import CreateWorkPackForm, EditWorkPackForm
 from .models import Workpack
+
+from .classes import BaseWorkPack
 
 
 def createworkpack(request):
-    createwpcons = dict()
+    context = dict()
+    workpack = BaseWorkPack(
+        wrkpacknum=request.POST['workpackNumber'],
+        wrkpacklinenum=request.POST['workpackLineNumber'],
+        wrkpacklineclass=request.POST['workpackLineclass'],
+        wrkpackproject=request.POST['workpackProject'],
+        wrkpacklead=request.POST['workpackLead'],
+        wrkpackzone=request.POST['workpackZone']
+    )
 
-    createwpcons['newwpform'] = CreateWorkPackForm(data=request.POST)
+    saved_workpack = Workpack(
+        workpacknumber=workpack.wrkpacknum
+        workpacklineclass=workpack.wo
+    )
 
-    if request.method == 'POST':
-        if createwpcons['newwpform'].is_valid():
-            createwpcons['newwpform'].save()
-
-    createwpcons['workpacks'] = Workpack.objects.all()
-
-    return render_to_response('home.html', createwpcons, context_instance=RequestContext(request))
+    return render_to_response('addworkpack.html', context, context_instance=RequestContext(request))
 
 
 def showworkpack(request, workpack_id):
-    showpcons = dict()
-    showpcons['workpack'] = Workpack.objects.get(id=workpack_id)
-    request.session['workpackselected'] = showpcons['workpack'].id
-    showpcons['workpacks'] = Workpack.objects.all()
-    return render_to_response('home.html', showpcons, context_instance=RequestContext(request))
+    context = dict()
+    context['workpack'] = Workpack.objects.get(id=workpack_id)
+    request.session['workpackselected'] = context['workpack'].id
+
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
 def editworkpack(request):
     editcons = dict()
-    editcons['workpack'] = Workpack.objects.get(workpack_id=request.session['workpackselected'])
-    editcons['editform'] = CreateWorkPackForm(request.POST or None, instance=editcons['workpack'])
-    if editcons['editform'].is_valid():
-        editcons['editform'].save()
-        return HttpResponseRedirect('/')
-    editcons['workpacks'] = Workpack.objects.all()
-    return render_to_response('edit.html', editcons, context_instance=RequestContext(request))
+
+    return render_to_response('editworkpack.html', editcons, context_instance=RequestContext(request))
 
 
 def deletepack(request):
@@ -44,4 +45,5 @@ def deletepack(request):
     workpack = Workpack.objects.get(workpack_id=request.session['workpackselected'])
     workpack.delete()
     deletecons['workpacks'] = Workpack.objects.all()
+
     return HttpResponseRedirect('/')

@@ -7,8 +7,6 @@ from .models import SpadingNorms
 
 from workpacks.models import Workpack
 
-from .classes import BaseFieldWeld
-
 import math
 
 from .forms import FieldWeldsBaseForm, DemoLengthBaseForm, InstallLengthBaseForm, FlangePressureTestBaseForm
@@ -26,7 +24,7 @@ def createestimates(request):
     temp_fieldwelds = FieldWeldsBase.objects.all()
 
     for fieldweld in temp_fieldwelds:
-        fieldweld = BaseFieldWeld(temp_fieldwelds.lineclass, temp_fieldwelds.diameter, temp_fieldwelds.quantity)
+        pass
 
     del temp_fieldwelds
 
@@ -36,12 +34,6 @@ def createestimates(request):
     totalgp = 0
     totalww = 0
     totalwf = 0
-
-    for value in fieldweldvalues:
-        totalqc += value[0]
-        totalgp += value[1]
-        totalww += value[2]
-        totalwf += value[3]
 
     createestcons['fieldweldbase'] = {
         'qcfitupcheck': int(math.ceil(totalqc)),
@@ -130,7 +122,7 @@ def createestimates(request):
         'hydrojettingduration': createestcons['hpflushing']['duration']
     }
 
-    return render_to_response('page2.html', createestcons, context_instance=RequestContext(request))
+    return render_to_response('estimates.html', createestcons, context_instance=RequestContext(request))
 
 
 def getfieldweldbase(request):

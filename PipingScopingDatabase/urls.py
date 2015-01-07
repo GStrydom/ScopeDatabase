@@ -43,7 +43,13 @@ urlpatterns = patterns('',
 
                        url(r'^newflangeri/$', 'estimates.views.getflangeribase', name='newflangeri'),
 
-                       url(r'^admin/', include(admin.site.urls)),
+                       url(r'^prefabs/$', 'materials.views.showprefabitems', name='showprefabs'),
+                       url(r'^reinstates/$', 'materials.views.showreinstateitems', name='showreinstates'),
+                       url(r'^spadings/$', 'materials.views.showspadingitems', name='showspadings'),
+
+                       url(r'^estimates/$', 'estimates.views.createestimates', name='createestimates'),
+
+                       url(r'^admin/', include(admin.site.urls))
                        )
 
 urlpatterns += staticfiles_urlpatterns()

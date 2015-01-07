@@ -1,64 +1,159 @@
-from django.shortcuts import render_to_response, HttpResponseRedirect
+from django.shortcuts import render_to_response
 from django.template import RequestContext
-
-from .forms import CreateNewMaterialForm
 
 from workpacks.models import Workpack
 from materials.models import MaterialItem
 
-from .classes import BaseMaterialItem
+from .classes import BasePrefabItem, BaseReinstateItem, BaseSpadingItem
 
 import datetime
 
 
-def creatematerialitem(request):
+def showprefabitems(request):
+    context = dict()
+    context['prefabs'] = MaterialItem.objects.filter(type__exact='Prefabrication')
+    return render_to_response('prefab.html', context, context_instance=RequestContext(request))
+
+
+def createprefabitem(request):
     """
     Create a new materials material item tied to the workpack.
     """
     context = dict()
-    context['newprefab'] = CreateNewMaterialForm(data=request.POST)
 
     if request.method == 'POST':
-        if 'itemname' not in request.POST:
-            pass
+        if 'lineclass' in request.POST:
+            item = BasePrefabItem(
+                lineclass=request.POST['prefabLineclassCombo'],
+                diameter=request.POST['prefabLineclassCombo'],
+                name=request.POST['prefabNameCombo'],
+                quantity=request.POST['prefabQuantityBox']
+            )
+            saved_item = MaterialItem(
+                name=item.name,
+                type='Prefabrication',
+                lineclass=item.lineclass,
+                diameter=item.diameter,
+                quantity=item.quantity,
+                workpack=item.attach_to_workpack(),
+                datecreated=datetime.datetime.today(),
+                createdby=request.user.username
+            )
+            saved_item.save()
         else:
-            if context['newprefab'].is_valid():
-                savedform = context['newprefab'].save(commit=False)
-                item = BaseMaterialItem(
-                    savedform.lineclass,
-                    savedform.diameter,
-                    request.POST['itemname'],
-                    savedform.quantity
-                )
-                item.createdby = request.user.username
-                item.createdon = datetime.datetime.today()
-                item.code = item.get_code(item.lineclass)
-                item.workpack = item.get_workpack()
+            pass
 
-    context['workpacks'] = Workpack.objects.all()
-
-    return render_to_response('page1.html', context, context_instance=RequestContext(request))
+    return render_to_response('prefab.html', context, context_instance=RequestContext(request))
 
 
 def editmaterialitem(request, materialitem_id):
     context = dict()
     context['matitem'] = MaterialItem.objects.get(id=materialitem_id)
-    context['editmaterialform'] = CreateNewMaterialForm(request.POST or None, instance=context['matitem'])
-    if context['editmaterialform'].is_valid():
-        context['editmaterialform'].save()
-        return HttpResponseRedirect('/')
     context['workpacks'] = Workpack.objects.all()
 
-    return render_to_response('editprefab.html', context, context_instance=RequestContext(request))
+    return render_to_response('prefab.html', context, context_instance=RequestContext(request))
 
 
-    # context['newprefab'].fields['matlist'].queryset = Lineclass.objects\
-    #     .filter(lineclassname=Workpack.objects.get(workpack_id=request.session['workpackselected']).workpacklineclass)\
-    #     .values_list('itemname', flat=True).distinct()
-    #
-    # if request.method == 'POST':
-    #     if context['newprefab'].is_valid():
-    #         item = Lineclass.objects.get(itemname__icontains=context['newprefab'].cleaned_data['matlist'],
-    #                                      dn1__icontains=context['newprefab'].cleaned_data['sizelist'],
-    #                                      lineclassname__icontains=context['newprefab']
-    #                                      .cleaned_data['lineclass'])
+def deleteprefabitem(request):
+    context = dict()
+    return render_to_response('prefab.html', context, context_instance=RequestContext(request))
+
+
+def showreinstateitems(request):
+    context = dict()
+    context['reinstates'] = MaterialItem.objects.filter(type__exact='Reinstatement')
+    return render_to_response('reinstate.html', context, context_instance=RequestContext(request))
+
+
+def createreinstateitem(request):
+    """
+    Create a new materials material item tied to the workpack.
+    """
+    context = dict()
+
+    if request.method == 'POST':
+        if 'lineclass' in request.POST:
+            item = BaseReinstateItem(
+                lineclass=request.POST['reinstateLineclassCombo'],
+                diameter=request.POST['reinstateLineclassCombo'],
+                name=request.POST['reinstateNameCombo'],
+                quantity=request.POST['reinstateQuantityBox']
+            )
+            saved_item = MaterialItem(
+                name=item.name,
+                type='Reinstatement',
+                lineclass=item.lineclass,
+                diameter=item.diameter,
+                quantity=item.quantity,
+                workpack=item.attach_to_workpack(),
+                datecreated=datetime.datetime.today(),
+                createdby=request.user.username
+            )
+            saved_item.save()
+        else:
+            pass
+
+    return render_to_response('reinstate.html', context, context_instance=RequestContext(request))
+
+
+def editreinstateitem(request, materialitem_id):
+    context = dict()
+    context['matitem'] = MaterialItem.objects.get(id=materialitem_id)
+    context['workpacks'] = Workpack.objects.all()
+
+    return render_to_response('reinstate.html', context, context_instance=RequestContext(request))
+
+
+def deletereinstateitem(request):
+    context = dict()
+    return render_to_response('reinstate.html', context, context_instance=RequestContext(request))
+
+
+def showspadingitems(request):
+    context = dict()
+    context['spadings'] = MaterialItem.objects.filter(type__exact='Spading')
+    return render_to_response('spading.html', context, context_instance=RequestContext(request))
+
+
+def createspadingitem(request):
+    """
+    Create a new materials material item tied to the workpack.
+    """
+    context = dict()
+
+    if request.method == 'POST':
+        if 'lineclass' in request.POST:
+            item = BaseSpadingItem(
+                lineclass=request.POST['spadingLineclassCombo'],
+                diameter=request.POST['spadingLineclassCombo'],
+                name=request.POST['spadingNameCombo'],
+                quantity=request.POST['spadingQuantityBox']
+            )
+            saved_item = MaterialItem(
+                name=item.name,
+                type='Spading',
+                lineclass=item.lineclass,
+                diameter=item.diameter,
+                quantity=item.quantity,
+                workpack=item.attach_to_workpack(),
+                datecreated=datetime.datetime.today(),
+                createdby=request.user.username
+            )
+            saved_item.save()
+        else:
+            pass
+
+    return render_to_response('spading.html', context, context_instance=RequestContext(request))
+
+
+def editspadingitem(request, materialitem_id):
+    context = dict()
+    context['matitem'] = MaterialItem.objects.get(id=materialitem_id)
+    context['workpacks'] = Workpack.objects.all()
+
+    return render_to_response('spading.html', context, context_instance=RequestContext(request))
+
+
+def deletespadingitem(request):
+    context = dict()
+    return render_to_response('spading.html', context, context_instance=RequestContext(request))
