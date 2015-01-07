@@ -8,52 +8,60 @@
         <meta name="copyright" content="©OGPSS 2015">
         <link rel="stylesheet" type="text/css" href="../static/css/wpstyles.css">
         <style type="text/css">
-            .OBJ-1 { margin:0;background:#ffffff; }
+            .OBJ-1,.OBJ-1:link,.OBJ-1:visited { background-image:url('../static/images/wp36d08ca7_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
+            .OBJ-1:hover { background-position:0px -60px; }
+            .OBJ-1:active,a:link.OBJ-1.Activated,a:link.OBJ-1.Down,a:visited.OBJ-1.Activated,a:visited.OBJ-1.Down,.OBJ-1.Activated,.OBJ-1.Down { background-position:0px -30px; }
+            .OBJ-1:focus { outline-style:none; }
+            button.OBJ-1 { background-color:transparent;border:none 0px;padding:0;display:inline-block;cursor:pointer; }
+            button.OBJ-1:disabled { pointer-events:none; }
+            .OBJ-1.Inline { display:inline-block;position:relative;line-height:normal; }
+            .OBJ-1 span,.OBJ-1:link span,.OBJ-1:visited span { color:#ffffff;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:3px;top:3px;width:96px;height:25px;font-size:19px;display:block;position:absolute;cursor:pointer; }
+            .OBJ-1.Disabled span,a:link.OBJ-1.Disabled span,a:visited.OBJ-1.Disabled span,a:hover.OBJ-1.Disabled span,a:active.OBJ-1.Disabled span { top:2px; }
+            .OBJ-2 { margin:0;background:#ffffff; }
             .P-1 { text-align:center;line-height:1px;font-family:"Tahoma", sans-serif;font-style:normal;font-weight:700;color:#000000;background-color:transparent;font-variant:normal;font-size:18.0px;vertical-align:0; }
             .C-1 { line-height:22.00px;font-family:"Tahoma", sans-serif;font-style:normal;font-weight:700;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:18.0px;vertical-align:0; }
             .C-2 { line-height:19.00px;font-family:"Tahoma", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:16.0px;vertical-align:0; }
-            .OBJ-2 { border:1px solid #000000;border-radius:2px / 2px;background:#ffffff;font-family:Tahoma;text-align:left;font-size:16px;color:#000000; }
-            .OBJ-3 { border:1px solid #000000;border-radius:2px / 2px;background:#d2d2d2;font-family:Tahoma;text-align:center;font-size:16px;color:#000000; }
-            .OBJ-4,.OBJ-4:link,.OBJ-4:visited { background-image:url('../static/images/wp7fd46192_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
-            .OBJ-4:hover { background-position:0px -60px; }
-            .OBJ-4:active,a:link.OBJ-4.Activated,a:link.OBJ-4.Down,a:visited.OBJ-4.Activated,a:visited.OBJ-4.Down,.OBJ-4.Activated,.OBJ-4.Down { background-position:0px -30px; }
-            .OBJ-4:focus { outline-style:none; }
-            button.OBJ-4 { background-color:transparent;border:none 0px;padding:0;display:inline-block;cursor:pointer; }
-            button.OBJ-4:disabled { pointer-events:none; }
-            .OBJ-4.Inline { display:inline-block;position:relative;line-height:normal; }
-            .OBJ-4 span,.OBJ-4:link span,.OBJ-4:visited span { color:#ffffff;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:3px;top:3px;width:96px;height:25px;font-size:19px;display:block;position:absolute;cursor:pointer; }
-            .OBJ-4.Disabled span,a:link.OBJ-4.Disabled span,a:visited.OBJ-4.Disabled span,a:hover.OBJ-4.Disabled span,a:active.OBJ-4.Disabled span { top:2px; }
+            .OBJ-3 { border:1px solid #000000;border-radius:2px / 2px;background:#ffffff;font-family:Tahoma;text-align:left;font-size:16px;color:#000000; }
+            .OBJ-4 { border:1px solid #000000;border-radius:2px / 2px;background:#d2d2d2;font-family:Tahoma;text-align:center;font-size:16px;color:#000000; }
         </style>
-        <script type="text/javascript" src="../static/javascript/jquery.js"></script>
+        <script type="text/javascript" src="../static/js/jquery.js"></script>
+        <script type="text/javascript" src="../static/js/jquery.validate.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+            $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
+            $("#form_13").validate({ onkeyup: false, showErrors: function(errorMap, errorList) { if (errorList.length) alert(errorList[0].message); }, onclick: false, rules: { 'Email': { email: true }  }, onfocusout: false, messages: { 'Email': { email: "Please enter a valid email address" }  } });
+            });
+        </script>
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
     <body style="height:1020px;background:#cdcdcd;">
         <div id="divMain" style="background:#ffffff;margin-left:auto;margin-right:auto;position:relative;width:1200px;height:1000px;top:10px;">
-            <img alt="" src="../static/images/wp68b1a516_06.png" style="position:absolute;left:303px;top:158px;width:594px;height:286px;">
-            <form name="loginform" id="form_13" method="post" target="_self" class="OBJ-1" style="position:absolute;left:433px;top:174px;width:335px;height:174px;">{% csrf_token %}
+            <img alt="" src="../static/images/wpa4974a10_06.png" style="position:absolute;left:145px;top:92px;width:910px;height:536px;">
+            <img alt="" src="../static/images/wp4cc70ae1_06.png" style="position:absolute;left:0px;top:0px;width:1200px;height:60px;">
+            <img alt="" src="../static/images/wp1d19ec32_06.png" style="position:absolute;left:0px;top:930px;width:1200px;height:70px;">
+            <a href="register.html" id="loginRegisterButton" class="OBJ-1 ActiveButton" style="position:absolute;left:550px;top:554px;width:101px;height:30px;">
+                <span>Register</span>
+            </a>
+            <img alt="" src="../static/images/wpfd81c707_06.png" style="position:absolute;left:181px;top:121px;width:838px;height:410px;">
+            <form name="loginform" id="form_13" method="post" target="_self" class="OBJ-2" style="position:absolute;left:433px;top:186px;width:335px;height:174px;">
                 <div style="position:absolute;left:8px;top:8px;width:319px;height:22px;overflow:hidden;">
                     <p class="Body P-1"><span class="C-1">Login Form</span></p>
                 </div>
-                <label for="Email">
+                <label for="edit_10">
                     <div style="position:absolute;left:8px;top:38px;width:317px;height:19px;overflow:hidden;">
                         <p class="Body"><span class="C-2">Email</span></p>
                     </div>
                 </label>
-                <input id="Email" name="Email" class="OBJ-2" maxlength="32" placeholder="Enter username..." style="position:absolute;left:8px;top:57px;width:317px;height:22px;">
-                <label for="Password">
+                <input id="edit_10" name="Email" class="OBJ-3" maxlength="32" placeholder="Enter email..." style="position:absolute;left:8px;top:57px;width:317px;height:22px;">
+                <label for="edit_11">
                     <div style="position:absolute;left:8px;top:89px;width:317px;height:19px;overflow:hidden;">
                         <p class="Body"><span class="C-2">Password</span></p>
                     </div>
                 </label>
-                <input id="Password" name="Password" class="OBJ-2" maxlength="32" type="password" placeholder="Enter password" style="position:absolute;left:8px;top:108px;width:317px;height:22px;">
-                <input name="Submit" class="OBJ-3" type="submit" value="Submit" style="position:absolute;left:8px;top:140px;width:317px;height:22px;">
+                <input id="edit_11" name="Password" class="OBJ-3" maxlength="32" type="password" placeholder="Enter password" style="position:absolute;left:8px;top:108px;width:317px;height:22px;">
+                <input name="Submit" class="OBJ-4" type="submit" value="Submit" style="position:absolute;left:8px;top:140px;width:317px;height:22px;">
             </form>
-            <img alt="" src="../static/images/wp4cc70ae1_06.png" style="position:absolute;left:0px;top:0px;width:1200px;height:60px;">
-            <img alt="" src="../static/images/wp1d19ec32_06.png" style="position:absolute;left:0px;top:930px;width:1200px;height:70px;">
-            <a href="register.html" id="loginRegisterButton" class="OBJ-4 ActiveButton" style="position:absolute;left:550px;top:381px;width:101px;height:30px;">
-                <span>Register</span>
-            </a>
         </div>
     </body>
 </html>

@@ -4,6 +4,8 @@
       <w>aboslute</w>
       <w>addestimate</w>
       <w>addspading</w>
+      <w>addworkpack</w>
+      <w>aeaea</w>
       <w>aestbasetfield</w>
       <w>affecf</w>
       <w>alky</w>
@@ -42,6 +44,7 @@
       <w>deleteprefabitem</w>
       <w>deletereinstateitem</w>
       <w>deletespadingitem</w>
+      <w>delworkpackbutton</w>
       <w>demolength</w>
       <w>demolengthbaseform</w>
       <w>demolengthmanhours</w>
@@ -111,6 +114,7 @@
       <w>estschedule</w>
       <w>estschedulebox</w>
       <w>estschedulefield</w>
+      <w>ffdc</w>
       <w>ffeddba</w>
       <w>fieldwelditem</w>
       <w>fieldweldmanhours</w>
@@ -244,10 +248,18 @@
       <w>workpackselected</w>
       <w>wpca</w>
       <w>wpdetail</w>
+      <w>wpfd</w>
+      <w>wrkpack</w>
+      <w>wrkpacklead</w>
+      <w>wrkpacklineclass</w>
+      <w>wrkpacklinenum</w>
+      <w>wrkpackproject</w>
+      <w>wrkpackzone</w>
       <w>wsgi</w>
       <w>wyshtmls</w>
       <w>wysiwygwebbuilder</w>
       <w>yeblexr</w>
+      <w>zoner</w>
     </words>
   </dictionary>
 </component>
