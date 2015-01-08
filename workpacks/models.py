@@ -14,9 +14,9 @@ class Lead(models.Model):
 
 
 class Workpack(models.Model):
-    workpacknumber = models.CharField(unique=True, max_length=30, blank=True)
-    workpacklineclass = models.CharField(max_length=30, blank=True)
-    workpacklinenumber = models.CharField(max_length=30, blank=True)
+    workpacknumber = models.CharField(unique=True, max_length=30, blank=True, null=True)
+    workpacklineclass = models.CharField(max_length=30, blank=True, null=True)
+    workpacklinenumber = models.CharField(max_length=30, blank=True, null=True)
     datecreated = models.DateField(blank=True, null=True)
     client = models.ForeignKey(Client, blank=True, null=True)
     lead = models.ForeignKey(Lead, blank=True, null=True)

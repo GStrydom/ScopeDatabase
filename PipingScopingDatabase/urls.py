@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 
                        url(r'deletepack/$', 'workpacks.views.deletepack', name="deletepack"),
 
-                       url(r'editpack/$', 'workpacks.views.editworkpack', name="editpack"),
+                       url(r'editpack/(?P<workpack_id>\d+)/$', 'workpacks.views.editworkpack', name="editpack"),
 
                        url(r'^newfieldweld/', 'estimates.views.getfieldweldbase', name='getfieldweldbase'),
                        url(r'^fieldwelds/get/(?P<fieldweld_id>\d+)/$', 'estimates.views.editfieldweld',
@@ -44,6 +44,8 @@ urlpatterns = patterns('',
                        url(r'^newflangeri/$', 'estimates.views.getflangeribase', name='newflangeri'),
 
                        url(r'^prefabs/$', 'materials.views.showprefabitems', name='showprefabs'),
+                       url(r'^create-prefab/$', 'materials.views.createprefabitem', name='createprefab'),
+
                        url(r'^reinstates/$', 'materials.views.showreinstateitems', name='showreinstates'),
                        url(r'^spadings/$', 'materials.views.showspadingitems', name='showspadings'),
 

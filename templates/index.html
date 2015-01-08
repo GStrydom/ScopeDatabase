@@ -121,11 +121,33 @@
             .OBJ-13.Disabled span,a:link.OBJ-13.Disabled span,a:visited.OBJ-13.Disabled span,a:hover.OBJ-13.Disabled span,a:active.OBJ-13.Disabled span { top:2px; }
         </style>
         <script type="text/javascript" src="../static/js/jquery.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
+
+        <script>
+            $(document).ready(function() {
+                $('.workpacklinks').click(function(event) {
+                    event.preventDefault();
+                    var url = $(this).attr('href') + ' #workpackNumber';
+                    $('#workpackNumber').load(url);
+                    url = $(this).attr('href') + ' #workpackLineNumber';
+                    $('#workpackLineNumber').load(url);
+                    url = $(this).attr('href') + ' #workpackLineclass';
+                    $('#workpackLineclass').load(url);
+                    url = $(this).attr('href') + ' #workpackProject';
+                    $('#workpackProject').load(url);
+                    url = $(this).attr('href') + ' #workpackLead';
+                    $('#workpackLead').load(url);
+                    url = $(this).attr('href') + ' #workpackZone';
+                    $('#workpackZone').load(url);
+                });
+            });
+        </script>
+
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
@@ -159,7 +181,11 @@
             <div style="position:absolute;left:23px;top:13px;width:318px;height:33px;overflow:hidden;">
                 <p class="Body"><span class="C-1">Piping Scope Database</span></p>
             </div>
-            <div style="position:absolute;left:10px;top:146px;width:181px;height:725px;"></div>
+            <div style="position:absolute;left:10px;top:146px;width:181px;height:725px;text-align:center;font-size:18px;">
+                {% for workpack in workpacks %}
+                    <a href="/workpacks/get/{{ workpack.id }}" class="workpacklinks">{{ workpack.workpacknumber }}</a>
+                {% endfor %}
+            </div>
             <div class="OBJ-7" style="position:absolute;left:216px;top:135px;width:941px;height:766px;">
                 <img src="../static/images/wpa89ffdc4_06.png" alt="" width="888" height="602" style="position:absolute;left:27px;top:63px;width:888px;height:602px;">
                 <div style="position:absolute;left:146px;top:127px;width:164px;height:27px;overflow:hidden;">
@@ -207,7 +233,7 @@
                         <span>Export</span>
                     </button>
                 </div>
-                <a href="/editpack/" id="editWorkpackButton" class="OBJ-8 ActiveButton" style="position:absolute;left:147px;top:396px;width:70px;height:30px;">
+                <a href="/editpack/{{ workpack.id }}" id="editWorkpackButton" class="OBJ-8 ActiveButton" style="position:absolute;left:147px;top:396px;width:70px;height:30px;">
                     <span>Edit</span>
                 </a>
                 <div id="deleteWorkpackButton" style="position:absolute;left:228px;top:396px;width:70px;height:30px;">

@@ -43,7 +43,7 @@ def createprefabitem(request):
         else:
             pass
 
-    return render_to_response('prefab.html', context, context_instance=RequestContext(request))
+    return render_to_response('addprefab.html', context, context_instance=RequestContext(request))
 
 
 def editmaterialitem(request, materialitem_id):

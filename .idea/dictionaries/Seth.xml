@@ -1,6 +1,11 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Seth">
     <words>
+      <w>addcoldcut</w>
+      <w>adddemolength</w>
+      <w>addfieldweld</w>
+      <w>addhotcut</w>
+      <w>addinstalllength</w>
       <w>addprefab</w>
       <w>addreinstate</w>
       <w>addspade</w>
@@ -242,6 +247,7 @@
       <w>homecons</w>
       <w>homepageview</w>
       <w>hotcurhrs</w>
+      <w>hotcut</w>
       <w>hotcutform</w>
       <w>hotcuthours</w>
       <w>hotcuthrs</w>
@@ -618,12 +624,15 @@
       <w>workpack</w>
       <w>workpackid</w>
       <w>workpackinner</w>
+      <w>workpacklead</w>
       <w>workpacklineclass</w>
       <w>workpacklinenumber</w>
       <w>workpacklinks</w>
       <w>workpacknumber</w>
+      <w>workpackproject</w>
       <w>workpacks</w>
       <w>workpackwrapper</w>
+      <w>workpackzone</w>
       <w>wpbb</w>
       <w>wpimages</w>
       <w>wpinfo</w>

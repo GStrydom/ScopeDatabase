@@ -25,13 +25,6 @@
             .OBJ-4 { border:1px solid #000000;border-radius:2px / 2px;background:#d2d2d2;font-family:Tahoma;text-align:center;font-size:16px;color:#000000; }
         </style>
         <script type="text/javascript" src="../static/js/jquery.js"></script>
-        <script type="text/javascript" src="../static/js/jquery.validate.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-            $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
-            $("#form_13").validate({ onkeyup: false, showErrors: function(errorMap, errorList) { if (errorList.length) alert(errorList[0].message); }, onclick: false, rules: { 'Email': { email: true }  }, onfocusout: false, messages: { 'Email': { email: "Please enter a valid email address" }  } });
-            });
-        </script>
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
@@ -44,13 +37,13 @@
                 <span>Register</span>
             </a>
             <img alt="" src="../static/images/wpfd81c707_06.png" style="position:absolute;left:181px;top:121px;width:838px;height:410px;">
-            <form name="loginform" id="form_13" method="post" target="_self" class="OBJ-2" style="position:absolute;left:433px;top:186px;width:335px;height:174px;">
+            <form name="loginform" id="form_13" method="post" target="_self" class="OBJ-2" style="position:absolute;left:433px;top:186px;width:335px;height:174px;">{% csrf_token %}
                 <div style="position:absolute;left:8px;top:8px;width:319px;height:22px;overflow:hidden;">
                     <p class="Body P-1"><span class="C-1">Login Form</span></p>
                 </div>
                 <label for="edit_10">
                     <div style="position:absolute;left:8px;top:38px;width:317px;height:19px;overflow:hidden;">
-                        <p class="Body"><span class="C-2">Email</span></p>
+                        <p class="Body"><span class="C-2">Username</span></p>
                     </div>
                 </label>
                 <input id="edit_10" name="Email" class="OBJ-3" maxlength="32" placeholder="Enter email..." style="position:absolute;left:8px;top:57px;width:317px;height:22px;">
