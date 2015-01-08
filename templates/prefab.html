@@ -85,7 +85,7 @@
             .P-1 { text-align:center;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#fff9f9;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
             .C-2 { line-height:18.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#fff9f9;background-color:transparent;text-decoration:none;font-variant:normal;font-size:16.0px;vertical-align:0; }
             .TC-2 { vertical-align:top;background-color:#16000f;padding:1px;border-top:none;border-right:none;border-bottom:1px solid #000000;border-left:none; }
-            .TC-3 { vertical-align:top;padding:1px 4px;border:1px solid #000000; }
+            .TC-3 { vertical-align:middle;padding:1px 4px;border:1px solid #000000;text-align: center }
             .P-2 { text-align:center;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:13.0px;vertical-align:0; }
             .C-3 { line-height:16.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:13.3px;vertical-align:0; }
             .TC-4 { vertical-align:top;padding:1px;border:1px solid #000000; }
@@ -135,6 +135,7 @@
                 <a href="/create-prefab/" id="addPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:14px;top:13px;width:70px;height:30px;">
                     <span>Add</span>
                 </a>
+
                 <table border="1" class="OBJ-9" style="position:absolute;left:14px;top:70px;width:907px;height:68px;">
                     <col style="width:152px;">
                     <col style="width:152px;">
@@ -162,27 +163,31 @@
                             <p class="Table-Body P-1"><span class="C-2"><br></span></p>
                         </td>
                     </tr>
-                    <tr style="height:39px;">
-                        <td class="TC-3">
-                            <p class="Table-Body P-2"><span class="C-3"><br></span></p>
-                        </td>
-                        <td class="TC-3">
-                            <p class="Table-Body P-2"><span class="C-3"><br></span></p>
-                        </td>
-                        <td class="TC-3">
-                            <p class="Table-Body P-2"><span class="C-3"><br></span></p>
-                        </td>
-                        <td class="TC-4">
-                            <p class="Table-Body P-2"><span class="C-3"><br></span></p>
-                        </td>
-                        <td class="TC-5">
-                            <p class="Table-Body P-2"><a href="prefab.html" class="C-4">Edit</a></p>
-                        </td>
-                        <td class="TC-5">
-                            <p class="Table-Body P-2"><a href="prefab.html" class="C-4">Delete</a></p>
-                        </td>
-                    </tr>
+
+                    {% for prefab in prefabs %}
+                        <tr style="height:25px;">
+                            <td class="TC-3">
+                                <p class="Table-Body P-2"><span class="C-3">{{ prefab.lineclass }}</span></p>
+                            </td>
+                            <td class="TC-3">
+                                <p class="Table-Body P-2"><span class="C-3">{{ prefab.diameter }}</span></p>
+                            </td>
+                            <td class="TC-3">
+                                <p class="Table-Body P-2"><span class="C-3">{{ prefab.name }}</span></p>
+                            </td>
+                            <td class="TC-4">
+                                <p class="Table-Body P-2"><span class="C-3">{{ prefab.quantity }}</span></p>
+                            </td>
+                            <td class="TC-5">
+                                <p class="Table-Body P-2"><a href="prefab.html" class="C-4">Edit</a></p>
+                            </td>
+                            <td class="TC-5">
+                                <p class="Table-Body P-2"><a href="prefab.html" class="C-4">Delete</a></p>
+                            </td>
+                        </tr>
+                    {% endfor %}
                 </table>
+
             </div>
             <div style="position:absolute;left:10px;top:164px;width:177px;height:718px;"></div>
         </div>

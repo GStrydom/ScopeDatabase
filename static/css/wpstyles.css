@@ -12,3 +12,29 @@ a:active {color:#393939;text-decoration:underline;}
 .Body { text-align:left;margin:0px 0px 12px;text-indent:0.0px;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
 .Normal { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
 .Table-Body { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
+
+#workpacknumberlabel {
+    float: left;
+}
+
+#workpacknumbervalue {
+    float: left;
+    margin-left: 45px;
+}
+
+#workpacklinenumberlabel {
+    clear: left;
+    margin-top: 10px;
+    float: left;
+}
+
+#workpacklinenumbervalue {
+    float: left;
+    margin-left: 20px;
+    margin-top: 11px;
+}
+
+#workpacklineclasslabel {
+    clear: left;
+    margin-top: 10px;
+}

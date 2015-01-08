@@ -5,23 +5,34 @@
     <title></title>
 </head>
 <body>
-    <div id="workpackNumber">
-        {{ workpack.workpacknumber }}
-    </div>
-    <div id="workpackLineNumber">
-        {{ workpack.workpacklinenumber }}
-    </div>
-    <div id="workpackLineclass">
-        {{ workpack.workpacklineclass }}
-    </div>
-    <div id="workpackProject">
-        {{ workpack.project }}
-    </div>
-    <div id="workpackLead">
-        {{ workpack.lead }}
-    </div>
-    <div id="workpackZone">
-        {{ workpack.zone }}
+    <div class="workpackInfo">
+        <div id="workpacknumberlabel">Workpack Number:</div>
+        <div id="workpacknumbervalue">
+            <a href="/editpack/{{ workpack.id }}" title="Click to update or remove current workpack.">{{ workpack.workpacknumber }}</a>
+        </div>
+        <div id="workpacklinenumberlabel">Workpack Linenumber:</div>
+        <div id="workpacklinenumbervalue">
+            {{ workpack.workpacklinenumber }}
+        </div>
+        <div id="workpacklineclasslabel">Workpack Lineclass:</div>
+        <div id="workpacklineclassvalue">
+            {{ workpack.workpacklineclass }}
+        </div>
+        <div id="workpackprojectlabel">Workpack Project:</div>
+        <div id="workpackprojectvalue">
+            {{ workpack.project }}
+        </div>
+        <div id="workpackleadlabel">Workpack Lead:</div>
+        <div id="workpackleadvalue">
+            {{ workpack.lead }}
+        </div>
+        <div id="workpackzonelabel">Workpack Zone:</div>
+        <div id="workpackzonevalue">
+            {{ workpack.zone }}
+        </div>
+        <div id="explaindiv">
+            Click on the workpack number to update or remove the pack...
+        </div>
     </div>
 </body>
 </html>

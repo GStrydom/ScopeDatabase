@@ -1,13 +1,13 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.core.context_processors import csrf
 from django.template import RequestContext
-from django.db import User
 
 from profiles.models import UserProfile
 
 from .models import Workpack
 from .classes import BaseWorkPack
-from projects.models import Project
+
+from django.contrib.auth.models import User
 
 import datetime
 
@@ -15,22 +15,27 @@ import datetime
 def createworkpack(request):
     context = dict()
     context.update(csrf(request))
+    context['usersname'] = request.user.username
     if request.method == 'POST':
         workpack = BaseWorkPack(
             wrkpacknum=request.POST['addWorkpackNumberBox'],
             wrkpacklinenum=request.POST['addWorkpackLineNumberBox'],
             wrkpacklineclass=request.POST['addWorkpackLineclassBox'],
             wrkpackproject=request.POST['addWorkpackProjectBox'],
-            wrkpacklead=User.objects.filter(username__exact=request.user.username),
-            wrkpackzone=request.POST['addWorkpackZoneBox']
+            wrkpackzone=request.POST['addWorkpackZoneBox'],
+            wrkpacklead=request.POST['addWorkpackLeadBox']
         )
+
+        username = User.objects.filter(username__exact=request.user.username)
+        user = UserProfile.objects.filter(user__exact=request.user)
+        users = UserProfile.objects.all()
+        print user
 
         saved_workpack = Workpack(
             workpacknumber=workpack.workpacknumber,
             workpacklinenumber=workpack.workpacklinenumber,
             workpacklineclass=workpack.workpacklineclass,
             datecreated=datetime.datetime.today(),
-            client=UserProfile.objects.filter(username__exact=request.user.username).company,
             lead=workpack.workpacklead,
             project=workpack.workpackproject,
             zone=workpack.workpackzone
@@ -47,7 +52,7 @@ def showworkpack(request, workpack_id):
     context['workpack'] = Workpack.objects.get(id=workpack_id)
     request.session['workpackselected'] = context['workpack'].id
 
-    return render_to_response('index.html', context, context_instance=RequestContext(request))
+    return render_to_response('workpackinfo.html', context, context_instance=RequestContext(request))
 
 
 def editworkpack(request, workpack_id):

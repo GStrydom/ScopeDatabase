@@ -24,10 +24,6 @@ urlpatterns = patterns('',
                        url(r'editpack/(?P<workpack_id>\d+)/$', 'workpacks.views.editworkpack', name="editpack"),
 
                        url(r'^newfieldweld/', 'estimates.views.getfieldweldbase', name='getfieldweldbase'),
-                       url(r'^fieldwelds/get/(?P<fieldweld_id>\d+)/$', 'estimates.views.editfieldweld',
-                           name="editfieldweld"),
-                       url(r'^fieldwelds/delete/(?P<fieldweld_id>\d+)/$', 'estimates.views.deletefieldweld',
-                           name="deletefieldweld"),
 
                        url(r'^newdemolength/$', 'estimates.views.getdemolengthbase', name='newdemolength'),
 

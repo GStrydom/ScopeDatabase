@@ -128,24 +128,26 @@
             });
         </script>
 
-        <script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.OBJ-1').hide();
+                $('#addWorkpackButton').hide();
+                $('#exportWorkpackBomButton').hide();
+            })
+        </script>
+
+        <script type="text/javascript">
             $(document).ready(function() {
                 $('.workpacklinks').click(function(event) {
                     event.preventDefault();
-                    var url = $(this).attr('href') + ' #workpackNumber';
-                    $('#workpackNumber').load(url);
-                    url = $(this).attr('href') + ' #workpackLineNumber';
-                    $('#workpackLineNumber').load(url);
-                    url = $(this).attr('href') + ' #workpackLineclass';
-                    $('#workpackLineclass').load(url);
-                    url = $(this).attr('href') + ' #workpackProject';
-                    $('#workpackProject').load(url);
-                    url = $(this).attr('href') + ' #workpackLead';
-                    $('#workpackLead').load(url);
-                    url = $(this).attr('href') + ' #workpackZone';
-                    $('#workpackZone').load(url);
-                });
-            });
+                    $('#welcomediv').hide();
+                    $('#addWorkpackButton').show();
+                    $('#exportWorkpackBomButton').show();
+                    $('.OBJ-1').show();
+                    var url = $(this).attr('href') + ' .workpackInfo';
+                    $('#workpackInfo').load(url);
+                })
+            })
         </script>
 
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
@@ -153,7 +155,7 @@
     </head>
     <body style="height:1020px;background:#cdcdcd;">
         <div id="divMain" style="background:#ffffff;margin-left:auto;margin-right:auto;position:relative;width:1197px;height:1000px;top:10px;">
-            <img alt="" src="../static/images/wp7b2cf7b4_06.png" style="position:absolute;left:0px;top:0px;width:1197px;height:59px;">
+            <img alt="" src="../static/images/wp7b2cf7b4_06.png" style="position:absolute;left:0px;top:0px;width:1197px;height:59px;" id="pic1">
             <img alt="" src="../static/images/wp0f91b551_06.png" style="position:absolute;left:0px;top:930px;width:1197px;height:70px;">
             <div style="position:absolute;left:1px;top:59px;width:1198px;height:872px;">
                 <div class="OBJ-1" style="position:absolute;left:216px;top:21px;width:943px;height:54px;">
@@ -188,41 +190,10 @@
             </div>
             <div class="OBJ-7" style="position:absolute;left:216px;top:135px;width:941px;height:766px;">
                 <img src="../static/images/wpa89ffdc4_06.png" alt="" width="888" height="602" style="position:absolute;left:27px;top:63px;width:888px;height:602px;">
-                <div style="position:absolute;left:146px;top:127px;width:164px;height:27px;overflow:hidden;">
-                    <p class="Body"><span class="C-2">Workpack Number:</span></p>
-                </div>
-                <div style="position:absolute;left:364px;top:129px;width:154px;height:27px;overflow:hidden;">
-                    <p class="Body"><span class="C-3" id="workpackNumber"></span></p>
-                </div>
-                <div style="position:absolute;left:146px;top:167px;width:190px;height:30px;overflow:hidden;">
-                    <p class="Body"><span class="C-4">Workpack Linenumber<span class="C-5">:</span></span></p>
-                </div>
-                <div style="position:absolute;left:364px;top:168px;width:136px;height:27px;overflow:hidden;">
-                    <p class="Body"><span class="C-3" id="workpackLineNumber"></span></p>
-                </div>
-                <div style="position:absolute;left:146px;top:210px;width:181px;height:26px;overflow:hidden;">
-                    <p class="Body"><span class="C-6">Workpack Lineclass:</span></p>
-                </div>
-                <div style="position:absolute;left:364px;top:210px;width:148px;height:26px;overflow:hidden;">
-                    <p class="Body"><span class="C-3" id="workpackLineclass"></span></p>
-                </div>
-                <div style="position:absolute;left:146px;top:250px;width:85px;height:30px;overflow:hidden;">
-                    <p class="Body"><span class="C-7">Project:</span></p>
-                </div>
-                <div style="position:absolute;left:364px;top:248px;width:207px;height:25px;overflow:hidden;">
-                    <p class="Body"><span class="C-3" id="workpackProject"></span></p>
-                </div>
-                <div style="position:absolute;left:364px;top:294px;width:199px;height:25px;overflow:hidden;">
-                    <p class="Body"><span class="C-3" id="workpackLead"></span></p>
-                </div>
-                <div style="position:absolute;left:146px;top:294px;width:85px;height:30px;overflow:hidden;">
-                    <p class="Body"><span class="C-8">Lead:</span></p>
-                </div>
-                <div style="position:absolute;left:146px;top:337px;width:105px;height:27px;overflow:hidden;">
-                    <p class="Body"><span class="C-9">Area / Zone:</span></p>
-                </div>
-                <div style="position:absolute;left:364px;top:334px;width:199px;height:30px;overflow:hidden;">
-                    <p class="Body"><span class="C-3" id="workpackZone"></span></p>
+                <div id="workpackInfo" style="position: absolute; left: 146px; top: 127px;">
+                    <div id="welcomediv">
+                        Select a workpack on the left to continue...
+                    </div>
                 </div>
                 <a href="/new-workpack/" id="addWorkpackButton" class="OBJ-8 ActiveButton" style="position:absolute;left:26px;top:24px;width:70px;height:30px;">
                     <span>Add</span>
@@ -231,14 +202,6 @@
                 <div id="exportWorkpackBomButton" style="position:absolute;left:810px;top:26px;width:105px;height:30px;">
                     <button type="button" class="OBJ-13 ActiveButton" style="width:105px;height:30px;">
                         <span>Export</span>
-                    </button>
-                </div>
-                <a href="/editpack/{{ workpack.id }}" id="editWorkpackButton" class="OBJ-8 ActiveButton" style="position:absolute;left:147px;top:396px;width:70px;height:30px;">
-                    <span>Edit</span>
-                </a>
-                <div id="deleteWorkpackButton" style="position:absolute;left:228px;top:396px;width:70px;height:30px;">
-                    <button type="button" class="OBJ-8 ActiveButton" style="width:70px;height:30px;">
-                        <span>Delete</span>
                     </button>
                 </div>
             </div>

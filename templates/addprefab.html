@@ -93,11 +93,32 @@
             .OBJ-10 { background:#ffffff; }
         </style>
         <script type="text/javascript" src="../static/js/jquery.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#addPrefabLineclassBox').on('change', function() {
+                    var selected = this.value;
+                    $.ajax({
+                        url: '/create-prefab/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lineclassSelected: selected
+                        },
+                        success: function() {
+
+                        }
+                    });
+                });
+            })
+        </script>
+
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
@@ -139,19 +160,39 @@
                 <p class="Body"><span class="C-2">Diameter:</span></p>
             </div>
             <div style="position:absolute;left:260px;top:293px;width:103px;height:29px;overflow:hidden;">
+                <p class="Body"><span class="C-2">Name:</span></p>
+            </div>
+            <div style="position:absolute;left:260px;top:333px;width:103px;height:29px;overflow:hidden;">
                 <p class="Body"><span class="C-2">Quantity:</span></p>
             </div>
-            <a href="/prefabs/" id="cancelAddPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:260px;top:349px;width:101px;height:30px;">
+            <a href="/prefabs/" id="cancelAddPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:260px;top:379px;width:101px;height:30px;">
                 <span>Cancel</span>
             </a>
-            <div id="savePrefabButton" style="position:absolute;left:376px;top:349px;width:97px;height:30px;">
-                <button type="button" class="OBJ-9 ActiveButton" style="width:97px;height:30px;">
-                    <span>Save</span>
-                </button>
+            <div id="savePrefabButton" style="position:absolute;left:376px;top:379px;width:97px;height:30px;">
+                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addPrefabForm">
             </div>
-            <input name="addPrefabLineclassBox" class="OBJ-10" maxlength="32" placeholder="Enter lineclass..." style="position:absolute;left:383px;top:208px;width:145px;height:22px;">
-            <input name="addPrefabLineclassBox" class="OBJ-10" maxlength="32" placeholder="Enter lineclass..." style="position:absolute;left:383px;top:249px;width:145px;height:22px;">
-            <input name="addPrefabLineclassBox" class="OBJ-10" maxlength="32" placeholder="Enter lineclass..." style="position:absolute;left:383px;top:293px;width:145px;height:22px;">
+            <form id="addPrefabForm" action="" method="post">
+                <select name="addPrefabLineclassBox" id="addPrefabLineclassBox" class="OBJ-10" style="position:absolute;left:383px;top:208px;width:145px;height:22px;border: 1px solid #000000">
+                    <option value="11011">11011</option>
+                    <option value="11071">11071</option>
+                    <option value="11261">11261</option>
+                    <option value="31011">31011</option>
+                    <option value="31071">31071</option>
+                    <option value="31261">31261</option>
+                </select>
+
+                <select name="addPrefabDiameterBox" id="addPrefabDiameterBox" class="OBJ-10" style="position:absolute;left:383px;top:249px;width:145px;height:22px;">
+                    <option value="15">15</option>
+                </select>
+
+                <select name="addPrefabNameBox" id="addPrefabnameBox" class="OBJ-10" style="position:absolute;left:383px;top:293px;width:145px;height:22px;">
+                    {% for value in line11011 %}
+                        <option value={{ value.id }}>{{ value.itemname }}</option>
+                    {% endfor %}
+                </select>
+
+                <input name="addPrefabQuantityBox" id="addPrefabQuantityBox" class="OBJ-10" maxlength="32" placeholder="Enter quantity..." style="position:absolute;left:383px;top:333px;width:145px;height:22px;">
+            </form>
         </div>
     </body>
 </html>

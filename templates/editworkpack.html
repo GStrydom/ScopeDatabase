@@ -156,18 +156,23 @@
             <div style="position:absolute;left:274px;top:404px;width:105px;height:27px;overflow:hidden;">
                 <p class="Body"><span class="C-8">Area / Zone:</span></p>
             </div>
-            <input name="addWorkpackNumberBox" class="OBJ-8" maxlength="32" placeholder="Enter workpack number..." style="position:absolute;left:483px;top:192px;width:214px;height:22px;">
-            <input name="addWorkpackLineNumberBox" class="OBJ-8" maxlength="32" placeholder="Enter line number..." style="position:absolute;left:485px;top:233px;width:214px;height:22px;">
-            <input name="addWorkpackLineclassBox" class="OBJ-8" maxlength="32" placeholder="Enter lineclass..." style="position:absolute;left:485px;top:279px;width:214px;height:22px;">
-            <input name="addWorkpackProjectBox" class="OBJ-8" maxlength="32" placeholder="Enter project name..." style="position:absolute;left:485px;top:319px;width:214px;height:22px;">
-            <input name="addWorkpackLeadBox" class="OBJ-8" maxlength="32" placeholder="Enter lead name..." style="position:absolute;left:485px;top:363px;width:214px;height:22px;">
-            <input name="addWorkpackZonerBox" class="OBJ-8" maxlength="32" placeholder="Enter zone name..." style="position:absolute;left:485px;top:403px;width:214px;height:22px;">
+            <input name="addWorkpackNumberBox" class="OBJ-8" maxlength="32" placeholder="{{ workpack.workpacknumber }}" style="position:absolute;left:483px;top:192px;width:214px;height:22px;">
+            <input name="addWorkpackLineNumberBox" class="OBJ-8" maxlength="32" placeholder="{{ workpack.workpacklinenumber }}" style="position:absolute;left:485px;top:233px;width:214px;height:22px;">
+            <input name="addWorkpackLineclassBox" class="OBJ-8" maxlength="32" placeholder="{{ workpack.workpacklineclass }}" style="position:absolute;left:485px;top:279px;width:214px;height:22px;">
+            <input name="addWorkpackProjectBox" class="OBJ-8" maxlength="32" placeholder="{{ workpack.project }}" style="position:absolute;left:485px;top:319px;width:214px;height:22px;">
+            <input name="addWorkpackLeadBox" class="OBJ-8" maxlength="32" placeholder="{{ workpack.lead }}" style="position:absolute;left:485px;top:363px;width:214px;height:22px;">
+            <input name="addWorkpackZonerBox" class="OBJ-8" maxlength="32" placeholder="{{ workpack.zone }}" style="position:absolute;left:485px;top:403px;width:214px;height:22px;">
             <a href="/home/" id="cancelWorkpackButton" class="OBJ-9 ActiveButton" style="position:absolute;left:274px;top:470px;width:112px;height:30px;">
                 <span>Cancel</span>
             </a>
             <div id="saveWorkpackButton" style="position:absolute;left:409px;top:470px;width:103px;height:30px;">
                 <button type="button" class="OBJ-10 ActiveButton" style="width:103px;height:30px;">
                     <span>Save</span>
+                </button>
+            </div>
+            <div id="deleteWorkpackButton" style="position:absolute;left:228px;top:396px;width:70px;height:30px;">
+                <button type="button" class="OBJ-8 ActiveButton" style="width:70px;height:30px;">
+                    <span>Delete</span>
                 </button>
             </div>
         </div>

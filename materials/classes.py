@@ -1,4 +1,5 @@
-from .models import Lineclass11011
+from .models import Lineclass11011, Workpack
+from materials.models import MaterialItem
 
 
 class BasePrefabItem:
@@ -10,10 +11,8 @@ class BasePrefabItem:
 
     def get_code(self, lineclass):
         if lineclass == '11011':
-            self.code = Lineclass11011.objects.filter()
-
-    def attach_to_workpack(self):
-        pass
+            self.code = Lineclass11011.objects.get(dn1__exact=self.diameter).code
+            return self.code
 
     def edit_item(self, itemid):
         pass
