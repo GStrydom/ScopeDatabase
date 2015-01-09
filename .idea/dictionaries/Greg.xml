@@ -12,14 +12,17 @@
       <w>ammended</w>
       <w>areafield</w>
       <w>backends</w>
+      <w>baseestimatestable</w>
       <w>bcabcdc</w>
       <w>boltup</w>
+      <w>bomtemplate</w>
       <w>borderestdiv</w>
       <w>builtwithwwb</w>
       <w>caee</w>
       <w>clickjacking</w>
       <w>clientfield</w>
       <w>coldcut</w>
+      <w>coldcuts</w>
       <w>condiv</w>
       <w>cpmlcons</w>
       <w>createestcons</w>
@@ -31,6 +34,7 @@
       <w>createprefabmatlist</w>
       <w>createprefabricationlist</w>
       <w>createreinstateitem</w>
+      <w>createreinstates</w>
       <w>createspadingitem</w>
       <w>createworkpack</w>
       <w>createwpcons</w>
@@ -40,6 +44,7 @@
       <w>defests</w>
       <w>defestsform</w>
       <w>deletefieldweld</w>
+      <w>deletepacklink</w>
       <w>deleteprefab</w>
       <w>deleteprefabitem</w>
       <w>deletereinstateitem</w>
@@ -48,10 +53,13 @@
       <w>demolength</w>
       <w>demolengthbaseform</w>
       <w>demolengthmanhours</w>
+      <w>demolengths</w>
+      <w>displayestimates</w>
       <w>dsmallsize</w>
       <w>editfieldweld</w>
       <w>editfieldwelds</w>
       <w>editfwcons</w>
+      <w>editlinks</w>
       <w>editprefab</w>
       <w>editprefabform</w>
       <w>editprefabitem</w>
@@ -84,6 +92,7 @@
       <w>esthotcutbox</w>
       <w>esthotcutfield</w>
       <w>estimatedefaults</w>
+      <w>estimatestable</w>
       <w>estimatewrapper</w>
       <w>estinstall</w>
       <w>estinstallbox</w>
@@ -114,7 +123,9 @@
       <w>estschedule</w>
       <w>estschedulebox</w>
       <w>estschedulefield</w>
+      <w>exceltemplate</w>
       <w>explaindiv</w>
+      <w>exportbom</w>
       <w>ffdc</w>
       <w>ffeddba</w>
       <w>fieldwelditem</w>
@@ -151,25 +162,30 @@
       <w>grindprepduration</w>
       <w>grindprepmanhours</w>
       <w>grindprepresource</w>
+      <w>hotcuts</w>
       <w>hotcutvar</w>
       <w>inspectionreport</w>
       <w>installisolation</w>
       <w>installlength</w>
       <w>installlengthbase</w>
       <w>installlengthbaseform</w>
+      <w>installlengths</w>
       <w>instiso</w>
       <w>instrumentsforboltup</w>
       <w>itemid</w>
       <w>itemname</w>
       <w>landers</w>
       <w>leadfield</w>
+      <w>linec</w>
       <w>lineclasses</w>
       <w>lineclassselected</w>
       <w>loginuser</w>
       <w>mainbuts</w>
+      <w>materialitems</w>
       <w>matlist</w>
       <w>mouseover</w>
       <w>msmallsize</w>
+      <w>nameholdertable</w>
       <w>newestform</w>
       <w>newestimate</w>
       <w>newprefab</w>
@@ -206,6 +222,7 @@
       <w>profilepic</w>
       <w>projectfield</w>
       <w>qtys</w>
+      <w>reinsates</w>
       <w>riggersforboltup</w>
       <w>rigoutline</w>
       <w>rigoutlinefit</w>
@@ -236,6 +253,7 @@
       <w>splitlineclass</w>
       <w>subestdefs</w>
       <w>subprefab</w>
+      <w>tablerows</w>
       <w>tackandweldernorm</w>
       <w>tastypie</w>
       <w>textboxes</w>
@@ -272,6 +290,7 @@
       <w>wpca</w>
       <w>wpdetail</w>
       <w>wpfd</w>
+      <w>wpslider</w>
       <w>wrkpack</w>
       <w>wrkpacklead</w>
       <w>wrkpacklineclass</w>
@@ -281,6 +300,7 @@
       <w>wsgi</w>
       <w>wyshtmls</w>
       <w>wysiwygwebbuilder</w>
+      <w>xlsx</w>
       <w>yeblexr</w>
       <w>zoner</w>
     </words>

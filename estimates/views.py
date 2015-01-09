@@ -2,34 +2,97 @@ from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.template import RequestContext
 from django.core.context_processors import csrf
 
-from .models import Pipingnorms, FieldWeldsBase
+from .models import FieldWeldsBase, DemoLengthBase, InstallLengthBase, NumberOfHotCutsBase, \
+    NumberOfColdCutsBase
 from .models import SpadingNorms
 
 from workpacks.models import Workpack
 
+from .classes import FieldWeld, DemoLength, InstallLength, HotCut, ColdCut
 
-def createestimates(request):
+import datetime
+
+
+def displayestimates(request):
     context = {}
     context.update(csrf(request))
-    context['workpacks'] = Workpack.objects.all()
+
+    fieldwelds = FieldWeldsBase.objects.all()
+    demolengths = DemoLengthBase.objects.all()
+    installlengths = InstallLengthBase.objects.all()
+    coldcuts = NumberOfColdCutsBase.objects.all()
+    hotcuts = NumberOfHotCutsBase.objects.all()
+
+    context['items'] = [fieldwelds, demolengths, installlengths, coldcuts, hotcuts]
 
     return render_to_response('estimates.html', context, context_instance=RequestContext(request))
 
 
 def getfieldweldbase(request):
     context = dict()
+    context.update(csrf(request))
+    if request.method == 'POST':
+        if 'addFWLineclassBox' in request.POST:
+            field_weld_item = FieldWeld(
+                lineclass=request.POST['addFWLineclassBox'],
+                diameter=request.POST['addFWDiameterBox'],
+                quantity=request.POST['addFWQuantityBox']
+            )
+            saved_fw = FieldWeldsBase(
+                lineclasses=field_weld_item.lineclass,
+                diameter=field_weld_item.diameter,
+                numberoffieldwelds=field_weld_item.quantity,
+                created=datetime.datetime.today(),
+                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+            )
+            saved_fw.save()
+            return HttpResponseRedirect('/estimates/')
 
     return render_to_response('addfieldweld.html', context, context_instance=RequestContext(request))
 
 
 def getdemolengthbase(request):
     context = dict()
+    context.update(csrf(request))
+    if request.method == 'POST':
+        if 'addDLLineclassBox' in request.POST:
+            demo_length_item = DemoLength(
+                lineclass=request.POST['addDLLineclassBox'],
+                diameter=request.POST['addDLDiameterBox'],
+                quantity=request.POST['addDLQuantityBox']
+            )
+            saved_dl = DemoLengthBase(
+                lineclasses=demo_length_item.lineclass,
+                diameter=demo_length_item.diameter,
+                numberoffieldwelds=demo_length_item.quantity,
+                created=datetime.datetime.today(),
+                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+            )
+            saved_dl.save()
+            return HttpResponseRedirect('/estimates/')
 
     return render_to_response('adddemolength.html', context, context_instance=RequestContext(request))
 
 
 def getinstalllengthbase(request):
     context = dict()
+    context.update(csrf(request))
+    if request.method == 'POST':
+        if 'addILLineclassBox' in request.POST:
+            install_length_item = InstallLength(
+                lineclass=request.POST['addILLineclassBox'],
+                diameter=request.POST['addILDiameterBox'],
+                quantity=request.POST['addILQuantityBox']
+            )
+            saved_il = InstallLengthBase(
+                lineclasses=install_length_item.lineclass,
+                diameter=install_length_item.diameter,
+                numberoffieldwelds=install_length_item.quantity,
+                created=datetime.datetime.today(),
+                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+            )
+            saved_il.save()
+            return HttpResponseRedirect('/estimates/')
 
     return render_to_response('addinstalllength.html', context, context_instance=RequestContext(request))
 
@@ -38,27 +101,32 @@ def getflangeptbase(request):
     fwcons = dict()
 
     if fwcons['flangepressuretestbaseform'].cleaned_data['flangehndlehotcut']:
-        hotcutvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].cuttingfactorhw - 1
+        hotcutvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                                    .cleaned_data['diameter_id'])[0].cuttingfactorhw - 1
     else:
         hotcutvar = 1
 
     if fwcons['flangepressuretestbaseform'].cleaned_data['alkybandc']:
-        alkyvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].alkyfactor_b_and_c_class - 1
+        alkyvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                              .cleaned_data['diameter_id'])[0].alkyfactor_b_and_c_class - 1
     else:
         alkyvar = 0
 
     if fwcons['flangepressuretestbaseform'].cleaned_data['hacksawcutting']:
-        hacksawvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].cuttingfactorhacksaw - 1
+        hacksawvar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                                 .cleaned_data['diameter_id'])[0].cuttingfactorhacksaw - 1
     else:
         hacksawvar = 0
 
     if fwcons['flangepressuretestbaseform'].cleaned_data['fambaset']:
-        fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].fambafactor - 1
+        fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                               .cleaned_data['diameter_id'])[0].fambafactor - 1
     else:
         fambavar = 0
 
     numflanges = fwcons['flangepressuretestbaseform'].cleaned_data['numfpt']
-    manhrs = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'])[0].manhrs
+    manhrs = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                         .cleaned_data['diameter_id'])[0].manhrs
     flangeptmanhours = {
         'installisoandpt': numflanges * manhrs * (hotcutvar + alkyvar + hacksawvar + fambavar)
     }
@@ -75,17 +143,20 @@ def getflangeribase(request):
     fwcons = dict()
 
     if fwcons['flangepressuretestbaseform'].cleaned_data['alkybandc']:
-        alkyvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].alky_factor_b_and_c_class)-1
+        alkyvar = 1 + SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                                  .cleaned_data['diameter_id'][0].alky_factor_b_and_c_class)-1
     else:
         alkyvar = 0
 
     if fwcons['flangepressuretestbaseform'].cleaned_data['fambaset']:
-        fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].fambafactor)-1
+        fambavar = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                               .cleaned_data['diameter_id'][0].fambafactor)-1
     else:
         fambavar = 0
 
     rein1 = fwcons['flangereinstatebaseform'].cleaned_data['numfri']
-    rein2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform'].cleaned_data['diameter_id'][0].manhrs)
+    rein2 = SpadingNorms.objects.filter(sizes=fwcons['flangepressuretestbaseform']
+                                        .cleaned_data['diameter_id'][0].manhrs)
 
     flamgerimanhours = {
         'reinstate': rein1 * rein2 * alkyvar + fambavar
@@ -101,7 +172,8 @@ def getflangeribase(request):
 
 def calcnumberofjoints(formobj, pipenorm):
 
-    boltupnorm = pipenorm.objects.filter(pipediameter__exact=formobj.cleaned_data['diameter_id'])[0].boltupjointnormhours
+    boltupnorm = pipenorm.objects.filter(pipediameter__exact=formobj
+                                         .cleaned_data['diameter_id'])[0].boltupjointnormhours
     numjoints = formobj.cleaned_data['numjoints']
 
     numjointsmanhours = {
@@ -132,9 +204,26 @@ def calcnumberofcoldcuts(formobj, pipenorm):
 
 
 def getnumberofcoldcuts(request):
-    fwcons = dict()
+    context = dict()
+    context.update(csrf(request))
+    if request.method == 'POST':
+        if 'addDLLineclassBox' in request.POST:
+            cold_cut_item = ColdCut(
+                lineclass=request.POST['addCCLineclassBox'],
+                diameter=request.POST['addCCDiameterBox'],
+                quantity=request.POST['addCCQuantityBox']
+            )
+            saved_cc = NumberOfColdCutsBase(
+                lineclasses=cold_cut_item.lineclass,
+                diameter=cold_cut_item.diameter,
+                numberoffieldwelds=cold_cut_item.quantity,
+                created=datetime.datetime.today(),
+                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+            )
+            saved_cc.save()
+            return HttpResponseRedirect('/estimates/')
 
-    return render_to_response('addcoldcut.html', fwcons, context_instance=RequestContext(request))
+    return render_to_response('addcoldcut.html', context, context_instance=RequestContext(request))
 
 
 def calcnumberofhotcuts(formobj, pipenorm):
@@ -155,6 +244,23 @@ def calcnumberofhotcuts(formobj, pipenorm):
 
 
 def getnumberofhotcuts(request):
-    fwcons = dict()
+    context = dict()
+    context.update(csrf(request))
+    if request.method == 'POST':
+        if 'addHCLineclassBox' in request.POST:
+            hot_cut_item = HotCut(
+                lineclass=request.POST['addHCLineclassBox'],
+                diameter=request.POST['addHCDiameterBox'],
+                quantity=request.POST['addHCQuantityBox']
+            )
+            saved_hc = NumberOfHotCutsBase(
+                lineclasses=hot_cut_item.lineclass,
+                diameter=hot_cut_item.diameter,
+                numberoffieldwelds=hot_cut_item.quantity,
+                created=datetime.datetime.today(),
+                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+            )
+            saved_hc.save()
+            return HttpResponseRedirect('/estimates/')
 
-    return render_to_response('addhotcut.html', fwcons, context_instance=RequestContext(request))
+    return render_to_response('addhotcut.html', context, context_instance=RequestContext(request))

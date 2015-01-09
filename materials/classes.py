@@ -30,10 +30,7 @@ class BaseReinstateItem:
 
     def get_code(self, lineclass):
         if lineclass == '11011':
-            self.code = Lineclass11011.objects.filter()
-
-    def attach_to_workpack(self):
-        pass
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter).code
 
     def edit_item(self, itemid):
         pass

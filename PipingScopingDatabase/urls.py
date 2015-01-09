@@ -8,13 +8,13 @@ urlpatterns = patterns('',
 
                        url(r'^registration/$', 'profiles.views.register', name='register'),
 
+                       url(r'^exportbom/$', 'core.views.exportbom', name='exportbom'),
+
                        url(r'^$', 'profiles.views.loginuser', name='loginuser'),
 
                        url(r'^home/$', views.homepageview, name='homepage'),
 
                        url(r'^new-workpack/$', 'workpacks.views.createworkpack', name='createworkpack'),
-
-                       url(r'^new-estimates/$', 'estimates.views.createestimates', name="createestimates"),
 
                        url(r'^workpacks/get/(?P<workpack_id>\d+)/$', 'workpacks.views.showworkpack',
                            name="showworkpack"),
@@ -41,11 +41,14 @@ urlpatterns = patterns('',
 
                        url(r'^prefabs/$', 'materials.views.showprefabitems', name='showprefabs'),
                        url(r'^create-prefab/$', 'materials.views.createprefabitem', name='createprefab'),
+                       url(r'^edit-prefab/(?P<materialitem_id>\d+)/$', 'materials.views.editprefabitem', name='editprefab'),
 
                        url(r'^reinstates/$', 'materials.views.showreinstateitems', name='showreinstates'),
+                       url(r'^create-reinstate/$', 'materials.views.createreinstateitem', name='createreinstates'),
+
                        url(r'^spadings/$', 'materials.views.showspadingitems', name='showspadings'),
 
-                       url(r'^estimates/$', 'estimates.views.createestimates', name='createestimates'),
+                       url(r'^estimates/$', 'estimates.views.displayestimates', name='createestimates'),
 
                        url(r'^admin/', include(admin.site.urls))
                        )

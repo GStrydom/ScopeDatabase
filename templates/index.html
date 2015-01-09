@@ -124,14 +124,13 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-            $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
+            $("a.ActiveButton").bind({ mousedown:function(){if ($(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
 
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.OBJ-1').hide();
-                $('#addWorkpackButton').hide();
                 $('#exportWorkpackBomButton').hide();
             })
         </script>
@@ -141,7 +140,6 @@
                 $('.workpacklinks').click(function(event) {
                     event.preventDefault();
                     $('#welcomediv').hide();
-                    $('#addWorkpackButton').show();
                     $('#exportWorkpackBomButton').show();
                     $('.OBJ-1').show();
                     var url = $(this).attr('href') + ' .workpackInfo';
@@ -200,9 +198,9 @@
                 </a>
 
                 <div id="exportWorkpackBomButton" style="position:absolute;left:810px;top:26px;width:105px;height:30px;">
-                    <button type="button" class="OBJ-13 ActiveButton" style="width:105px;height:30px;">
+                    <a href="/exportbom/"><button type="button" class="OBJ-13 ActiveButton" style="width:105px;height:30px;">
                         <span>Export</span>
-                    </button>
+                    </button></a>
                 </div>
             </div>
         </div>

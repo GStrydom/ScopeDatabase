@@ -14,27 +14,83 @@ a:active {color:#393939;text-decoration:underline;}
 .Table-Body { text-align:left;margin:0px;text-indent:0.0px;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:16.0px;vertical-align:0; }
 
 #workpacknumberlabel {
-    float: left;
+    position: absolute;
+    width: 200px;
 }
 
 #workpacknumbervalue {
-    float: left;
-    margin-left: 45px;
+    position: absolute;
+    left: 170px;
+    width: 400px;
 }
 
 #workpacklinenumberlabel {
-    clear: left;
-    margin-top: 10px;
-    float: left;
+    position: absolute;
+    top: 30px;
+    width: 200px;
 }
 
 #workpacklinenumbervalue {
-    float: left;
-    margin-left: 20px;
-    margin-top: 11px;
+    position: absolute;
+    top: 30px;
+    left: 170px;
+    width: 400px;
 }
 
 #workpacklineclasslabel {
-    clear: left;
-    margin-top: 10px;
+    position: absolute;
+    top: 60px;
+    width: 200px;
+}
+
+#workpacklineclassvalue {
+    position: absolute;
+    top: 60px;
+    left: 170px;
+    width: 400px;
+}
+
+#workpackprojectlabel {
+    position: absolute;
+    top: 90px;
+    width: 200px;
+}
+
+#workpackprojectvalue {
+    position: absolute;
+    top: 90px;
+    left: 170px;
+    width: 400px;
+}
+
+#workpackleadlabel {
+    position: absolute;
+    top: 120px;
+    width: 200px;
+}
+
+#workpackleadvalue {
+    position: absolute;
+    top: 120px;
+    left: 170px;
+    width: 400px;
+}
+
+#workpackzonelabel {
+    position: absolute;
+    top: 150px;
+    width: 200px;
+}
+
+#workpackzonevalue {
+    position: absolute;
+    top: 150px;
+    left: 170px;
+    width: 400px;
+}
+
+#explaindiv {
+    position: absolute;
+    top: 200px;
+    width: 500px;
 }

@@ -12,7 +12,12 @@ from django.core import serializers
 
 def showprefabitems(request):
     context = dict()
-    context['prefabs'] = MaterialItem.objects.filter(type__exact='Prefabrica')
+
+    context['materialitems'] = MaterialItem.objects.filter(type__exact='Prefabrica')\
+        .filter(workpack_id__exact=request.session['workpackselected'])
+
+    context['workpacks'] = Workpack.objects.all()
+
     return render_to_response('prefab.html', context, context_instance=RequestContext(request))
 
 
@@ -45,6 +50,8 @@ def createprefabitem(request):
             saved_item.save()
         else:
             pass
+    context['workpacks'] = Workpack.objects.all()
+    context['lineclass11011'] = Lineclass11011.objects.values_list('itemname', flat=True).distinct
 
     return render_to_response('addprefab.html', context, context_instance=RequestContext(request))
 
@@ -54,7 +61,7 @@ def editprefabitem(request, materialitem_id):
     context['matitem'] = MaterialItem.objects.get(id=materialitem_id)
     context['workpacks'] = Workpack.objects.all()
 
-    return render_to_response('prefab.html', context, context_instance=RequestContext(request))
+    return render_to_response('addprefab.html', context, context_instance=RequestContext(request))
 
 
 def deleteprefabitem(request):
@@ -65,6 +72,7 @@ def deleteprefabitem(request):
 def showreinstateitems(request):
     context = dict()
     context['reinstates'] = MaterialItem.objects.filter(type__exact='Reinstatement')
+    context['workpacks'] = Workpack.objects.all()
     return render_to_response('reinstate.html', context, context_instance=RequestContext(request))
 
 
@@ -88,15 +96,16 @@ def createreinstateitem(request):
                 lineclass=item.lineclass,
                 diameter=item.diameter,
                 quantity=item.quantity,
-                workpack=item.attach_to_workpack(),
                 datecreated=datetime.datetime.today(),
-                createdby=request.user.username
+                createdby=request.user.username,
+                code=item.get_code(item.lineclass)
             )
             saved_item.save()
         else:
             pass
+    context['lineclass11011'] = Lineclass11011.objects.values_list('itemname', flat=True).distinct
 
-    return render_to_response('reinstate.html', context, context_instance=RequestContext(request))
+    return render_to_response('addreinstate.html', context, context_instance=RequestContext(request))
 
 
 def editreinstateitem(request, materialitem_id):

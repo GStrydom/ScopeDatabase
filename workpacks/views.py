@@ -57,14 +57,24 @@ def showworkpack(request, workpack_id):
 
 def editworkpack(request, workpack_id):
     context = dict()
+    context.update(csrf(request))
     context['workpack'] = Workpack.objects.get(id=workpack_id)
+
+    if request.method == 'POST':
+        if 'editWorkpackNumberBox' in request.POST:
+            context['workpack'].workpacknumber = request.POST['editWorkpackNumberBox']
+            context['workpack'].workpacklinenumber = request.POST['editWorkpackLineNumberBox']
+            context['workpack'].workpacklineclass = request.POST['editWorkpackLineclassBox']
+            context['workpack'].project = request.POST['editWorkpackProjectBox']
+            context['workpack'].lead = request.POST['editWorkpackLeadBox']
+            context['workpack'].workpackzone = request.POST['editWorkpackZoneBox']
+            context['workpack'].save()
+    HttpResponseRedirect('/home/')
+
     return render_to_response('editworkpack.html', context, context_instance=RequestContext(request))
 
 
 def deletepack(request):
-    deletecons = dict()
-    workpack = Workpack.objects.get(workpack_id=request.session['workpackselected'])
+    workpack = Workpack.objects.get(id=request.session['workpackselected'])
     workpack.delete()
-    deletecons['workpacks'] = Workpack.objects.all()
-
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('/home/')
