@@ -148,11 +148,35 @@
                 <span>Cancel</span>
             </a>
             <div id="savePrefabButton" style="position:absolute;left:376px;top:390px;width:97px;height:30px;">
-                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addFieldWeldForm">
+                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addInstallLengthForm">
             </div>
-            <form id="addFieldWeldForm" action="" method="post">{% csrf_token %}
-                <input name="addILLineclassBox" id="addILLineclassBox" class="OBJ-10" maxlength="32" placeholder="Enter lineclass..." style="position:absolute;left:383px;top:260px;width:145px;height:22px;">
-                <input name="addILDiameterBox" id="addILDiameterBox" class="OBJ-10" maxlength="32" placeholder="Enter diameter..." style="position:absolute;left:383px;top:298px;width:145px;height:22px;">
+            <form id="addInstallLengthForm" action="" method="post">{% csrf_token %}
+
+                <select name="addILLineclassBox" id="addILLineclassBox" class="OBJ-10" style="position:absolute;left:383px;top:260px;width:145px;height:22px;">
+                    <option value="11011">11011</option>
+                    <option value="11071">11071</option>
+                    <option value="11261">11261</option>
+                    <option value="31011">31011</option>
+                    <option value="31071">31071</option>
+                    <option value="31261">31261</option>
+                </select>
+
+                <select name="addILDiameterBox" id="addILDiameterBox" class="OBJ-10" style="position:absolute;left:383px;top:298px;width:145px;height:22px;">
+                    <option value="15">1/2"</option>
+                    <option value="20">3/4"</option>
+                    <option value="25">1"</option>
+                    <option value="40">1 1/2"</option>
+                    <option value="50">2"</option>
+                    <option value="80">3"</option>
+                    <option value="100">4"</option>
+                    <option value="150">6"</option>
+                    <option value="200">8"</option>
+                    <option value="250">10"</option>
+                    <option value="300">12"</option>
+                    <option value="350">14"</option>
+                    <option value="400">16"</option>
+                </select>
+
                 <input name="addILQuantityBox" id="addILQuantityBox" class="OBJ-10" maxlength="32" placeholder="Enter quantity..." style="position:absolute;left:383px;top:333px;width:145px;height:22px;">
             </form>
         </div>

@@ -8,7 +8,7 @@ from .models import SpadingNorms
 
 from workpacks.models import Workpack
 
-from .classes import FieldWeld, DemoLength, InstallLength, HotCut, ColdCut
+from .classes import FieldWeld, DemoLength, InstallLength, HotCut, ColdCut, EstimateTable
 
 import datetime
 
@@ -17,13 +17,21 @@ def displayestimates(request):
     context = {}
     context.update(csrf(request))
 
-    fieldwelds = FieldWeldsBase.objects.all()
-    demolengths = DemoLengthBase.objects.all()
-    installlengths = InstallLengthBase.objects.all()
-    coldcuts = NumberOfColdCutsBase.objects.all()
-    hotcuts = NumberOfHotCutsBase.objects.all()
+    fieldweld_objects = FieldWeldsBase.objects.all()
+    demolength_objects = DemoLengthBase.objects.all()
+    installlength_objects = InstallLengthBase.objects.all()
+    hotcut_objects = NumberOfHotCutsBase.objects.all()
+    coldcut_objects = NumberOfColdCutsBase.objects.all()
+    table = EstimateTable()
 
-    context['items'] = [fieldwelds, demolengths, installlengths, coldcuts, hotcuts]
+    context['masterlist'] = table.filter_values_into_table(fieldweld_objects, demolength_objects, installlength_objects,
+                                                           hotcut_objects, coldcut_objects)
+    print context['masterlist']
+
+    context['demototals'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    context['installtotals'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    context['inspectiontotals'] = [0, 0]
+    context['pressuretotals'] = [0, 0, 0, 0]
 
     return render_to_response('estimates.html', context, context_instance=RequestContext(request))
 
@@ -64,7 +72,7 @@ def getdemolengthbase(request):
             saved_dl = DemoLengthBase(
                 lineclasses=demo_length_item.lineclass,
                 diameter=demo_length_item.diameter,
-                numberoffieldwelds=demo_length_item.quantity,
+                demolength=demo_length_item.quantity,
                 created=datetime.datetime.today(),
                 workpack=Workpack.objects.get(id=request.session['workpackselected'])
             )
@@ -87,7 +95,7 @@ def getinstalllengthbase(request):
             saved_il = InstallLengthBase(
                 lineclasses=install_length_item.lineclass,
                 diameter=install_length_item.diameter,
-                numberoffieldwelds=install_length_item.quantity,
+                installlength=install_length_item.quantity,
                 created=datetime.datetime.today(),
                 workpack=Workpack.objects.get(id=request.session['workpackselected'])
             )
@@ -207,18 +215,23 @@ def getnumberofcoldcuts(request):
     context = dict()
     context.update(csrf(request))
     if request.method == 'POST':
-        if 'addDLLineclassBox' in request.POST:
+        if 'addCCLineclassBox' in request.POST:
             cold_cut_item = ColdCut(
                 lineclass=request.POST['addCCLineclassBox'],
                 diameter=request.POST['addCCDiameterBox'],
                 quantity=request.POST['addCCQuantityBox']
             )
+            if 'checkforcoldcutrig' in request.POST:
+                riggercoldcut = True
+            else:
+                riggercoldcut = False
             saved_cc = NumberOfColdCutsBase(
                 lineclasses=cold_cut_item.lineclass,
                 diameter=cold_cut_item.diameter,
-                numberoffieldwelds=cold_cut_item.quantity,
+                numcoldcuts=cold_cut_item.quantity,
                 created=datetime.datetime.today(),
-                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+                workpack=Workpack.objects.get(id=request.session['workpackselected']),
+                rigforcoldcut=riggercoldcut
             )
             saved_cc.save()
             return HttpResponseRedirect('/estimates/')
@@ -253,12 +266,17 @@ def getnumberofhotcuts(request):
                 diameter=request.POST['addHCDiameterBox'],
                 quantity=request.POST['addHCQuantityBox']
             )
+            if 'checkforhotcutrig' in request.POST:
+                riggerhotcut = True
+            else:
+                riggerhotcut = False
             saved_hc = NumberOfHotCutsBase(
                 lineclasses=hot_cut_item.lineclass,
                 diameter=hot_cut_item.diameter,
-                numberoffieldwelds=hot_cut_item.quantity,
+                numhotcuts=hot_cut_item.quantity,
                 created=datetime.datetime.today(),
-                workpack=Workpack.objects.get(id=request.session['workpackselected'])
+                workpack=Workpack.objects.get(id=request.session['workpackselected']),
+                rigforhotcut=riggerhotcut
             )
             saved_hc.save()
             return HttpResponseRedirect('/estimates/')

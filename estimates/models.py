@@ -49,13 +49,13 @@ class SpadingNorms(models.Model):
 
 class FieldWeldsBase(models.Model):
     lineclasses = models.CharField(max_length=20)
-    diameter = models.FloatField()
+    diameter = models.CharField(max_length=20, blank=True, null=True)
     numberoffieldwelds = models.SmallIntegerField()
     created = models.DateTimeField(auto_now_add=True, null=True)
     workpack = models.ForeignKey(Workpack, null=True)
 
     def __unicode__(self):
-        return self.lineclasses
+        return self.lineclasses + ' ' + self.workpack.workpacknumber
 
 
 class DemoLengthBase(models.Model):

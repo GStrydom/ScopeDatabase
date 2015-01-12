@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1002419960">
+  <component name="DataSourceManagerImpl" format="xml" hash="3349544525">
     <data-source source="LOCAL" name="MySQL - pipingscopeapp@localhost" uuid="0fae3752-a92f-4e91-8b14-14251ee97ef0">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

@@ -41,6 +41,7 @@ urlpatterns = patterns('',
 
                        url(r'^prefabs/$', 'materials.views.showprefabitems', name='showprefabs'),
                        url(r'^create-prefab/$', 'materials.views.createprefabitem', name='createprefab'),
+                       url(r'^getprefabnames/$', 'materials.views.getprefabnames', name='getprefabname'),
                        url(r'^edit-prefab/(?P<materialitem_id>\d+)/$', 'materials.views.editprefabitem', name='editprefab'),
 
                        url(r'^reinstates/$', 'materials.views.showreinstateitems', name='showreinstates'),

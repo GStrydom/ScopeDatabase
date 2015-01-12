@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'estimates',
     'materials',
     'profiles',
+    'smart_selects'
 )
 
 MIDDLEWARE_CLASSES = (

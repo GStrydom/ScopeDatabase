@@ -1,5 +1,103 @@
 
-class BaseEstimate:
+class EstimateTable:
+    master_list = []
+
+    def __init__(self):
+        pass
+
+    def filter_values_into_table(self, fws, dmls, inls, hcs, ccs):
+        column_1101120 = ['11011', '3/4"', 0, 0, 0, 0, 0]
+        column_1101125 = ['11011', '1"', 0, 0, 0, 0, 0]
+        column_1101140 = ['11011', '1 1/2"', 0, 0, 0, 0, 0]
+        column_1101150 = ['11011', '2"', 0, 0, 0, 0, 0]
+        column_1101180 = ['11011', '3"', 0, 0, 0, 0, 0]
+        column_11011100 = ['11011', '4"', 0, 0, 0, 0, 0]
+
+        for fw in fws:
+            if fw.lineclasses == '11011':
+                if fw.diameter == '20':
+                    column_1101120[2] += fw.numberoffieldwelds
+                if fw.diameter == '25':
+                    column_1101125[2] += fw.numberoffieldwelds
+                if fw.diameter == '40':
+                    column_1101140[2] += fw.numberoffieldwelds
+                if fw.diameter == '50':
+                    column_1101150[2] += fw.numberoffieldwelds
+                if fw.diameter == '80':
+                    column_1101180[2] += fw.numberoffieldwelds
+                if fw.diameter == '100':
+                    column_11011100[2] += fw.numberoffieldwelds
+
+        for dml in dmls:
+            if dml.lineclasses == '11011':
+                if dml.diameter == '20':
+                    column_1101120[3] += dml.demolength
+                if dml.diameter == '25':
+                    column_1101125[3] += dml.demolength
+                if dml.diameter == '40"':
+                    column_1101140[3] += dml.demolength
+                if dml.diameter == '50':
+                    column_1101150[3] += dml.demolength
+                if dml.diameter == '80':
+                    column_1101180[3] += dml.demolength
+                if dml.diameter == '100':
+                    column_11011100[3] += dml.demolength
+
+        for inl in inls:
+            if inl.lineclasses == '11011':
+                if inl.diameter == '20':
+                    column_1101120[4] += inl.installlength
+                if inl.diameter == '25':
+                    column_1101125[4] += inl.installlength
+                if inl.diameter == '40':
+                    column_1101140[4] += inl.installlength
+                if inl.diameter == '50':
+                    column_1101150[4] += inl.installlength
+                if inl.diameter == '80':
+                    column_1101180[4] += inl.installlength
+                if inl.diameter == '100':
+                    column_11011100[4] += inl.installlength
+
+        for hc in hcs:
+            if hc.lineclasses == '11011':
+                if hc.diameter == '20':
+                    column_1101120[5] += hc.numhotcuts
+                if hc.diameter == '25':
+                    column_1101125[5] += hc.numhotcuts
+                if hc.diameter == '40':
+                    column_1101140[5] += hc.numhotcuts
+                if hc.diameter == '50':
+                    column_1101150[5] += hc.numhotcuts
+                if hc.diameter == '80':
+                    column_1101180[5] += hc.numhotcuts
+                if hc.diameter == '100':
+                    column_11011100[5] += hc.numhotcuts
+
+        for cc in ccs:
+            if cc.lineclasses == '11011':
+                if cc.diameter == '20':
+                    column_1101120[6] += cc.numcoldcuts
+                if cc.diameter == '25':
+                    column_1101125[6] += cc.numcoldcuts
+                if cc.diameter == '40':
+                    column_1101140[6] += cc.numcoldcuts
+                if cc.diameter == '50':
+                    column_1101150[6] += cc.numcoldcuts
+                if cc.diameter == '80':
+                    column_1101180[6] += cc.numcoldcuts
+                if cc.diameter == '100':
+                    column_11011100[6] += cc.numcoldcuts
+
+        EstimateTable.master_list.append(column_1101120)
+        EstimateTable.master_list.append(column_1101125)
+        EstimateTable.master_list.append(column_1101140)
+        EstimateTable.master_list.append(column_1101150)
+        EstimateTable.master_list.append(column_1101180)
+        EstimateTable.master_list.append(column_11011100)
+        return EstimateTable.master_list
+
+
+class BaseEstimate(object):
     def __init__(self, lineclass, diameter, quantity):
         self.lineclass = lineclass
         self.diameter = diameter
@@ -25,7 +123,7 @@ class FieldWeld(BaseEstimate):
         else:
             self.weldfit_manhours = self.weldweld_manhours * 0.30
 
-    def edit_fieldweld(self):
+    def edit_item(self):
         pass
 
     def delete_fieldweld(self):

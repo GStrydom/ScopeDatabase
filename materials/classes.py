@@ -48,7 +48,22 @@ class BaseSpadingItem:
 
     def get_code(self, lineclass):
         if lineclass == '11011':
-            self.code = Lineclass11011.objects.filter()
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter)
+        if lineclass == '11071':
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter)
+        if lineclass == '11261':
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter)
+        if lineclass == '31011':
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter)
+        if lineclass == '31071':
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter)
+        if lineclass == '31261':
+            self.code = Lineclass11011.objects.filter(dn1__exact=self.diameter)
+
+
+
+
+
 
     def attach_to_workpack(self):
         pass

@@ -74,7 +74,7 @@
             .OBJ-8 { border-collapse:collapse;border:none; }
             .TC-1 { vertical-align:middle;padding:0px 1px 1px 0px;border:1px solid #000000; }
             .P-1 { text-align:center;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;font-variant:normal;font-size:14.0px;vertical-align:0; }
-            .C-2 { line-height:17.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:14.0px;vertical-align:0; }
+            .C-2 { line-height:17.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:14.0px;vertical-align:middle; text-align: center }
             .TC-2 { vertical-align:top;background-color:#cdcdcd;padding:0px 0px 1px;border:1px solid #000000; }
             .P-2 { text-align:center;line-height:1px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#0000ff;background-color:transparent;font-variant:normal;font-size:14.0px;vertical-align:0; }
             .C-3 { line-height:17.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#0000ff;background-color:transparent;text-decoration:none;font-variant:normal;font-size:14.0px;vertical-align:0; }
@@ -104,7 +104,7 @@
             .TC-22 { vertical-align:top;padding:0px 0px 1px;border-top:1px solid #000000;border-right:none;border-bottom:none;border-left:none; }
             .TC-23 { vertical-align:top;padding:0px 0px 1px;border-top:1px solid #000000;border-right:1px solid #000000;border-bottom:none;border-left:none; }
             .TC-24 { vertical-align:top;padding:0px 0px 1px;border-top:none;border-right:none;border-bottom:1px solid #000000;border-left:1px solid #000000; }
-            .TC-25 { vertical-align:top;padding:0px 0px 1px;border-top:none;border-right:none;border-bottom:1px solid #000000;border-left:none; }
+            .TC-25 { vertical-align:top;padding:0px 0px 1px;borderdf-top:none;border-right:none;border-bottom:1px solid #000000;border-left:none; }
             .TC-26 { vertical-align:top;padding:0px 0px 1px;border-top:none;border-right:1px solid #000000;border-bottom:1px solid #000000;border-left:none; }
             .TC-27 { vertical-align:top;background-color:#cdcdcd;padding:0px 1px 1px 0px;border-top:1px solid #000000;border-right:1px solid #000000;border-bottom:none;border-left:1px solid #000000; }
             .TC-28 { vertical-align:top;background-color:#b0de00;padding:0px 0px 1px;border:1px solid #000000; }
@@ -947,7 +947,7 @@
                         <p class="Table-Body"><span class="C-2"><br></span></p>
                     </td>
                     <td class="TC-29">
-                        <p class="Table-Body"><span class="C-2"><br></span></p>
+                        <p class="Table-Body"><span class="C-2">2</span></p>
                     </td>
                     <td class="TC-15">
                         <p class="Table-Body"><span class="C-2"><br></span></p>
@@ -5472,7 +5472,7 @@
                         </button></a>
                     </div>
 
-                    <table id="nameholdertable" style="position: absolute;left: 200px; top: 5px;">
+                    <table id="nameholdertable" style="position: absolute;left: 200px; top: 53px;">
                         <tr>
                             <td>
                                 FieldWeld
@@ -5500,12 +5500,67 @@
                         </tr>
                     </table>
 
-                    <table id="estimatestable">
-                        <tr>
-                            <td>
-
-                            </td>
-                        </tr>
+                    <table id="estimatestable" style="border: 1px solid black; position: absolute; left: 300px; top: 5px">
+                        {% if masterlist.0.2 > 0 %}
+                            <tr>
+                                <td>
+                                    {{ masterlist.0.0 }}
+                                </td>
+                                {% if masterlist.1.2 > 0 %}
+                                    <td>
+                                        {{ masterlist.1.0 }}
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{ masterlist.0.1 }}
+                                </td>
+                                {% if masterlist.1.2 > 0 %}
+                                    <td>
+                                        {{ masterlist.1.1 }}
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{ masterlist.0.2 }}
+                                </td>
+                                {% if masterlist.1.2 > 0 %}
+                                    <td>
+                                        {{ masterlist.1.0 }}
+                                    </td>
+                                {% endif %}
+                            </tr>
+                            {% if masterlist.0.3 > 0  %}
+                                <tr>
+                                    <td>
+                                        {{ masterlist.0.3 }}
+                                    </td>
+                                </tr>
+                                {% if masterlist.0.4 > 0 %}
+                                    <tr>
+                                        <td>
+                                            {{ masterlist.0.4 }}
+                                        </td>
+                                    </tr>
+                                    {% if masterlist.0.5 > 0 %}
+                                        <tr>
+                                            <td>
+                                                {{ masterlist.0.5 }}
+                                            </td>
+                                        </tr>
+                                        {% if masterlist.0.6 > 0 %}
+                                            <tr>
+                                                <td>
+                                                    {{ masterlist.0.6 }}
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
                     </table>
 
                 </div>

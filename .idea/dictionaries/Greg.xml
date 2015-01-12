@@ -19,6 +19,9 @@
       <w>borderestdiv</w>
       <w>builtwithwwb</w>
       <w>caee</w>
+      <w>checkforcoldcutrig</w>
+      <w>checkforhotcutrig</w>
+      <w>checkrigforhotcut</w>
       <w>clickjacking</w>
       <w>clientfield</w>
       <w>coldcut</w>
@@ -54,7 +57,9 @@
       <w>demolengthbaseform</w>
       <w>demolengthmanhours</w>
       <w>demolengths</w>
+      <w>demototals</w>
       <w>displayestimates</w>
+      <w>dmls</w>
       <w>dsmallsize</w>
       <w>editfieldweld</w>
       <w>editfieldwelds</w>
@@ -150,6 +155,7 @@
       <w>fptbase</w>
       <w>fribase</w>
       <w>fwduration</w>
+      <w>fweld</w>
       <w>fwmanhours</w>
       <w>getdemolengthbase</w>
       <w>getflangeptbase</w>
@@ -158,18 +164,24 @@
       <w>getnumberofcoldcuts</w>
       <w>getnumberofhotcuts</w>
       <w>getnumberofjoints</w>
+      <w>getprefabdiameter</w>
+      <w>getprefabname</w>
+      <w>getprefabnames</w>
       <w>grindprep</w>
       <w>grindprepduration</w>
       <w>grindprepmanhours</w>
       <w>grindprepresource</w>
       <w>hotcuts</w>
       <w>hotcutvar</w>
+      <w>inls</w>
       <w>inspectionreport</w>
+      <w>inspectiontotals</w>
       <w>installisolation</w>
       <w>installlength</w>
       <w>installlengthbase</w>
       <w>installlengthbaseform</w>
       <w>installlengths</w>
+      <w>installtotals</w>
       <w>instiso</w>
       <w>instrumentsforboltup</w>
       <w>itemid</w>
@@ -179,8 +191,10 @@
       <w>linec</w>
       <w>lineclasses</w>
       <w>lineclassselected</w>
+      <w>linetotals</w>
       <w>loginuser</w>
       <w>mainbuts</w>
+      <w>masterlist</w>
       <w>materialitems</w>
       <w>matlist</w>
       <w>mouseover</w>
@@ -217,12 +231,16 @@
       <w>precode</w>
       <w>prefabid</w>
       <w>prefabitems</w>
+      <w>prefabnames</w>
       <w>prefabrica</w>
       <w>prepareandpressure</w>
+      <w>pressuretotals</w>
       <w>profilepic</w>
       <w>projectfield</w>
       <w>qtys</w>
       <w>reinsates</w>
+      <w>riggercoldcut</w>
+      <w>riggerhotcut</w>
       <w>riggersforboltup</w>
       <w>rigoutline</w>
       <w>rigoutlinefit</w>
