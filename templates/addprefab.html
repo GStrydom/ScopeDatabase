@@ -1,9 +1,8 @@
 ﻿<!DOCTYPE html>
-{% load clever_selects_extras %}
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>AddPrefab</title>
+        <title>Add Prefab</title>
         <meta name="generator" content="Serif WebPlus X7">
         <meta name="viewport" content="width=1200">
         <meta name="copyright" content="©OGPSS 2015">
@@ -113,10 +112,121 @@
                             lineclassSelected: selected
                         },
                         success: function(data) {
-
+                            var name, select, option;
+                            select = document.getElementById('addPrefabNameBox');
+                            select.options.length = 0;
+                            for (name in data) {
+                                if (data.hasOwnProperty(name)) {
+                                    select.options.add(new Option(data[name], name));
+                                }
+                            }
                         }
                     });
                 });
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#addPrefabNameBox').on('change', function() {
+                    var selected = this.options[this.selectedIndex].innerHTML;
+                    $.ajax({
+                        url: '/create-prefab/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            itemSelected: selected
+                        },
+                        success: function(data) {
+                            var name, select, option;
+                            select = document.getElementById('addPrefabDiameterBox');
+                            select.options.length = 0;
+                            for (name in data) {
+                                if (data.hasOwnProperty(name)) {
+                                    select.options.add(new Option(data[name], name));
+                                }
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#addPrefabDiameterBox').on('change', function() {
+                    var selected = this.options[this.selectedIndex].innerHTML;
+                    $.ajax({
+                        url: '/create-prefab/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            diamSelected: selected
+                        }
+                    })
+                })
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(event) {
+                $('#savePrefab').click(function() {
+                    var selected = $('#addPrefabLineclassBox').val();
+                    $.ajax({
+                        url: '/newfieldweld/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lcSelected: selected
+                        },
+                        success: function(data) {
+                            if (data == 'True') {
+                                var answer = confirm('An item with the lineclass ' + selected + ' already exists. Would you like to update or replace the the item');
+                                if (answer == true) {
+                                    var quantity = $('#addPrefabQuantityBox').val();
+                                    var diameter = $('#addPrefabDiameterBox').val();
+                                    $.ajax({
+                                        url: '/create-prefab/',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'True',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function() {
+                                            window.location.href = '/prefabs/';
+                                        }
+                                    })
+                                }
+                                else {
+                                    quantity = $('#addPrefabQuantityBox').val();
+                                    diameter = $('#addPrefabDiameterBox').val();
+                                    $.ajax({
+                                        url: '/create-prefab/',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'False',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function () {
+                                            window.location.href = '/prefabs/';
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#runDiameterBox').hide();
+                $('#branchDiameterBox').hide();
             })
         </script>
 
@@ -163,7 +273,7 @@
                 <p class="Body"><span class="C-2">Lineclass:</span></p>
             </div>
             <div style="position:absolute;left:260px;top:293px;width:102px;height:32px;overflow:hidden;">
-                <p class="Body"><span class="C-2">Diameter:</span></p>
+                <p class="Body"><span class="C-2" id="diameterBox">Diameter:</span></p>
             </div>
             <div style="position:absolute;left:260px;top:248px;width:103px;height:29px;overflow:hidden;">
                 <p class="Body"><span class="C-2">Name:</span></p>
@@ -175,9 +285,9 @@
                 <span>Cancel</span>
             </a>
             <div id="savePrefabButton" style="position:absolute;left:376px;top:379px;width:97px;height:30px;">
-                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addPrefabForm">
+                <input type="button" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addPrefabForm" id="savePrefab">
             </div>
-            <form id="addPrefabForm" action="" method="post">
+            <form id="addPrefabForm" action="" method="post">{% csrf_token %}
 
                 <select name="addPrefabLineclassBox" id="addPrefabLineclassBox" style="position:absolute;left:383px;top:205px;width:145px;height:22px;">
                     <option value="11011">11011</option>
@@ -191,12 +301,21 @@
                 <select name="addPrefabDiameterBox" id="addPrefabDiameterBox" style="position:absolute;left:383px;top:292px;width:145px;height:22px;">
                     <option></option>
                 </select>
+
+                <select id="runDiameterBox">
+                    <option></option>
+                </select>
+
+                <select id="branchDiameterBox">
+                    <option></option>
+                </select>
+
                 <select name="addPrefabNameBox" id="addPrefabNameBox" style="position: absolute;left:383px;top:246px;width:145px;height:21px">
                     <option></option>
                 </select>
+
                 <input name="addPrefabQuantityBox" id="addPrefabQuantityBox" class="OBJ-10" maxlength="32" placeholder="Enter quantity..." style="position:absolute;left:383px;top:333px;width:145px;height:22px;">
             </form>
         </div>
-    {% clever_selects_js_import %}
     </body>
 </html>

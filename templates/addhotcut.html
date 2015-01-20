@@ -93,11 +93,68 @@
             .OBJ-10 { background:#ffffff; }
         </style>
         <script type="text/javascript" src="../static/js/jquery.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(event) {
+                $('#saveHotCut').click(function() {
+                    var selected = $('#addHCLineclassBox').val();
+                    $.ajax({
+                        url: '/newhotcuts/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lcSelected: selected
+                        },
+                        success: function(data) {
+                            if (data == 'True') {
+                                var answer = confirm('An item with the lineclass ' + selected + ' already exists. Would you like to update or replace the the item');
+                                if (answer == true) {
+                                    var quantity = $('#addHCQuantityBox').val();
+                                    var diameter = $('#addHCDiameterBox').val();
+                                    $.ajax({
+                                        url: '/newhotcuts/',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'True',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function() {
+                                            window.location.href = '/estimates/';
+                                        }
+                                    })
+                                }
+                                else {
+                                    quantity = $('#addHCQuantityBox').val();
+                                    diameter = $('#addHCDiameterBox').val();
+                                    $.ajax({
+                                        url: '/newhotcuts/',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'False',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function () {
+                                            window.location.href = '/estimates/';
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
@@ -148,7 +205,7 @@
                 <span>Cancel</span>
             </a>
             <div id="savePrefabButton" style="position:absolute;left:376px;top:450px;width:97px;height:30px;">
-                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addHotCutForm">
+                <input type="button" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addHotCutForm" id="saveHotCut">
             </div>
             <form id="addHotCutForm" action="" method="post">{% csrf_token %}
 

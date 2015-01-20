@@ -2,13 +2,17 @@ from django.shortcuts import render_to_response, HttpResponseRedirect, HttpRespo
 from django.contrib.auth import authenticate, login
 from django.core.context_processors import csrf
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 from .forms import UserProfileForm, UserForm
 
+from projects.models import Project
 
+
+@login_required(login_url='/')
 def register(request):
-    viewcontext = dict()
-    viewcontext.update(csrf(request))
+    context = dict()
+    context.update(csrf(request))
     registered = False
 
     if request.method == 'POST':
@@ -33,11 +37,13 @@ def register(request):
         user_form = UserForm
         profile_form = UserProfileForm
 
-    viewcontext['user_form'] = user_form
-    viewcontext['profile_form'] = profile_form
-    viewcontext['registered'] = registered
+    context['user_form'] = user_form
+    context['profile_form'] = profile_form
+    context['registered'] = registered
 
-    return render_to_response('register.html', viewcontext, context_instance=RequestContext(request))
+    context['projects'] = Project.objects.all()
+
+    return render_to_response('register.html', context, context_instance=RequestContext(request))
 
 
 def loginuser(request):

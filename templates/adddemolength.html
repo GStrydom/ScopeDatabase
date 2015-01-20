@@ -93,11 +93,68 @@
             .OBJ-10 { background:#ffffff; }
         </style>
         <script type="text/javascript" src="../static/js/jquery.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(event) {
+                $('#saveDemoLength').click(function() {
+                    var selected = $('#addDLLineclassBox').val();
+                    $.ajax({
+                        url: '/newdemolength/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lcSelected: selected
+                        },
+                        success: function(data) {
+                            if (data == 'True') {
+                                var answer = confirm('An item with the lineclass ' + selected + ' already exists. Would you like to update or replace the the item');
+                                if (answer == true) {
+                                    var quantity = $('#addDLQuantityBox').val();
+                                    var diameter = $('#addDLDiameterBox').val();
+                                    $.ajax({
+                                        url: '/demolength/',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'True',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function() {
+                                            window.location.href = '/estimates/';
+                                        }
+                                    })
+                                }
+                                else {
+                                    quantity = $('#addDLQuantityBox').val();
+                                    diameter = $('#addDLDiameterBox').val();
+                                    $.ajax({
+                                        url: '/newdemolength',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'False',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function () {
+                                            window.location.href = '/estimates/';
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
@@ -147,8 +204,8 @@
             <a href="/prefabs/" id="cancelAddPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:260px;top:390px;width:101px;height:30px;">
                 <span>Cancel</span>
             </a>
-            <div id="savePrefabButton" style="position:absolute;left:376px;top:390px;width:97px;height:30px;">
-                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addFieldWeldForm">
+            <div id="saveDemoLengthButton" style="position:absolute;left:376px;top:390px;width:97px;height:30px;">
+                <input type="button" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addFieldWeldForm" id="saveDemolength">
             </div>
             <form id="addFieldWeldForm" action="" method="post">{% csrf_token %}
 

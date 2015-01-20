@@ -1,13 +1,12 @@
 ﻿<!DOCTYPE html>
-{% load clever_selects_extras %}
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>AddPrefab</title>
+        <title>Add Flange RI</title>
         <meta name="generator" content="Serif WebPlus X7">
         <meta name="viewport" content="width=1200">
         <meta name="copyright" content="©OGPSS 2015">
-        <link rel="stylesheet" type="text/css" href="/../static/css/wpstyles.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/wpstyles.css">
         <style type="text/css">
             .OBJ-1 { background:transparent url('../static/images/wpd734bebb_06.png') no-repeat 0px 0px; }
             .OBJ-2,.OBJ-2:link,.OBJ-2:visited { background-image:url('../static/images/wpd75a7937_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
@@ -73,60 +72,43 @@
             .OBJ-7 { border:1px solid #000000; }
             .C-1 { line-height:32.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:26.7px;vertical-align:0; }
             .C-2 { line-height:18.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:16.0px;vertical-align:0; }
-            .OBJ-8,.OBJ-8:link,.OBJ-8:visited { background-image:url('../static/images/wp6bfaf983_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
-            .OBJ-8:hover { background-position:0px -60px; }
-            .OBJ-8:active,a:link.OBJ-8.Activated,a:link.OBJ-8.Down,a:visited.OBJ-8.Activated,a:visited.OBJ-8.Down,.OBJ-8.Activated,.OBJ-8.Down { background-position:0px -30px; }
-            .OBJ-8:focus { outline-style:none; }
-            button.OBJ-8 { background-color:transparent;border:none 0px;padding:0;display:inline-block;cursor:pointer; }
-            button.OBJ-8:disabled { pointer-events:none; }
-            .OBJ-8.Inline { display:inline-block;position:relative;line-height:normal; }
-            .OBJ-8 span,.OBJ-8:link span,.OBJ-8:visited span { color:#ffffff;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:3px;top:3px;width:97px;height:25px;font-size:19px;display:block;position:absolute;cursor:pointer; }
-            .OBJ-8.Disabled span,a:link.OBJ-8.Disabled span,a:visited.OBJ-8.Disabled span,a:hover.OBJ-8.Disabled span,a:active.OBJ-8.Disabled span { top:2px; }
-            .OBJ-9,.OBJ-9:link,.OBJ-9:visited { background-image:url('../static/images/wp694973de_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
-            .OBJ-9:hover { background-position:0px -60px; }
-            .OBJ-9:active,a:link.OBJ-9.Activated,a:link.OBJ-9.Down,a:visited.OBJ-9.Activated,a:visited.OBJ-9.Down,.OBJ-9.Activated,.OBJ-9.Down { background-position:0px -30px; }
-            .OBJ-9:focus { outline-style:none; }
-            button.OBJ-9 { background-color:transparent;border:none 0px;padding:0;display:inline-block;cursor:pointer; }
-            button.OBJ-9:disabled { pointer-events:none; }
-            .OBJ-9.Inline { display:inline-block;position:relative;line-height:normal; }
-            .OBJ-9 span,.OBJ-9:link span,.OBJ-9:visited span { color:#ffffff;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:3px;top:3px;width:92px;height:25px;font-size:19px;display:block;position:absolute;cursor:pointer; }
-            .OBJ-9.Disabled span,a:link.OBJ-9.Disabled span,a:visited.OBJ-9.Disabled span,a:hover.OBJ-9.Disabled span,a:active.OBJ-9.Disabled span { top:2px; }
-            .OBJ-10 { background:#ffffff; }
+            .OBJ-8 { background:transparent url('../static/images/wp310c5dcd.png') no-repeat left top; }
+            .OBJ-9 { background:#ffffff; }
+            .C-3 { line-height:16.00px;font-family:"Verdana", sans-serif;font-style:normal;font-weight:normal;color:#000000;background-color:transparent;text-decoration:none;font-variant:normal;font-size:13.3px;vertical-align:0; }
+            .OBJ-10,.OBJ-10:link,.OBJ-10:visited { background-image:url('../static/images/wp82213b04_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
+            .OBJ-10:hover { background-position:0px -60px; }
+            .OBJ-10:active,a:link.OBJ-10.Activated,a:link.OBJ-10.Down,a:visited.OBJ-10.Activated,a:visited.OBJ-10.Down,.OBJ-10.Activated,.OBJ-10.Down { background-position:0px -30px; }
+            .OBJ-10:focus { outline-style:none; }
+            button.OBJ-10 { background-color:transparent;border:none 0px;padding:0;display:inline-block;cursor:pointer; }
+            button.OBJ-10:disabled { pointer-events:none; }
+            .OBJ-10.Inline { display:inline-block;position:relative;line-height:normal; }
+            .OBJ-10 span,.OBJ-10:link span,.OBJ-10:visited span { color:#ffffff;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:2px;top:3px;width:71px;height:25px;font-size:19px;display:block;position:absolute;cursor:pointer; }
+            .OBJ-10.Disabled span,a:link.OBJ-10.Disabled span,a:visited.OBJ-10.Disabled span,a:hover.OBJ-10.Disabled span,a:active.OBJ-10.Disabled span { top:2px; }
+            .OBJ-11,.OBJ-11:link,.OBJ-11:visited { background-image:url('../static/images/wpb27cb6c3_06.png');background-repeat:no-repeat;background-position:0px 0px;text-decoration:none;display:block;position:absolute; }
+            .OBJ-11:hover { background-position:0px -60px; }
+            .OBJ-11:active,a:link.OBJ-11.Activated,a:link.OBJ-11.Down,a:visited.OBJ-11.Activated,a:visited.OBJ-11.Down,.OBJ-11.Activated,.OBJ-11.Down { background-position:0px -30px; }
+            .OBJ-11:focus { outline-style:none; }
+            button.OBJ-11 { background-color:transparent;border:none 0px;padding:0;display:inline-block;cursor:pointer; }
+            button.OBJ-11:disabled { pointer-events:none; }
+            .OBJ-11.Inline { display:inline-block;position:relative;line-height:normal; }
+            .OBJ-11 span,.OBJ-11:link span,.OBJ-11:visited span { color:#ffffff;font-family:Arial,sans-serif;font-weight:bold;text-decoration:none;text-align:center;text-transform:none;font-style:normal;left:2px;top:3px;width:65px;height:25px;font-size:19px;display:block;position:absolute;cursor:pointer; }
+            .OBJ-11.Disabled span,a:link.OBJ-11.Disabled span,a:visited.OBJ-11.Disabled span,a:hover.OBJ-11.Disabled span,a:active.OBJ-11.Disabled span { top:2px; }
+            .OBJ-12 { background:transparent url('../static/images/wp633100a2.png') no-repeat left top; }
+            .OBJ-13 { background:transparent url('../static/images/wp0d983362.png') no-repeat left top; }
         </style>
-        <script type="text/javascript" src="/../static/js/jquery.js"></script>
-
+        <script type="text/javascript" src="../static/js/jquery.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#addPrefabLineclassBox').on('change', function() {
-                    var selected = this.value;
-                    $.ajax({
-                        url: '/create-prefab/',
-                        type: 'POST',
-                        data: {
-                            csrfmiddlewaretoken: '{{ csrf_token }}',
-                            lineclassSelected: selected
-                        },
-                        success: function(data) {
-
-                        }
-                    });
-                });
-            })
-        </script>
-
-        <link rel="icon" href="/../static/images/favicon.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="/../static/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
     <body style="height:1020px;background:#cdcdcd;">
         <div id="divMain" style="background:#ffffff;margin-left:auto;margin-right:auto;position:relative;width:1200px;height:1000px;top:10px;">
-            <img alt="" src="/../static/images/wp047c1b10_06.png" style="position:absolute;left:0px;top:0px;width:1200px;height:59px;">
-            <img alt="" src="/../static/images/wp1d19ec32_06.png" style="position:absolute;left:0px;top:930px;width:1200px;height:70px;">
+            <img alt="" src="../static/images/wp047c1b10_06.png" style="position:absolute;left:0px;top:0px;width:1200px;height:59px;">
+            <img alt="" src="../static/images/wp1d19ec32_06.png" style="position:absolute;left:0px;top:930px;width:1200px;height:70px;">
             <div style="position:absolute;left:1px;top:59px;width:1198px;height:872px;">
                 <div class="OBJ-1" style="position:absolute;left:216px;top:21px;width:943px;height:54px;">
                     <a href="/home/" id="mainNavBar_B1" class="OBJ-2 ActiveButton" style="display:block;position:absolute;left:10px;top:10px;width:90px;height:33px;">
@@ -145,58 +127,85 @@
                         <span>Estimates</span>
                     </a>
                 </div>
-                <img alt="" src="/../static/images/wp80a91841_06.png" class="OBJ-7" style="position:absolute;left:8px;top:19px;width:182px;height:822px;">
-                <img alt="" src="/../static/images/wp891b65bd_06.png" style="position:absolute;left:42px;top:30px;width:117px;height:27px;">
-                <img alt="" src="/../static/images/wp83804bb0_06.png" style="position:absolute;left:18px;top:75px;width:165px;height:9px;">
+                <img alt="" src="../static/images/wp80a91841_06.png" class="OBJ-7" style="position:absolute;left:8px;top:19px;width:182px;height:822px;">
+                <img alt="" src="../static/images/wp891b65bd_06.png" style="position:absolute;left:42px;top:30px;width:117px;height:27px;">
+                <img alt="" src="../static/images/wp83804bb0_06.png" style="position:absolute;left:18px;top:75px;width:165px;height:9px;">
             </div>
             <img alt="" src="../static/images/wpbb0e854c_06.png" style="position:absolute;left:11px;top:8px;width:342px;height:42px;">
             <div style="position:absolute;left:23px;top:13px;width:318px;height:33px;overflow:hidden;">
                 <p class="Body"><span class="C-1">Piping Scope Database</span></p>
             </div>
-            <div style="position:absolute;left:10px;top:146px;width:181px;height:725px;text-align:center;font-size:18px;">
-                {% for workpack in workpacks %}
-                    <a href="/workpacks/get/{{ workpack.id }}" class="workpacklinks">{{ workpack.workpacknumber }}</a>
-                {% endfor %}
-            </div>
-            <img src="/../static/images/wpd95feb6b_06.png" alt="" width="693" height="517" style="position:absolute;left:217px;top:168px;width:693px;height:517px;">
-            <div style="position:absolute;left:259px;top:207px;width:103px;height:27px;overflow:hidden;">
-                <p class="Body"><span class="C-2">Lineclass:</span></p>
-            </div>
-            <div style="position:absolute;left:260px;top:293px;width:102px;height:32px;overflow:hidden;">
-                <p class="Body"><span class="C-2">Diameter:</span></p>
-            </div>
-            <div style="position:absolute;left:260px;top:248px;width:103px;height:29px;overflow:hidden;">
-                <p class="Body"><span class="C-2">Name:</span></p>
-            </div>
-            <div style="position:absolute;left:260px;top:333px;width:103px;height:29px;overflow:hidden;">
-                <p class="Body"><span class="C-2">Quantity:</span></p>
-            </div>
-            <a href="/prefabs/" id="cancelAddPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:260px;top:379px;width:101px;height:30px;">
-                <span>Cancel</span>
-            </a>
-            <div id="savePrefabButton" style="position:absolute;left:376px;top:379px;width:97px;height:30px;">
-                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addPrefabForm">
-            </div>
-            <form id="addPrefabForm" action="" method="post">
+            <div class="OBJ-7" style="position:absolute;left:216px;top:133px;width:943px;height:764px;">
+                <div class="OBJ-8" style="position:absolute;left:12px;top:16px;width:920px;height:40px;">
+                    <img alt="" src="../static/images/wpe5160bb8_06.png" style="position:absolute;left:240px;top:4px;width:441px;height:32px;">
+                    <div style="position:absolute;left:346px;top:9px;width:192px;height:21px;overflow:hidden;">
+                        <p class="Body"><span class="C-2">Add New Flange For RI</span></p>
+                    </div>
+                </div>
+                <div class="OBJ-13" style="position:absolute;left:12px;top:73px;width:920px;height:675px;">
+                    <div class="OBJ-12" style="position:absolute;left:29px;top:19px;width:862px;height:580px;">
 
-                <select name="addPrefabLineclassBox" id="addPrefabLineclassBox" style="position:absolute;left:383px;top:205px;width:145px;height:22px;">
-                    <option value="11011">11011</option>
-                    <option value="11071">11071</option>
-                    <option value="11261">11261</option>
-                    <option value="31011">31011</option>
-                    <option value="31071">31071</option>
-                    <option value="31261">31261</option>
-                </select>
+                        <div style="position:absolute;left:41px;top:42px;width:119px;height:25px;overflow:hidden;">
+                            <p class="Body"><span class="C-2">Lineclass:</span></p>
+                        </div>
 
-                <select name="addPrefabDiameterBox" id="addPrefabDiameterBox" style="position:absolute;left:383px;top:292px;width:145px;height:22px;">
-                    <option></option>
-                </select>
-                <select name="addPrefabNameBox" id="addPrefabNameBox" style="position: absolute;left:383px;top:246px;width:145px;height:21px">
-                    <option></option>
-                </select>
-                <input name="addPrefabQuantityBox" id="addPrefabQuantityBox" class="OBJ-10" maxlength="32" placeholder="Enter quantity..." style="position:absolute;left:383px;top:333px;width:145px;height:22px;">
-            </form>
+                        <div style="position:absolute;left:41px;top:77px;width:119px;height:23px;overflow:hidden;">
+                            <p class="Body"><span class="C-2">Diameter:</span></p>
+                        </div>
+
+                        <form id="addFlangeRIForm" action="" method="post">{% csrf_token %}
+                            <input name="addFlangeAlky" class="OBJ-9" type="checkbox" style="position:absolute;left:41px;top:152px;width:13px;height:13px;">
+
+                            <input name="addFlangeBASet" class="OBJ-9" type="checkbox" style="position:absolute;left:41px;top:178px;width:13px;height:13px;">
+                        </form>
+
+                        <div style="position:absolute;left:41px;top:111px;width:119px;height:24px;overflow:hidden;">
+                            <p class="Body"><span class="C-2">Quantity:</span></p>
+                        </div>
+
+                        <div style="position:absolute;left:63px;top:149px;width:67px;height:17px;overflow:hidden;">
+                            <p class="Body"><span class="C-3">Alky?</span></p>
+                        </div>
+
+                        <div style="position:absolute;left:62px;top:176px;width:67px;height:17px;overflow:hidden;">
+                            <p class="Body"><span class="C-3">BA Set?</span></p>
+                        </div>
+
+                        <select name="addFlangeLineclassCombo" class="OBJ-9" style="position:absolute;left:162px;top:42px;width:125px;height:22px;" form="addFlangeRIForm">
+                            <option value="11011">11011</option>
+                            <option value="11071">11071</option>
+                            <option value="11261">11261</option>
+                            <option value="31011">31011</option>
+                            <option value="31071">31071</option>
+                            <option value="31261">31261</option>
+                        </select>
+
+                        <select name="addFlangeDiameterCombo" class="OBJ-9" style="position:absolute;left:162px;top:77px;width:126px;height:22px;" form="addFlangeRIForm">
+                            <option value="15">1/2&quot;</option>
+                            <option value="20">3/4&quot;</option>
+                            <option value="25">1&quot;</option>
+                            <option value="50">2&quot;</option>
+                            <option value="80">3&quot;</option>
+                            <option value="100">4&quot;</option>
+                            <option value="150">6&quot;</option>
+                            <option value="200">8&quot;</option>
+                            <option value="250">10&quot;</option>
+                            <option value="300">12&quot;</option>
+                            <option value="350">14&quot;</option>
+                            <option value="400">16&quot;</option>
+                        </select>
+
+                        <input name="addFlangeQuantityBox" class="OBJ-9" maxlength="32" placeholder="Enter quantity..." style="position:absolute;left:162px;top:110px;width:125px;height:22px;" form="addFlangeRIForm">
+
+                        <a href="estimates.html" id="cancelAddButton" class="OBJ-10 ActiveButton" style="position:absolute;left:41px;top:206px;width:76px;height:30px;">
+                            <span>Cancel</span>
+                        </a>
+
+                        <input type="submit" id="saveButton" value="Save" style="position:absolute;left:126px;top:206px;width:70px;height:30px;" form="addFlangeRIForm">
+
+                    </div>
+                </div>
+            </div>
         </div>
-    {% clever_selects_js_import %}
     </body>
 </html>

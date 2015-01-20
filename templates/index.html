@@ -197,6 +197,16 @@
                     <span>Add</span>
                 </a>
 
+                {% if adminuser > 0 %}
+                    <a href="/users/" id="addWorkpackButton" style="position:absolute;left:120px;top:24px;width:80px;height:30px;">
+                        <span>Users</span>
+                    </a>
+
+                    <a href="/registration/" id="addWorkpackButton" style="position:absolute;left:220px;top:24px;width:80px;height:30px;">
+                        <span>Projects</span>
+                    </a>
+                {% endif %}
+
                 <div id="exportWorkpackBomButton" style="position:absolute;left:810px;top:26px;width:105px;height:30px;">
                     <a href="/exportbom/"><button type="button" class="OBJ-13 ActiveButton" style="width:105px;height:30px;">
                         <span>Export</span>

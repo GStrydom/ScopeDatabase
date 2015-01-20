@@ -3,25 +3,35 @@
     <words>
       <w>aboslute</w>
       <w>addestimate</w>
+      <w>addflangept</w>
+      <w>addflangeri</w>
       <w>addspading</w>
       <w>addworkpack</w>
+      <w>adminuser</w>
       <w>aeaea</w>
       <w>aestbasetfield</w>
       <w>affecf</w>
       <w>alky</w>
       <w>ammended</w>
+      <w>amswer</w>
       <w>areafield</w>
       <w>backends</w>
       <w>baseestimatestable</w>
+      <w>baset</w>
       <w>bcabcdc</w>
       <w>boltup</w>
       <w>bomtemplate</w>
       <w>borderestdiv</w>
+      <w>boxesbutton</w>
       <w>builtwithwwb</w>
       <w>caee</w>
+      <w>carryoutflangemanageduration</w>
+      <w>carryoutflangemanagemanhours</w>
+      <w>carryoutflangemanageresources</w>
       <w>checkforcoldcutrig</w>
       <w>checkforhotcutrig</w>
       <w>checkrigforhotcut</w>
+      <w>clearestimatesformbutton</w>
       <w>clickjacking</w>
       <w>clientfield</w>
       <w>coldcut</w>
@@ -46,7 +56,11 @@
       <w>datefield</w>
       <w>defests</w>
       <w>defestsform</w>
+      <w>deletedemolengthbase</w>
       <w>deletefieldweld</w>
+      <w>deletefieldweldbase</w>
+      <w>deleteinstalllengthbase</w>
+      <w>deletelinks</w>
       <w>deletepacklink</w>
       <w>deleteprefab</w>
       <w>deleteprefabitem</w>
@@ -58,8 +72,11 @@
       <w>demolengthmanhours</w>
       <w>demolengths</w>
       <w>demototals</w>
+      <w>diameterselected</w>
+      <w>diams</w>
       <w>displayestimates</w>
       <w>dmls</w>
+      <w>dont</w>
       <w>dsmallsize</w>
       <w>editfieldweld</w>
       <w>editfieldwelds</w>
@@ -70,6 +87,9 @@
       <w>editprefabitem</w>
       <w>editprefabmatlist</w>
       <w>editspadingitem</w>
+      <w>erectscaff</w>
+      <w>erectscaffoldscaffolders</w>
+      <w>errectscaffoldduration</w>
       <w>estalky</w>
       <w>estalkybox</w>
       <w>estbaset</w>
@@ -147,6 +167,7 @@
       <w>flangemanage</w>
       <w>flangepressuretestbaseform</w>
       <w>flangeptbase</w>
+      <w>flangeptform</w>
       <w>flangereinstatebaseform</w>
       <w>flangeribase</w>
       <w>flangesforisolation</w>
@@ -171,10 +192,14 @@
       <w>grindprepduration</w>
       <w>grindprepmanhours</w>
       <w>grindprepresource</w>
+      <w>grindprepresources</w>
       <w>hotcuts</w>
       <w>hotcutvar</w>
       <w>inls</w>
       <w>inspectionreport</w>
+      <w>inspectionreportduration</w>
+      <w>inspectionreportmanhours</w>
+      <w>inspectionreportresources</w>
       <w>inspectiontotals</w>
       <w>installisolation</w>
       <w>installlength</w>
@@ -186,13 +211,18 @@
       <w>instrumentsforboltup</w>
       <w>itemid</w>
       <w>itemname</w>
+      <w>itemselected</w>
       <w>landers</w>
+      <w>lclass</w>
       <w>leadfield</w>
       <w>linec</w>
       <w>lineclasses</w>
+      <w>lineclassexists</w>
+      <w>lineclassnames</w>
       <w>lineclassselected</w>
       <w>linetotals</w>
       <w>loginuser</w>
+      <w>lselected</w>
       <w>mainbuts</w>
       <w>masterlist</w>
       <w>materialitems</w>
@@ -222,18 +252,23 @@
       <w>ogpss</w>
       <w>omudte</w>
       <w>opsverify</w>
+      <w>opsverifyspades</w>
       <w>passwordbox</w>
       <w>pipehandlediameter</w>
       <w>pipehandlingestimates</w>
       <w>piphandling</w>
       <w>pipingscopeapp</w>
+      <w>pipingscopedb</w>
       <w>pmmssye</w>
       <w>precode</w>
       <w>prefabid</w>
       <w>prefabitems</w>
       <w>prefabnames</w>
+      <w>prefabquantityselected</w>
       <w>prefabrica</w>
       <w>prepareandpressure</w>
+      <w>prepareandpressureduration</w>
+      <w>preshutphase</w>
       <w>pressuretotals</w>
       <w>profilepic</w>
       <w>projectfield</w>
@@ -248,8 +283,11 @@
       <w>rsmallsize</w>
       <w>sapref</w>
       <w>saprefaccept</w>
+      <w>saprefacceptance</w>
       <w>saprefquality</w>
+      <w>saveestimatesformbutton</w>
       <w>savenewprefab</w>
+      <w>scaffolders</w>
       <w>sclss</w>
       <w>scoper</w>
       <w>selectedlineclass</w>
@@ -272,19 +310,23 @@
       <w>subestdefs</w>
       <w>subprefab</w>
       <w>tablerows</w>
+      <w>tabletotals</w>
       <w>tackandweldernorm</w>
       <w>tastypie</w>
       <w>textboxes</w>
       <w>totalduration</w>
       <w>totalmanhour</w>
       <w>totalmechfitterexecution</w>
+      <w>totalqcfitup</w>
       <w>totalresource</w>
       <w>ukqn</w>
       <w>urlpars</w>
       <w>usercode</w>
       <w>usernamebox</w>
       <w>userprofile</w>
+      <w>userslist</w>
       <w>usersname</w>
+      <w>valuesquerysettodict</w>
       <w>welcomediv</w>
       <w>weldernorm</w>
       <w>weldfit</w>

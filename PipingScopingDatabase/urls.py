@@ -8,6 +8,8 @@ urlpatterns = patterns('',
 
                        url(r'^registration/$', 'profiles.views.register', name='register'),
 
+                       url(r'^users/$', 'core.views.userslist', name='userslist'),
+
                        url(r'^exportbom/$', 'core.views.exportbom', name='exportbom'),
 
                        url(r'^$', 'profiles.views.loginuser', name='loginuser'),
@@ -41,8 +43,10 @@ urlpatterns = patterns('',
 
                        url(r'^prefabs/$', 'materials.views.showprefabitems', name='showprefabs'),
                        url(r'^create-prefab/$', 'materials.views.createprefabitem', name='createprefab'),
-                       url(r'^getprefabnames/$', 'materials.views.getprefabnames', name='getprefabname'),
-                       url(r'^edit-prefab/(?P<materialitem_id>\d+)/$', 'materials.views.editprefabitem', name='editprefab'),
+                       url(r'^edit-prefab/(?P<materialitem_id>\d+)/$', 'materials.views.editprefabitem',
+                           name='editprefab'),
+                       url(r'^delete-prefab/(?P<materialitem_id>\d+)/$', 'materials.views.deleteprefabitem',
+                           name='deleteprefab'),
 
                        url(r'^reinstates/$', 'materials.views.showreinstateitems', name='showreinstates'),
                        url(r'^create-reinstate/$', 'materials.views.createreinstateitem', name='createreinstates'),

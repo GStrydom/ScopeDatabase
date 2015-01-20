@@ -479,6 +479,7 @@
       <w>reinlineriggersduration</w>
       <w>reinlineriggersmanhours</w>
       <w>reinlineriggersresources</w>
+      <w>reinstatequantityselected</w>
       <w>removeinsulationduration</w>
       <w>removeinsulationmanhour</w>
       <w>removeinsulationmanhours</w>
@@ -552,6 +553,7 @@
       <w>spadejointnormhours</w>
       <w>spadenorm</w>
       <w>spadeselected</w>
+      <w>spadingquantityselected</w>
       <w>storevals</w>
       <w>submains</w>
       <w>subnewwp</w>

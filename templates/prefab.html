@@ -8,11 +8,27 @@
         <meta name="copyright" content="©OGPSS 2015">
         <link rel="stylesheet" type="text/css" href="../static/css/prefab.css">
         <script type="text/javascript" src="../static/js/jquery.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.deletelinks').click(function(event) {
+                    var answer = confirm('Are you sure you wish to delete the selected item?');
+                    if (answer == true) {
+
+                    }
+                    else {
+                        event.preventDefault();
+                    }
+                })
+            })
+        </script>
+
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
@@ -102,7 +118,7 @@
                                 <p class="Table-Body P-2"><a href="/edit-prefab/{{ materialitem.id }}" class="editlinks" >Edit</a></p>
                             </td>
                             <td class="TC-5">
-                                <p class="Table-Body P-2"><a href="prefab.html" class="C-4">Delete</a></p>
+                                <p class="Table-Body P-2"><a href="/delete-prefab/{{ materialitem.id }}" class="deletelinks">Delete</a></p>
                             </td>
                         </tr>
                     {% endfor %}

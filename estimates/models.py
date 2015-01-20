@@ -4,9 +4,6 @@ from workpacks.models import Workpack
 
 
 class Manhoursfactor(models.Model):
-    """
-    Lookup table for estimates.
-    """
     material = models.CharField(max_length=30, blank=True)
     pfitter = models.FloatField(blank=True, null=True)
     welder = models.FloatField(blank=True, null=True)
@@ -16,9 +13,6 @@ class Manhoursfactor(models.Model):
 
 
 class Pipingnorms(models.Model):
-    """
-    Lookup tables for estimates.
-    """
     pipediameter = models.FloatField()
     handlemeternormshours = models.FloatField()
     hotcutnormhours = models.FloatField()
@@ -49,8 +43,8 @@ class SpadingNorms(models.Model):
 
 class FieldWeldsBase(models.Model):
     lineclasses = models.CharField(max_length=20)
-    diameter = models.CharField(max_length=20, blank=True, null=True)
-    numberoffieldwelds = models.SmallIntegerField()
+    diameter = models.FloatField()
+    numberoffieldwelds = models.FloatField()
     created = models.DateTimeField(auto_now_add=True, null=True)
     workpack = models.ForeignKey(Workpack, null=True)
 

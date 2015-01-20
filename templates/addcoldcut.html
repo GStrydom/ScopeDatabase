@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Add Field Weld</title>
+        <title>Add Cold Cut</title>
         <meta name="generator" content="Serif WebPlus X7">
         <meta name="viewport" content="width=1200">
         <meta name="copyright" content="©OGPSS 2015">
@@ -92,15 +92,74 @@
             .OBJ-9.Disabled span,a:link.OBJ-9.Disabled span,a:visited.OBJ-9.Disabled span,a:hover.OBJ-9.Disabled span,a:active.OBJ-9.Disabled span { top:2px; }
             .OBJ-10 { background:#ffffff; }
         </style>
+
         <script type="text/javascript" src="../static/js/jquery.js"></script>
+
         <script type="text/javascript">
             $(document).ready(function() {
             $("a.ActiveButton").bind({ mousedown:function(){if ( $(this).attr('disabled') === undefined ) $(this).addClass('Activated');}, mouseleave:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}, mouseup:function(){ if ( $(this).attr('disabled') === undefined ) $(this).removeClass('Activated');}});
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(event) {
+                $('#saveColdCut').click(function() {
+                    var selected = $('#addCCLineclassBox').val();
+                    $.ajax({
+                        url: '/newcoldcuts/',
+                        type: 'POST',
+                        data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            lcSelected: selected
+                        },
+                        success: function(data) {
+                            if (data == 'True') {
+                                var answer = confirm('An item with the lineclass ' + selected + ' already exists. Would you like to update or replace the the item');
+                                if (answer == true) {
+                                    var quantity = $('#addCCQuantityBox').val();
+                                    var diameter = $('#addCCDiameterBox').val();
+                                    $.ajax({
+                                        url: '/newcoldcuts',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'True',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function() {
+                                            window.location.href = '/estimates/';
+                                        }
+                                    })
+                                }
+                                else {
+                                    quantity = $('#addCCQuantityBox').val();
+                                    diameter = $('#addCCDiameterBox').val();
+                                    $.ajax({
+                                        url: '/newcoldcuts/',
+                                        type: 'POST',
+                                        data: {
+                                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                                            answer: 'False',
+                                            quantity: quantity,
+                                            diameter: diameter
+                                        },
+                                        success: function () {
+                                            window.location.href = '/estimates/';
+                                        }
+                                    })
+                                }
+                            }
+                        }
+                    })
+                })
+            })
+        </script>
+
         <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
     </head>
+
     <body style="height:1020px;background:#cdcdcd;">
         <div id="divMain" style="background:#ffffff;margin-left:auto;margin-right:auto;position:relative;width:1200px;height:1000px;top:10px;">
             <img alt="" src="../static/images/wp047c1b10_06.png" style="position:absolute;left:0px;top:0px;width:1200px;height:59px;">
@@ -135,21 +194,27 @@
             <span style="position: absolute;left: 460px; top: 160px;z-index: 2">Add New Cold Cut</span>
             <img alt="" src="../static/images/wp1d19ec32_06.png" style="position:absolute;left:216px;top:150px;width:695px;height:40px;">
             <img src="../static/images/wpd95feb6b_06.png" alt="" width="693" height="517" style="position:absolute;left:217px;top:205px;width:693px;height:517px;">
+
             <div style="position:absolute;left:259px;top:260px;width:103px;height:27px;overflow:hidden;">
                 <p class="Body"><span class="C-2">Lineclass:</span></p>
             </div>
+
             <div style="position:absolute;left:260px;top:298px;width:102px;height:32px;overflow:hidden;">
                 <p class="Body"><span class="C-2">Diameter:</span></p>
             </div>
+
             <div style="position:absolute;left:260px;top:333px;width:103px;height:29px;overflow:hidden;">
                 <p class="Body"><span class="C-2">Quantity:</span></p>
             </div>
-            <a href="/prefabs/" id="cancelAddPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:260px;top:390px;width:101px;height:30px;">
+
+            <a href="/estimates/" id="cancelAddPrefabButton" class="OBJ-8 ActiveButton" style="position:absolute;left:260px;top:390px;width:101px;height:30px;">
                 <span>Cancel</span>
             </a>
+
             <div id="savePrefabButton" style="position:absolute;left:376px;top:390px;width:97px;height:30px;">
-                <input type="submit" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addColdCutForm">
+                <input type="button" class="OBJ-9 ActiveButton" style="width:97px;height:30px;" form="addColdCutForm" id="saveColdCut">
             </div>
+
             <form id="addColdCutForm" action="" method="post">{% csrf_token %}
 
                 <label for="checkforcoldcutrig" style="position: absolute; left: 290px; top: 390px;">Need riggers for hot cut?</label>
@@ -180,8 +245,8 @@
                     <option value="400">16"</option>
                 </select>
 
-
                 <input name="addCCQuantityBox" id="addCCQuantityBox" class="OBJ-10" maxlength="32" placeholder="Enter quantity..." style="position:absolute;left:383px;top:333px;width:145px;height:22px;">
+
             </form>
         </div>
     </body>

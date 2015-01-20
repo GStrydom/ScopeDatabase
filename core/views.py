@@ -1,26 +1,46 @@
 from django.shortcuts import render_to_response, HttpResponseRedirect
 from django.core.context_processors import csrf
+from django.template import RequestContext
+from django.contrib.auth import models
+from django.contrib.auth.decorators import login_required
 
 from workpacks.models import Workpack
-from materials.models import Lineclass11011
-
-from openpyxl import load_workbook
 
 
+@login_required(login_url='/')
 def homepageview(request):
     context = dict()
     context.update(csrf(request))
-
     context['workpacks'] = Workpack.objects.all()
 
-    context['lineclass11011'] = Lineclass11011.objects.all().distinct()
+    groups = models.Group.objects.get(name='Admins')
+    admin_users = groups.user_set.all()
 
-    return render_to_response('index.html', context)
+    for users in admin_users:
+        if request.user.username in users.username:
+            context['adminuser'] = 1
+        else:
+            context['adminuser'] = 0
+
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
 def exportbom(request):
-    bom_template = load_workbook(filename='exceltemplate.xlsx')
-    ws = bom_template.active
-    ws['C20'] = 'Hello'
-    bom_template.save(filename='exceltemplate.xlsx')
+
     return HttpResponseRedirect('/home/')
+
+
+@login_required(login_url='/')
+def userslist(request):
+    context = dict()
+
+    groups = models.Group.objects.get(name='Admins')
+    admin_users = groups.user_set.all()
+
+    for users in admin_users:
+        if request.user.username in users.username:
+            context['adminuser'] = 1
+        else:
+            context['adminuser'] = 0
+
+    return render_to_response('users.html', context, context_instance=RequestContext(request))
